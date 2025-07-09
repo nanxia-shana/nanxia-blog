@@ -7,7 +7,7 @@ hero:
   text: "Welcome to Nanxia's blog!"
   tagline: My great project tagline
   image:
-    src: /home/home-banner.jpeg
+    src: ./home/home-banner.jpeg
     alt: 加载失败
   actions:
     - theme: brand
