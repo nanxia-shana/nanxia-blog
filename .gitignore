@@ -1,0 +1,6 @@
+# Node.js 依赖目录
+node_modules/
+
+# VitePress 缓存和构建输出
+.vitepress/cache/
+.vitepress/dist/
