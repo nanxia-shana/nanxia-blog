@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/nanxia-blog/",
   title: "Nanxia-blog",
   description: "my own blog",
   themeConfig: {

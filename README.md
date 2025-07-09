@@ -1,2 +1,2 @@
 # nanxia-blog
-my  own blog
+my own blog
