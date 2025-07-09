@@ -6,40 +6,47 @@ on:
     tags:
       - "*"
     branches:
-      - master
+      - Prod
   workflow_dispatch:
 # 各个脚本节点命令
 jobs:
-  deploy-and-sync:
-    # 执行环境为linux的ubuntu系统
+  # 构建工作
+  build:
     runs-on: ubuntu-latest
     steps:
-      # 从master分支拉取代码
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: "master"
-      # 安装pnpm
-      - name: Install pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
-      # 安装node环境
-      - uses: actions/setup-node@v3
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+      # - uses: pnpm/action-setup@v3 # 如果使用 pnpm，请取消此区域注释
+      #   with:
+      #     version: 9
+      # - uses: oven-sh/setup-bun@v1 # 如果使用 Bun，请取消注释
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: "18"
-          cache: "pnpm"
-      # 使用pnpm安装依赖
+          node-version: 22
+          cache: npm # 或 pnpm / yarn
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       - name: Install dependencies
-        run: pnpm install
-      # 打包vitepress项目
-      - name: Build Site
-        run: pnpm run docs:build
-      # 将打包后dist里的产物提交到prod分支
-      - name: Deploy for Github 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        run: npm ci # 或 pnpm install / yarn install / bun install
+      - name: Build with VitePress
+        run: npm run docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: prod
-          folder: docs/.vitepress/dist
-          single-commit: true
-          clean: true
+          path: docs/.vitepress/dist
+
+  # 部署工作
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
