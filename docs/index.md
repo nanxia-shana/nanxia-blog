@@ -3,24 +3,26 @@
 layout: home
 
 hero:
-  name: "Nanxia-blog"
-  text: "Welcome to Nanxia's blog!"
-  tagline: My great project tagline
+  name: "南夏的博客"
+  text: "欢迎"
+  tagline: 专注于Node.js、Vue、React、Vite、Nginx等前端技术。不断学习新技术，记录日常开发问题，共同进步。生命不息，奋斗不止...
   image:
-    src: /home/home-banner.jpeg
+    src: /home/Iraina6-removebg.png
     alt: 加载失败
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: 浏览博客
       link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
 
 features:
-  - title: front end
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  # - title: Feature B
-  #   details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 前端
+    details: 前端框架（如Vue、React）、技术设计（如微前端与低代码），以及常见的前端性能优化方案
+    link: /front
+  - title: 后端
+    details: 后端框架应用（如Express、NestJS），以及MySQL、MongoDB等常见数据库的操作
+    link: /back
+  - title: 其它
+    details: Git版本控制、网络工程，以及其他常用的编程工具与技能等
+    link: /others
 ---
 
