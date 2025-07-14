@@ -14,10 +14,10 @@ hero:
       link: /front
 
 features:
-  - title: Front End
+  - title: Front-end
     details: Front-end frameworks such as Vue and React, technical design such as micro-front-end and low code, and common front-end performance optimization schemes
     link: /front
-  - title: Back End
+  - title: Back-end
     details: Back-end framework applications such as express and nest.js, as well as the operation of common data such as mysql and mongodb
     link: /back
   - title: Others

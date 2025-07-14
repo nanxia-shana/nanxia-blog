@@ -5,6 +5,7 @@ const { getSideBar } = utils;
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: "/nanxia-blog/",
+  lang: "zh-CN",
   title: "南夏的博客",
   head: [
     [
@@ -31,9 +32,9 @@ export default defineConfig({
       provider: "local",
     },
     sidebar: {
-      "/front/": getSideBar("front"),
-      "/back/": getSideBar("back"),
-      "/others/": getSideBar("others"),
+      "/front/": getSideBar("前端"),
+      "/back/": getSideBar("后端"),
+      "/others/": getSideBar("其它"),
     },
     outline: {
       level: "deep",
@@ -65,26 +66,20 @@ export default defineConfig({
         "Nanxia's Blog, focusing on front-end technologies such as Node.js, Vue, React, Vite, and Nginx. Continuously learning new technologies, documenting daily development issues, and making progress together. Life is endless, and so is the struggle...",
       themeConfig: {
         nav: [
-          { text: "Home", link: "/" },
-          { text: "Front-end", link: "/front", activeMatch: "/front/" },
-          { text: "Back-end", link: "/back", activeMatch: "/back/" },
-          { text: "Others", link: "/others", activeMatch: "/others/" },
+          { text: "Home", link: "/en" },
+          { text: "Front-end", link: "/en/front", activeMatch: "/front/" },
+          { text: "Back-end", link: "/en/back", activeMatch: "/back/" },
+          { text: "Others", link: "/en/others", activeMatch: "/others/" },
         ],
-
-        sidebar: [
-          {
-            text: "Examples",
-            items: [
-              { text: "Markdown Examples", link: "/markdown-examples" },
-              { text: "Runtime API Examples", link: "/api-examples" },
-            ],
-          },
-        ],
+        sidebar: {
+          "/en/front/": getSideBar("Front-end", "en"),
+          "/en/back/": getSideBar("Back-end", "en"),
+          "/en/others/": getSideBar("Others", "en"),
+        },
         outline: {
           level: "deep",
           label: "Outline",
         },
-        socialLinks: [{ icon: "github", link: "https://github.com/nanxia-shana" }],
       },
     },
   },

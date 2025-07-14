@@ -1,19 +1,24 @@
 export default {
-  getSideBar(path: string | undefined) {
+  getSideBar(path: string | undefined, lang: string = "zh-CN") {
     const wholeList = [
       {
-        text: "front", // 显示文本
+        text: "前端", // 显示文本
         // 下钻子项
         items: [
+          {
+            text: "前端基础",
+            items: [
+              {
+                text: "前端常用设计模式",
+                link: "/front/base/designPattern",
+              },
+            ],
+          },
           {
             text: "前端工程化",
             items: [
               {
-                text: "前端规范搭建",
-                link: "/front/engi/rule",
-              },
-              {
-                text: "前端规范搭建",
+                text: "前端项目规范化",
                 link: "/front/engi/rule",
               },
             ],
@@ -21,7 +26,7 @@ export default {
         ],
       },
       {
-        text: "back",
+        text: "后端",
         items: [
           {
             text: "Framework",
@@ -35,7 +40,7 @@ export default {
         ],
       },
       {
-        text: "others",
+        text: "其它",
         items: [
           {
             text: "常用操作指令",
@@ -105,10 +110,68 @@ export default {
       },
     ];
 
+    const wholeList_en = [
+      {
+        text: "Front-end", // 显示文本
+        // 下钻子项
+        items: [
+          {
+            text: "Front-end Basics",
+            items: [
+              {
+                text: "Common Front-end Design Patterns",
+                link: "/en/front/base/designPattern",
+              },
+            ],
+          },
+          {
+            text: "Front-end Engineering",
+            items: [
+              {
+                text: "前端项目规范化",
+                link: "/en/front/engi/rule",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: "Back-end",
+        items: [
+          {
+            text: "Framework",
+            items: [
+              {
+                text: "Nest.js",
+                link: "/en/back/nest/",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: "Others",
+        items: [
+          {
+            text: "常用操作指令",
+            items: [
+              {
+                text: "MarkDown",
+                link: "/en/others/operation/",
+              },
+            ],
+          },
+        ],
+      },
+    ];
+
     if (!path) {
       return wholeList;
     }
 
+    if (lang === "en") {
+      return [wholeList_en.filter((list) => list.text === path)[0]];
+    }
     return [wholeList.filter((list) => list.text === path)[0]];
   },
 };
