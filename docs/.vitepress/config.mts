@@ -12,7 +12,7 @@ export default defineConfig({
       {
         rel: "icon",
         type: "image/svg+xml",
-        href: "./websiteLogo.svg",
+        href: "/nanxia-blog/websiteLogo.svg",
       },
     ],
   ],
