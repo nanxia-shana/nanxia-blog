@@ -73,7 +73,7 @@ export default {
             text: "Front-end Engineering",
             items: [
               {
-                text: "前端项目规范化",
+                text: "Common Frontend Design Patterns",
                 link: "/en/front/engi/rule",
               },
             ],
