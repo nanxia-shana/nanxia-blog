@@ -25,3 +25,4 @@ features:
     link: /others
 ---
 
+<Live2d></Live2d>
