@@ -110,61 +110,6 @@ export default {
       },
     ];
 
-    const wholeList_en = [
-      {
-        text: "Front-end", // 显示文本
-        // 下钻子项
-        items: [
-          {
-            text: "Front-end Basics",
-            items: [
-              {
-                text: "Common Front-end Design Patterns",
-                link: "/en/front/base/designPattern",
-              },
-            ],
-          },
-          {
-            text: "Front-end Engineering",
-            items: [
-              {
-                text: "前端项目规范化",
-                link: "/en/front/engi/rule",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        text: "Back-end",
-        items: [
-          {
-            text: "Framework",
-            items: [
-              {
-                text: "Nest.js",
-                link: "/en/back/nest/",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        text: "Others",
-        items: [
-          {
-            text: "常用操作指令",
-            items: [
-              {
-                text: "MarkDown",
-                link: "/en/others/operation/",
-              },
-            ],
-          },
-        ],
-      },
-    ];
-
     if (!path) {
       return wholeList;
     }
