@@ -10,10 +10,10 @@ hero:
     alt: Loading failed
   actions:
     - theme: brand
-      text: Knowledge
+      text: 📖 Knowledge
       link: /knowledge
     - theme: alt
-      text: Spiritual-food
+      text: 🎼 Spiritual-food
       link: /spiritual-food
 
 features:

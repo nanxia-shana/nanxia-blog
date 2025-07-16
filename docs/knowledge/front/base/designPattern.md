@@ -1,5 +1,8 @@
 ---
 layout: doc
+
+prevText: '上一页:'
+nextText: 下一页
 ---
 
 # 前端常用设计模式

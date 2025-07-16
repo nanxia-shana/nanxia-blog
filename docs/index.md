@@ -11,10 +11,10 @@ hero:
     alt: 加载失败
   actions:
     - theme: brand
-      text: 知识库
+      text: 📖 知识库
       link: /knowledge
     - theme: alt
-      text: 精神食粮
+      text: 🎼 精神食粮
       link: /spiritual-food
 
 features:

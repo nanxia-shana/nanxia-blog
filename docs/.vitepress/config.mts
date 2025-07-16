@@ -72,6 +72,7 @@ export default defineConfig({
         },
       },
     },
+    socialLinks: [{ icon: "github", link: "https://github.com/nanxia-shana" }],
     sidebar: {
       "/knowledge/": getSideBar("知识库"),
       "/spiritual-food/": getSideBar("精神食粮"),
@@ -80,7 +81,6 @@ export default defineConfig({
       level: "deep",
       label: "大纲",
     },
-    socialLinks: [{ icon: "github", link: "https://github.com/nanxia-shana" }],
   },
   locales: {
     root: {
