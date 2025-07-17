@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的书籍收藏</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        .book-collection {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        /* 标题样式 */
+        h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+            position: relative;
+        }
+
+        h1::after {
+            content: "「书中自有黄金屋」";
+            display: block;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 0.5rem;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        /* 筛选栏 */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        /* 书籍卡片网格 */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* 书籍卡片 */
+        .book-card {
+            display: flex;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 书籍封面 */
+        .book-cover {
+            position: relative;
+            width: 100px;
+            height: 150px;
+            margin-right: 1rem;
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .read-status {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #4CAF50;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* 书籍信息 */
+        .book-info {
+            flex: 1;
+        }
+
+        .book-info h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .tags {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0.3rem 0;
+        }
+
+        .note {
+            font-style: italic;
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        /* 装饰元素 */
+        .book-collection::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #f5e6ca, #e8d5b5);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .book-card {
+                flex-direction: column;
+            }
+
+            .book-cover {
+                width: 100%;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .filter-bar {
+                overflow-x: auto;
+                white-space: nowrap;
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book-collection">
+        <h1>📚 我的精神书架</h1>
+        <div class="filter-bar">
+            <button class="filter-btn active" data-category="all">全部</button>
+            <button class="filter-btn" data-category="literature">文学</button>
+            <button class="filter-btn" data-category="social-science">社科</button>
+            <button class="filter-btn" data-category="technology">科技</button>
+        </div>
+        <div class="books-grid" id="booksContainer">
+            <!-- 书籍卡片将通过JavaScript动态生成 -->
+        </div>
+    </div>
+
+    <script>
+        // 模拟书籍数据
+        const books = [
+            {
+                title: "人类简史",
+                author: "尤瓦尔·赫拉利",
+                cover: "https://img3.doubanio.com/view/subject/s/public/s27814405.jpg",
+                tags: ["历史", "认知科学"],
+                note: "改变我世界观的著作",
+                read: true,
+                category: "social-science"
+            },
+            {
+                title: "百年孤独",
+                author: "加西亚·马尔克斯",
+                cover: "https://img9.doubanio.com/view/subject/s/public/s6384944.jpg",
+                tags: ["文学", "魔幻现实主义"],
+                note: "魔幻与现实的完美交织",
+                read: true,
+                category: "literature"
+            },
+            {
+                title: "三体",
+                author: "刘慈欣",
+                cover: "https://img9.doubanio.com/view/subject/s/public/s2768376.jpg",
+                tags: ["科幻", "文学"],
+                note: "中国科幻的里程碑",
+                read: true,
+                category: "literature"
+            },
+            {
+                title: "沉默的大多数",
+                author: "王小波",
+                cover: "https://img3.doubanio.com/view/subject/s/public/s1070965.jpg",
+                tags: ["杂文", "思想"],
+                note: "犀利而深刻的思考",
+                read: true,
+                category: "social-science"
+            },
+            {
+                title: "算法导论",
+                author: "Thomas H. Cormen",
+                cover: "https://img9.doubanio.com/view/subject/s/public/s1054814.jpg",
+                tags: ["计算机", "算法"],
+                note: "计算机科学的经典教材",
+                read: false,
+                category: "technology"
+            },
+            {
+                title: "月亮与六便士",
+                author: "毛姆",
+                cover: "https://img9.doubanio.com/view/subject/s/public/s6384945.jpg",
+                tags: ["文学", "小说"],
+                note: "理想与现实的永恒命题",
+                read: true,
+                category: "literature"
+            }
+        ];
+
+        // 渲染书籍列表
+        function renderBooks(booksToRender) {
+            const container = document.getElementById('booksContainer');
+            container.innerHTML = booksToRender.map(book => `
+                <div class="book-card" data-category="${book.category}">
+                    <div class="book-cover">
+                        <img src="${book.cover}" alt="${book.title}">
+                        <span class="read-status">${book.read ? '✓' : '○'}</span>
+                    </div>
+                    <div class="book-info">
+                        <h3>${book.title}</h3>
+                        <p class="author">${book.author}</p>
+                        <p class="tags">${book.tags.join(' | ')}</p>
+                        ${book.note ? `<p class="note">${book.note}</p>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 初始渲染所有书籍
+        renderBooks(books);
+
+        // 筛选功能
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 更新活动按钮状态
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                btn.classList.add('active');
+                
+                const category = btn.getAttribute('data-category');
+                let filteredBooks;
+                
+                if (category === 'all') {
+                    filteredBooks = books;
+                } else {
+                    filteredBooks = books.filter(book => book.category === category);
+                }
+                
+                renderBooks(filteredBooks);
+            });
+        });
+
+        // 阅读状态切换
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('read-status')) {
+                const bookCard = e.target.closest('.book-card');
+                const readStatus = bookCard.querySelector('.read-status');
+                readStatus.textContent = readStatus.textContent === '✓' ? '○' : '✓';
+                
+                // 这里可以添加实际更新数据的逻辑
+                // 例如通过API更新后端数据
+            }
+        });
+    </script>
+</body>
+</html>

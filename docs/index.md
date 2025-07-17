@@ -11,19 +11,22 @@ hero:
     alt: 加载失败
   actions:
     - theme: brand
-      text: 浏览博客
-      link: /markdown-examples
+      text: 📖 知识库
+      link: /knowledge
+    - theme: alt
+      text: 🎼 精神食粮
+      link: /spiritual-food
 
 features:
   - title: 前端
     details: 前端框架（如Vue、React）、技术设计（如微前端与低代码），以及常见的前端性能优化方案
-    link: /front
+    link: /knowledge/front
   - title: 后端
     details: 后端框架应用（如Express、NestJS），以及MySQL、MongoDB等常见数据库的操作
-    link: /back
+    link: /knowledge/back
   - title: 其它
     details: Git版本控制、网络工程，以及其他常用的编程工具与技能等
-    link: /others
+    link: /knowledge/others
 
 ---
 
