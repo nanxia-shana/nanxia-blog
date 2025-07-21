@@ -113,6 +113,7 @@ onBeforeUnmount(() => {
 }
 
 .message {
+  color: #fff;
   opacity: 0;
   width: 200px;
   height: auto;
@@ -121,7 +122,7 @@ onBeforeUnmount(() => {
   top: -70px;
   left: 0px;
   text-align: center;
-  border: 1px solid rgba(255, 137, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 12px;
   background-color: rgba(255, 137, 255, 0.2);
   box-shadow: 0 3px 15px 2px rgba(255, 137, 255, 0.4);
@@ -139,6 +140,7 @@ onBeforeUnmount(() => {
 }
 
 .hide-button {
+  color: #fff;
   position: absolute;
   top: 10px;
   right: 0;
@@ -146,20 +148,21 @@ onBeforeUnmount(() => {
   display: none;
   overflow: hidden;
   /* padding: 4px; */
-  width: 60px;
-  height: 20px;
-  border: 1px solid rgba(255, 137, 255, 0.4);
+  width: 46px;
+  height: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 12px;
   background: rgba(255, 137, 255, 0.2);
   box-shadow: 0 3px 15px 2px rgba(255, 137, 255, 0.4);
   text-align: center;
   font-size: 12px;
+  line-height: 22px;
   cursor: pointer;
 }
 
 .hide-button:hover {
   border: 1px solid #f4a7b9;
-  background: #f4f6f8;
+  /* background: #f4f6f8; */
 }
 
 @media (max-width: 860px) {
