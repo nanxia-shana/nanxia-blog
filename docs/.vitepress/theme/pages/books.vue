@@ -35,7 +35,7 @@ const categories = [
   { label: "全部", value: "all" },
   { label: "文学", value: "literature" },
   { label: "人文社科", value: "social-science" },
-  { label: "科技", value: "technology" },
+  { label: "科普/科技", value: "technology" },
 ];
 
 // 当前选中的分类
@@ -46,8 +46,8 @@ const books = ref([
   {
     title: "明朝那些事儿",
     author: "当年明月",
-    cover: "/nanxia-blog/book-covers/mingchao.jpeg",
-    tags: ["人文社科", "历史"],
+    cover: "/nanxia-blog/book-covers/ming_chao.jpeg",
+    tags: ["人文社科", "通俗历史"],
     note: "以幽默诙谐的笔法讲述明朝历史，让严肃的历史变得生动有趣。",
     read: 90,
     category: "social-science",
@@ -55,46 +55,55 @@ const books = ref([
   {
     title: "三体",
     author: "刘慈欣",
-    cover: "/nanxia-blog/book-covers/santi.jpeg",
-    tags: ["文学", "科幻"],
+    cover: "/nanxia-blog/book-covers/san_ti.jpeg",
+    tags: ["文学", "科幻经典", "雨果奖"],
     note: "中国科幻的里程碑",
     read: 20,
     category: "literature",
   },
   {
-    title: "百年孤独",
-    author: "加西亚·马尔克斯",
-    cover: "https://img9.doubanio.com/view/subject/s/public/s6384944.jpg",
-    tags: ["文学", "魔幻现实主义"],
-    note: "魔幻与现实的完美交织",
-    read: 0,
+    title: "了不起的盖茨比",
+    author: "弗朗西斯·斯科特·基·菲茨杰拉德",
+    cover: "/nanxia-blog/book-covers/the great gatsby.jpeg",
+    tags: ["美国文学", "经典", "爵士时代"],
+    note: "20世纪美国文学的经典之作，探讨美国梦与人性",
+    read: 100,
     category: "literature",
   },
   {
-    title: "沉默的大多数",
-    author: "王小波",
-    cover: "https://img3.doubanio.com/view/subject/s/public/s1070965.jpg",
-    tags: ["杂文", "思想"],
-    note: "犀利而深刻的思考",
-    read: 0,
-    category: "social-science",
+    title: "文学少女",
+    author: "野村美月",
+    cover: "/nanxia-blog/book-covers/wen_shao.jpeg",
+    tags: ["文学", "轻小说", "校园", "治愈"],
+    note: "名著解读×校园青春，温暖治愈的轻小说时光",
+    read: 100,
+    category: "literature",
   },
   {
-    title: "算法导论",
-    author: "Thomas H. Cormen",
-    cover: "https://img9.doubanio.com/view/subject/s/public/s1054814.jpg",
-    tags: ["计算机", "算法"],
-    note: "计算机科学的经典教材",
-    read: 0,
-    category: "technology",
+    title: "呼啸山庄",
+    author: "艾米莉·勃朗特",
+    cover: "/nanxia-blog/book-covers/Wuthering Heights.jpeg",
+    tags: ["哥特文学", "经典", "爱情", "复仇"],
+    note: "爱与恨的极致交织，荒原上的永恒悲剧", 
+    read: 60,
+    category: "literature",
   },
   {
-    title: "月亮与六便士",
-    author: "毛姆",
-    cover: "https://img9.doubanio.com/view/subject/s/public/s6384945.jpg",
-    tags: ["文学", "小说"],
-    note: "理想与现实的永恒命题",
-    read: 0,
+    title: "钢铁是怎样炼成的",
+    author: "尼古拉·奥斯特洛夫斯基",
+    cover: "/nanxia-blog/book-covers/How the Steel Was Tempered.jpeg",
+    tags: ["苏联文学", "成长小说", "励志", "经典"],
+    note: "保尔·柯察金的成长史诗，诠释生命的意义与信仰的力量",
+    read: 100,
+    category: "literature",
+  },
+  {
+    title: "猫武士",
+    author: "艾琳·亨特",
+    cover: "/nanxia-blog/book-covers/Warriors.jpeg",
+    tags: ["动物小说", "奇幻", "冒险", "成长"],
+    note: "通过猫族社会的权力斗争与生存法则，探讨忠诚、勇气与自然法则的永恒命题",
+    read: 50,
     category: "literature",
   },
 ]);
@@ -107,9 +116,9 @@ const setCategory = (category) => {
 // 过滤后的书籍列表
 const filteredBooks = computed(() => {
   if (currentCategory.value === "all") {
-    return books.value;
+    return books.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   } else {
-    return books.value.filter((book) => book.category === currentCategory.value);
+    return books.value.filter((book) => book.category === currentCategory.value).sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   }
 });
 </script>
@@ -186,13 +195,14 @@ h1::after {
 /* 书籍卡片网格 */
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
 /* 书籍卡片 */
 .book-card {
   position: relative;
+  padding-right: 1rem;
   display: flex;
   background: #fff;
   border-radius: 8px;
@@ -258,6 +268,11 @@ h1::after {
     overflow-x: auto;
     white-space: nowrap;
     justify-content: flex-start;
+  }
+
+  /* 书籍卡片网格 */
+  .books-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 </style>
