@@ -3,7 +3,7 @@ import "./style/var.css";
 import Live2d from "./components/Live2d.vue";
 import Background from "./components/Background.vue";
 import Books from "./pages/books.vue";
-import Music from "./pages/books.vue"; 
+import Music from "./pages/music.vue"; 
 
 export default {
   ...Theme,

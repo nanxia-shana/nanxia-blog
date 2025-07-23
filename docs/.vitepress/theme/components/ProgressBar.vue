@@ -1,7 +1,7 @@
 <template>
-  <div class="progress-container">
+  <div class="progress-container" :style="stuteStyle">
     <div class="progress-bar" :style="progressStyle"></div>
-    <span class="progress-text">{{ props.progress }}</span>
+    <span class="progress-text">{{ props.progress == 0 ? '未读' : props.progress == 100 ? '已读' : props.progress }}</span>
   </div>
 </template>
 
@@ -16,6 +16,21 @@ const props = defineProps({
   }
 });
 
+const stuteStyle = computed(() => {
+  if (props.progress == 0) {
+    // 0% 时直接使用第一个颜色
+    return { 
+      backgroundColor: '#ff0080',
+      color: '#fff'
+    };
+  } else if (props.progress == 100) {
+    // 100% 时直接使用最后一个颜色
+    return { 
+      backgroundColor: '#40e0d0',
+      color: '#fff'
+    };
+  }
+});
 // 计算渐变色
 const progressStyle = computed(() => {
   // 定义颜色节点
@@ -85,10 +100,11 @@ const progressStyle = computed(() => {
   right: 5px;
   width: 50px;
   height: 20px;
-  border: 1px solid rgba(255, 137, 255, 0.8);
-  box-shadow: 0 1px 10px 1px rgba(255, 137, 255, 0.4);
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 10px 1px rgba(244, 244, 244, 0.4);
   border-radius: 10px;
-  background: #fff;
+  background: #eee;
+  color: #3c3c43;
   line-height: 20px;
   text-align: center;
   display: flex;
@@ -111,7 +127,8 @@ const progressStyle = computed(() => {
 .progress-text {
   position: relative;
   z-index: 1;
-  color: #3c3c43;
   font-size: 12px;
+  letter-spacing: 1px;
+  text-indent: 2px;
 }
 </style>
