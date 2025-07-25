@@ -11,6 +11,16 @@
       </button>
     </div> 
     <div class="music-list">
+      <div class="music-header">
+        <div class="music-header-index">#</div>
+        <div class="music-header-cover">封面</div>
+        <div class="music-header-info">信息</div>
+        <div class="music-header-album">专辑</div>
+        <div class="music-header-date">日期</div>
+        <div class="music-header-duration">
+          <SvgIcon name="duration" className="duration-icon"/>
+        </div>
+      </div>
       <div v-for="(music, index) in filteredMusic" :key="music.title" class="music-card" :data-category="music.category">
         <div class="music-index">{{ index + 1 }}</div>
         <div class="music-cover">
@@ -30,6 +40,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import SvgIcon from '../components/Svg-icon.vue';
 // 分类数据
 const categories = [  
   { label: "全部", value: "all" },
@@ -90,35 +101,73 @@ const filteredMusic = computed(() => {
 .filter-bar {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 .filter-btn {
-  padding: 10px 20px;
-  margin: 0 5px;
-  border: none;
-  border-radius: 5px;
-  background-color: #eee;
+  padding: 3px 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
   cursor: pointer;
+  transition: all 0.3s;
 }
-.filter-btn.active {
-  background-color: #40e0d0;
-  color: white;
+.filter-btn:hover, .filter-btn.active {
+  background: rgba(255, 137, 255, 0.4);
+  border-color: rgba(255, 137, 255, 0.8);
+  box-shadow: 0 3px 15px 2px rgba(255, 137, 255, 0.4);
 }
 .music-list {
   display: flex;
   flex-direction: column;
-  
+}
+.music-header {
+  padding: 10px 0;
+  display: flex;
+  font-weight: bold;
+  background: rgba(255, 137, 255, 0.4);
+  box-shadow: 0 0 2px 1px rgba(255, 137, 255, 0.4);
+}
+.music-header-index{
+  width: 40px;
+  text-align: center;
+}
+.music-header-cover{
+  width: 50px;
+  min-width: 50px;
+}
+.music-header-info{
+  width: 160px;
+  padding-left: 10px;
+}
+.music-header-album{
+  flex: 1;
+  padding-left: 10px;
+}
+.music-header-date{
+  width: 120px;
+  padding-left: 10px;
+}
+.music-header-duration{
+  width: 80px;
+  padding-right: 10px;
+  text-align: end;
+}
+.duration-icon{
+  width: 16px;
+  height: 16px;
 }
 .music-card {
   position: relative;
   width: 100%;
   height: 60px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 137, 255, 0.4);
+  box-shadow: 0 0 2px 1px rgba(255, 137, 255, 0.4);
   border-radius: 2px;
   overflow: hidden;
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  margin-top: 3px;
   cursor: pointer;
 }
 .music-index{
@@ -128,6 +177,7 @@ const filteredMusic = computed(() => {
 .music-cover {
   width: 50px;
   height: 50px;
+  min-width: 50px;
   overflow: hidden;
 }
 .music-cover img {
@@ -156,7 +206,7 @@ const filteredMusic = computed(() => {
   font-size: 0.9rem;
 }
 .music-album{
-  width: 200px;
+  flex: 1;
   padding-left: 10px;
   text-wrap: nowrap;
   overflow: hidden;
@@ -174,8 +224,9 @@ const filteredMusic = computed(() => {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .music-date{
+  .music-date, .music-header-date{
     display: none;
   }
 }
+
 </style>

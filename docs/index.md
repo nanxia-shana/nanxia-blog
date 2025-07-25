@@ -6,9 +6,9 @@ hero:
   name: "南夏的博客"
   text: "欢迎"
   tagline: 专注于Node.js、Vue、React、Vite、Nginx等前端技术。不断学习新技术，记录日常开发问题，共同进步。生命不息，奋斗不止...
-  image:
-    src: /home/Iraina6-removebg.png
-    alt: 加载失败
+  # image:
+  #   src: /home/Asuka.png
+  #   alt: 加载失败
   actions:
     - theme: brand
       text: 📖 知识库
@@ -31,4 +31,4 @@ features:
 ---
 
 <Live2d></Live2d>
-<!-- <Background></Background> -->
+<Background></Background>

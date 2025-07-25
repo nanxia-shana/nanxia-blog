@@ -5,9 +5,9 @@ hero:
   name: "Nanxia's blog"
   text: "Welcome"
   tagline: Nanxia's Blog, focusing on front-end technologies such as Node.js, Vue, React, Vite, and Nginx. Continuously learning new technologies, documenting daily development issues, and making progress together. Life is endless, and so is the struggle...
-  image:
-    src: /home/Iraina6-removebg.png
-    alt: Loading failed
+  # image:
+    # src: /home/Asuka.png
+    # alt: Loading failed
   actions:
     - theme: brand
       text: 📖 Knowledge
@@ -29,3 +29,4 @@ features:
 ---
 
 <Live2d></Live2d>
+<Background></Background>

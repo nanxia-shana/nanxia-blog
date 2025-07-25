@@ -4,6 +4,7 @@ import Live2d from "./components/Live2d.vue";
 import Background from "./components/Background.vue";
 import Books from "./pages/books.vue";
 import Music from "./pages/music.vue"; 
+import Layout from "./Layout.vue";
 
 export default {
   ...Theme,
@@ -11,7 +12,8 @@ export default {
     app.component("Background", Background);
     app.component("Live2d", Live2d);
     // Pages
-    app.component("Books", Books); 
+    app.component("Books", Books);
     app.component("Music", Music);
   },
+  Layout: Layout,
 };
