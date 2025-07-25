@@ -1,9 +1,40 @@
 <template>
-  <div class="background"></div>
+  <div class="background" :style="backgroundStyle"></div>
 </template>
 
 <script setup>
+import { watch, ref, onMounted } from "vue";
+import { useData } from "vitepress";
 
+const { isDark } = useData();
+
+// 1. 定义响应式的 style 对象
+const backgroundStyle = ref({
+  backgroundImage: "url(/nanxia-blog/bg/light-theme.jpeg)", // 默认浅色主题
+});
+
+// 2. 监听 isDark 变化
+watch(isDark, (newVal) => {
+  if (newVal) {
+    backgroundStyle.value = {
+      // 注意：通过 .value 修改 ref 的值
+      backgroundImage: "url(/nanxia-blog/bg/dark-theme.jpeg)",
+    };
+  } else {
+    backgroundStyle.value = {
+      backgroundImage: "url(/nanxia-blog/bg/light-theme.jpeg)",
+    };
+  }
+});
+
+onMounted(() => {
+  // 组件挂载时根据当前主题设置背景
+  backgroundStyle.value = {
+    backgroundImage: isDark.value
+      ? "url(/nanxia-blog/bg/dark-theme.jpeg)"
+      : "url(/nanxia-blog/bg/light-theme.jpeg)",
+  };
+});
 </script>
 
 <style scoped>
@@ -13,7 +44,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/nanxia-blog/bg/bg1.jpeg'); /* 替换为你的背景图片路径 */
+  background-image: url("/nanxia-blog/bg/yexi3.jpeg"); /* 替换为你的背景图片路径 */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

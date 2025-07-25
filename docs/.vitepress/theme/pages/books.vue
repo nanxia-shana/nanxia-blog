@@ -135,7 +135,6 @@ body {
   font-family: "Noto Serif SC", serif;
   line-height: 1.6;
   color: #333;
-  background-color: #f9f9f9;
   padding: 20px;
 }
 
@@ -153,7 +152,6 @@ h1 {
   font-weight: bolder;
   text-align: center;
   margin-bottom: 3rem;
-  color: #333;
   position: relative;
 }
 
@@ -161,7 +159,6 @@ h1::after {
   content: "「书中自有黄金屋」";
   display: block;
   font-size: 0.9rem;
-  color: #888;
   margin-top: 1.5rem;
   font-family: "Noto Serif SC", serif;
 }
@@ -177,7 +174,6 @@ h1::after {
 
 .filter-btn {
   padding: 3px 16px;
-  background: #fff;
   border: 1px solid #ddd;
   border-radius: 20px;
   cursor: pointer;
@@ -187,7 +183,6 @@ h1::after {
 .filter-btn:hover,
 .filter-btn.active {
   background: rgba(255, 137, 255, 0.4);
-  color: #3c3c43;
   border-color: rgba(255, 137, 255, 0.8);
   box-shadow: 0 3px 15px 2px rgba(255, 137, 255, 0.4);
 }
@@ -204,14 +199,19 @@ h1::after {
   position: relative;
   padding-right: 1rem;
   display: flex;
-  background: #fff;
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #aaa;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
   transition: transform 0.3s;
   overflow: hidden;
   cursor: pointer;
+}
+
+.book-card:hover {
+  background: rgba(255, 137, 255, 0.2);
+  border-color: rgba(255, 137, 255, 0.8);
+  box-shadow: 0 3px 15px 2px rgba(255, 137, 255, 0.4);
 }
 
 .book-card:hover {
@@ -251,14 +251,12 @@ h1::after {
 }
 
 .tags {
-  color: #666;
   font-size: 0.9rem;
   margin: 0.3rem 0 1rem 0;
 }
 
 .note {
   font-style: italic;
-  color: #888;
   font-size: 0.8rem;
 }
 

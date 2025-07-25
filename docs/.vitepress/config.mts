@@ -12,8 +12,8 @@ export default defineConfig({
       "link",
       {
         rel: "icon",
-        type: "image/svg+xml",
-        href: "/nanxia-blog/websiteLogo.svg",
+        type: "image/png",
+        href: "/nanxia-blog/websiteLogo.png",
       },
     ],
   ],
@@ -131,8 +131,8 @@ export default defineConfig({
           },
         ],
         sidebar: {
-          "/en/knowledge/": getSideBar("Knowledge","en"),
-          "/en/spiritual-food/": getSideBar("Spiritual-food","en"),
+          "/en/knowledge/": getSideBar("Knowledge", "en"),
+          "/en/spiritual-food/": getSideBar("Spiritual-food", "en"),
         },
         outline: {
           level: "deep",
