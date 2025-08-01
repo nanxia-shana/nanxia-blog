@@ -28,5 +28,4 @@ features:
     link: /en/knowledge/others
 ---
 
-<Live2d></Live2d>
 <Background></Background>

@@ -113,7 +113,7 @@ onBeforeUnmount(() => {
 }
 
 .message {
-  color: #fff;
+  color: var(--vp-c-text-1);
   opacity: 0;
   width: 200px;
   height: auto;
@@ -140,7 +140,7 @@ onBeforeUnmount(() => {
 }
 
 .hide-button {
-  color: #fff;
+  color: var(--vp-c-text-1);
   position: absolute;
   top: 10px;
   right: 0;
