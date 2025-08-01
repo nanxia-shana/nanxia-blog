@@ -17,7 +17,6 @@ const backgroundStyle = ref({
 watch(isDark, (newVal) => {
   if (newVal) {
     backgroundStyle.value = {
-      // 注意：通过 .value 修改 ref 的值
       backgroundImage: "url(/nanxia-blog/bg/dark-theme.jpeg)",
     };
   } else {
@@ -29,11 +28,15 @@ watch(isDark, (newVal) => {
 
 onMounted(() => {
   // 组件挂载时根据当前主题设置背景
-  backgroundStyle.value = {
-    backgroundImage: isDark.value
-      ? "url(/nanxia-blog/bg/dark-theme.jpeg)"
-      : "url(/nanxia-blog/bg/light-theme.jpeg)",
-  };
+  if(isDark.value) {
+    backgroundStyle.value = {
+      backgroundImage: "url(/nanxia-blog/bg/dark-theme.jpeg)",
+    };
+  } else {
+    backgroundStyle.value = {
+      backgroundImage: "url(/nanxia-blog/bg/light-theme.jpeg)",
+    };
+  }
 });
 </script>
 
@@ -49,5 +52,10 @@ onMounted(() => {
   background-size: cover;
   background-position: center;
   z-index: -1; /* 确保背景在最底层 */
+}
+</style>
+<style>
+.icon{
+  fill: var(--vp-c-text-1)
 }
 </style>
