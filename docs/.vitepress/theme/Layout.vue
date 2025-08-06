@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { nextTick, provide } from 'vue'
+import { nextTick, provide, reactive } from 'vue'
+
+import MusicPlayer from "./components/MusicPlayer.vue";
+import musicData from '../store/index';
 
 const { Layout } = DefaultTheme
 
@@ -40,6 +43,12 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     }
   )
 })
+
+const musicList = reactive(musicData.musicList)
+const playbackState = reactive(musicData.playbackState)
+
+provide('music-list', musicList)
+provide('playback-state', playbackState)
 </script>
 
 <template>

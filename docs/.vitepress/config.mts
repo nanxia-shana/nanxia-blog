@@ -8,10 +8,8 @@ const { getSideBar } = utils;
 export default defineConfig({
   vite: {
     define: {
-      __SITE_TITLE__: JSON.stringify("我的文档站点"),
-      __SITE_DESCRIPTION__: JSON.stringify("这是一个基于 VitePress 的文档站点"),
-      __API_BASE_URL__: JSON.stringify("https://api.example.com"),
-      __USER_NAME__: JSON.stringify("John Doe"),
+      __MUSIC_LIST__: store.musicList,
+      __PLAYBACK_STATE__: store.playbackState,
     },
   },
   base: "/nanxia-blog/",
