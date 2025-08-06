@@ -56,6 +56,6 @@ onMounted(() => {
 </style>
 <style>
 .icon{
-  fill: var(--vp-c-text-1)
+  fill: var(--vp-button-alt-text);
 }
 </style>
