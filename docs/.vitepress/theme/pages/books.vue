@@ -124,25 +124,9 @@ const filteredBooks = computed(() => {
 </script>
 
 <style scoped>
-/* 基础样式 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Noto Serif SC", serif;
-  line-height: 1.6;
-  color: #333;
-  padding: 20px;
-}
-
 .book-collection {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  font-family: "Noto Serif SC", serif;
 }
 
 /* 标题样式 */
@@ -156,7 +140,7 @@ h1 {
 }
 
 h1::after {
-  content: "「书中自有黄金屋」";
+  content: "「一叶知秋，一书知心」";
   display: block;
   font-size: 0.9rem;
   margin-top: 1.5rem;

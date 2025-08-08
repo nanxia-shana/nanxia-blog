@@ -4,7 +4,7 @@ const menuList = [
     link: "/knowledge/",
     items: [
       {
-        text: "前端",
+        text: "🌐 前端",
         link: "/knowledge/front/",
         items: [
           {
@@ -30,11 +30,11 @@ const menuList = [
         ],
       },
       {
-        text: "后端",
+        text: "🖥️ 后端",
         link: "/knowledge/back/",
       },
       {
-        text: "其它",
+        text: "🧩 其它",
         link: "/knowledge/others/",
       },
     ],
@@ -44,32 +44,40 @@ const menuList = [
     link: "/spiritual-food/",
     items: [
       {
-        text: "书山拾叶",
+        text: "📚 书山拾叶",
         link: "/spiritual-food/books/",
       },
       {
-        text: "听海观澜",
+        text: "🎧 听海观澜",
         link: "/spiritual-food/music/",
       },
       {
-        text: "浮光掠影",
+        text: "🎥 浮光掠影",
         link: "/spiritual-food/movies/",
       },
       {
-        text: "绘梦织霞",
+        text: "🌌 绘梦织霞",
         link: "/spiritual-food/anime/",
       },
       {
-        text: "墨池云篆",
+        text: "✒️ 墨池云篆",
         link: "/spiritual-food/novels/",
       },
       {
-        text: "游心太玄",
+        text: "🎮 游心太玄",
         link: "/spiritual-food/games/",
       },
       {
-        text: "闲窗絮语",
-        link: "/spiritual-food/others/",
+        text: "🍵 闲窗絮语",
+        // link: "/spiritual-food/others/",
+        collapsed: false,
+        items: [
+          {
+            text: "追逐",
+            collapsed: false,
+            link: "/spiritual-food/others/zhuizhu",
+          },
+        ],
       },
     ],
   },

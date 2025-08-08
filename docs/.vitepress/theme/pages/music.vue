@@ -1,6 +1,7 @@
 <template>
   <div class="music-collection">
-    <h1>🎵 音乐之旅</h1>
+    <h1>🎧 
+      听海观澜</h1>
     <div class="filter-bar">
       <button
         v-for="category in categories"
@@ -20,9 +21,9 @@
           <svg t="1753336238420" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9335" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24"><path d="M909.8 304.6c-5.4-10.5-16.3-17.8-28.9-17.8-17.8 0-32.2 14.4-32.2 32.1 0 6 1.7 11.7 4.6 16.5l-0.1 0.1c26.9 52.4 42.1 111.8 42.1 174.7 0 211.6-171.6 383.2-383.2 383.2S128.8 721.8 128.8 510.2 300.4 127.1 512 127.1c62.5 0 121.5 15 173.6 41.5l0.2-0.4c4.6 2.6 10 4.1 15.7 4.1 17.8 0 32.2-14.4 32.2-32.1 0-13.1-7.9-24.4-19.3-29.4C653.6 79.9 584.9 62.5 512 62.5 264.7 62.5 64.3 263 64.3 510.2S264.7 957.9 512 957.9s447.7-200.4 447.7-447.7c0-74.1-18-144-49.9-205.6z" p-id="9336"></path><path d="M489.7 535l137.1 137.2c12.4 12.4 32.8 12.4 45.2 0s12.4-32.7 0-45.2L544.2 499.1V287.9c0-17.5-14.3-31.9-31.9-31.9-17.5 0-31.9 14.3-31.9 31.9v224.4c0 8.2 3.1 16.5 9.3 22.7z" p-id="9337"></path><path d="M771.7 218.7a32.2 32.1 0 1 0 64.4 0 32.2 32.1 0 1 0-64.4 0Z" p-id="9338"></path></svg>
         </div>
       </div>
-      <div v-for="(music, index) in filteredMusic" :key="music.title" :class="`music-card ${playbackState.currentMusic.id === music.id ? 'music-card-playing' : ''}`" :data-category="music.category">
+      <div v-for="(music, index) in filteredMusic" :key="music.title" :class="`music-card ${playbackState.currentMusic.id === music.id && playbackState.isPlaying ? 'music-card-playing' : ''}`" :data-category="music.category">
         <div class="music-index">{{ index + 1 }}</div>
-        <div :class="`music-cover ${playbackState.currentMusic.id === music.id ? 'music-cover-playing' : ''}`">
+        <div :class="`music-cover ${playbackState.currentMusic.id === music.id && playbackState.isPlaying ? 'music-cover-playing' : ''}`">
           <img :src="music.cover" :alt="music.title" />
         </div>
         <div class="music-info">
@@ -67,6 +68,27 @@ const filteredMusic = computed(() => {
 </script>
 
 <style scoped>
+.music-collection {
+  margin: 0 auto;
+  padding: 2rem;
+}
+/* 标题样式 */
+h1 {
+  font-family: "Ma Shan Zheng", cursive;
+  font-size: 2.5rem;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+h1::after {
+  content: "「一浪知海，一澜见心」";
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  font-family: "Noto Serif SC", serif;
+}
 @keyframes rotate {
   from {
     transform: rotateZ(0deg);
@@ -75,14 +97,7 @@ const filteredMusic = computed(() => {
     transform: rotateZ(360deg);
   }
 }
-.music-collection {
-  padding: 20px;
-}
-.music-collection h1 {
-  text-align: center;
 
-  margin-bottom: 20px;
-}
 .filter-bar {
   display: flex;
   justify-content: center;
@@ -150,6 +165,7 @@ const filteredMusic = computed(() => {
   align-items: center;
   margin-top: 4px;
   cursor: pointer;
+  transition: 0.3s all;
 }
 @media (hover: hover) and (pointer: fine) {
   .music-card:hover{

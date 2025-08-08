@@ -3,3 +3,14 @@
   --vp-button-brand-bg: #e74c3c;
   --vp-c-brand-1: #e74c3c; */
 }
+
+.Serif-SC-Font {
+  font-family: 'Source Han Serif SC';
+  src: url('/fonts/SourceHanSerifSC-Medium.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+* {
+  font-family: 'Source Han Serif SC';
+}
