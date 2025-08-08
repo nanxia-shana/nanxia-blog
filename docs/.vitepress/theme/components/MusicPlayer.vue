@@ -102,7 +102,7 @@
               p-id="1384"></path>
           </svg>
         </div>
-        <div class="music-icon">
+        <div @click="toMusic" class="music-icon">
           <svg
             t="1754378929675"
             class="icon"
@@ -125,6 +125,9 @@
 
 <script setup>
 import { ref, inject, watch, onMounted } from "vue";
+import { useRouter } from 'vitepress'
+
+const router = useRouter()
 const audioPlayerRef = ref();
 const playbackState = inject("playback-state");
 const slider = ref({
@@ -219,7 +222,9 @@ function getPreviousItem(array, targetObj, key = 'id') {
   }
   return null; // 没找到目标对象，或者目标对象是第一项
 }
-
+const toMusic = () => {
+  router.go('/nanxia-blog/spiritual-food/music/');
+};
 </script>
 
 <style scoped>

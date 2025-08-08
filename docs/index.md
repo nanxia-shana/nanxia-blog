@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "南夏的博客"
-  text: "欢迎"
+  name: "Welcome to"
+  text: "南夏的博客"
   tagline: 专注于Node.js、Vue、React、Vite、Nginx等前端技术。不断学习新技术，记录日常开发问题，共同进步。生命不息，奋斗不止...
   # image:
   #   src: /home/Asuka.png

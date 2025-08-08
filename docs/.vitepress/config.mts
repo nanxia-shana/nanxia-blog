@@ -47,11 +47,11 @@ export default defineConfig({
         items: [
           { text: "📚 书山拾叶", link: "/spiritual-food/books/" }, // 书籍小说
           { text: "🎧 听海观澜", link: "/spiritual-food/music/" }, // 音乐音频
+          { text: "🎥 浮光掠影", link: "/spiritual-food/movies/" }, // 番剧动画
           { text: "🌌 绘梦织霞", link: "/spiritual-food/anime/" }, // 影视作品
-          { text: "🎞 浮光掠影", link: "/spiritual-food/movies/" }, // 番剧动画
-          { text: "🖋 墨池云篆", link: "/spiritual-food/novels/" }, // 网络文学
           { text: "🎮 游心太玄", link: "/spiritual-food/games/" }, // 游戏娱乐
-          { text: "🍵 闲窗絮语", link: "/spiritual-food/others/" }, // 其他杂项
+          { text: "✒️ 墨池云篆", link: "/spiritual-food/novels/" }, // 网络文学
+          { text: "🍵 闲窗絮语", link: "/spiritual-food/others/zhuizhu" }, // 其他杂项
         ],
       },
     ],
@@ -90,63 +90,63 @@ export default defineConfig({
       label: "大纲",
     },
   },
-  locales: {
-    root: {
-      lang: "zh-CN",
-      label: "简体中文",
-    },
-    en: {
-      lang: "en",
-      label: "English",
-      link: "/en",
-      title: "Nanxia's Blog",
-      head: [
-        [
-          "link",
-          {
-            rel: "icon",
-            type: "image/svg+xml",
-            href: "../websiteLogo.svg",
-          },
-        ],
-      ],
-      description:
-        "Nanxia's Blog, focusing on front-end technologies such as Node.js, Vue, React, Vite, and Nginx. Continuously learning new technologies, documenting daily development issues, and making progress together. Life is endless, and so is the struggle...",
-      themeConfig: {
-        nav: [
-          { text: "Home", link: "/en" },
-          {
-            text: "Knowledge",
-            activeMatch: "/knowledge/",
-            items: [
-              { text: "🌐 Front-end", link: "/knowledge/front/" },
-              { text: "🖥️ Back-end", link: "/knowledge/back/" },
-              { text: "🧩 Others", link: "/knowledge/others/" },
-            ],
-          },
-          {
-            text: "Spiritual-food",
-            activeMatch: "/spiritual-food/",
-            items: [
-              { text: "📚 Books", link: "/spiritual-food/books/" }, // 书籍小说
-              { text: "🎧 Music", link: "/spiritual-food/music/" }, // 音乐音频
-              { text: "🌌 Anime", link: "/spiritual-food/anime/" }, // 影视作品
-              { text: "🎞 Movies", link: "/spiritual-food/movies/" }, // 番剧动画
-              { text: "🖋 Novels", link: "/spiritual-food/novels/" }, // 网络文学
-              { text: "🎮 Games", link: "/spiritual-food/games/" }, // 游戏娱乐
-              { text: "🍵 Others", link: "/spiritual-food/others/" }, // 其他杂项
-            ],
-          },
-        ],
-        sidebar: {
-          "/en/knowledge/": getSideBar("Knowledge", "en"),
-          "/en/spiritual-food/": getSideBar("Spiritual-food", "en"),
-        },
-        outline: {
-          level: "deep",
-          label: "Outline",
-        },
-      },
-    },
-  },
+  // locales: {
+  //   root: {
+  //     lang: "zh-CN",
+  //     label: "简体中文",
+  //   },
+  //   en: {
+  //     lang: "en",
+  //     label: "English",
+  //     link: "/en",
+  //     title: "Nanxia's Blog",
+  //     head: [
+  //       [
+  //         "link",
+  //         {
+  //           rel: "icon",
+  //           type: "image/svg+xml",
+  //           href: "../websiteLogo.svg",
+  //         },
+  //       ],
+  //     ],
+  //     description:
+  //       "Nanxia's Blog, focusing on front-end technologies such as Node.js, Vue, React, Vite, and Nginx. Continuously learning new technologies, documenting daily development issues, and making progress together. Life is endless, and so is the struggle...",
+  //     themeConfig: {
+  //       nav: [
+  //         { text: "Home", link: "/en" },
+  //         {
+  //           text: "Knowledge",
+  //           activeMatch: "/knowledge/",
+  //           items: [
+  //             { text: "🌐 Front-end", link: "/knowledge/front/" },
+  //             { text: "🖥️ Back-end", link: "/knowledge/back/" },
+  //             { text: "🧩 Others", link: "/knowledge/others/" },
+  //           ],
+  //         },
+  //         {
+  //           text: "Spiritual-food",
+  //           activeMatch: "/spiritual-food/",
+  //           items: [
+  //             { text: "📚 Books", link: "/spiritual-food/books/" }, // 书籍小说
+  //             { text: "🎧 Music", link: "/spiritual-food/music/" }, // 音乐音频
+  //             { text: "🌌 Anime", link: "/spiritual-food/anime/" }, // 影视作品
+  //             { text: "🎞 Movies", link: "/spiritual-food/movies/" }, // 番剧动画
+  //             { text: "🖋 Novels", link: "/spiritual-food/novels/" }, // 网络文学
+  //             { text: "🎮 Games", link: "/spiritual-food/games/" }, // 游戏娱乐
+  //             { text: "🍵 Others", link: "/spiritual-food/others/" }, // 其他杂项
+  //           ],
+  //         },
+  //       ],
+  //       sidebar: {
+  //         "/en/knowledge/": getSideBar("Knowledge", "en"),
+  //         "/en/spiritual-food/": getSideBar("Spiritual-food", "en"),
+  //       },
+  //       outline: {
+  //         level: "deep",
+  //         label: "Outline",
+  //       },
+  //     },
+  //   },
+  // },
 });
