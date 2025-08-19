@@ -4,4 +4,4 @@ layout: page
 
 ---
 
-<Games></Games>
+<Anime></Anime>
