@@ -1,6 +1,6 @@
 <template>
   <div class="movie-collection">
-    <h1>🎥 浮光掠影​​</h1>
+    <h1>✒️ 墨池云篆​​</h1>
     <div class="filter-bar">
       <button
         v-for="category in categories"
@@ -90,7 +90,7 @@ h1 {
 }
 
 h1::after {
-  content: "「一帧藏韵，一幕寄情」";
+  content: "「一字藏锋，一文见魂」";
   display: block;
   font-size: 0.9rem;
   margin-top: 1.5rem;

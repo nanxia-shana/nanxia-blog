@@ -4,4 +4,4 @@ layout: page
 
 ---
 
-<Books></Books>
+<Novels></Novels>

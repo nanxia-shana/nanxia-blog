@@ -17,11 +17,11 @@ const backgroundStyle = ref({
 watch(isDark, (newVal) => {
   if (newVal) {
     backgroundStyle.value = {
-      backgroundImage: "url(/nanxia-blog/bg/dark-theme.jpeg)",
+      backgroundImage: "url(https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/yexi3.jpeg)",
     };
   } else {
     backgroundStyle.value = {
-      backgroundImage: "url(/nanxia-blog/bg/light-theme.jpeg)",
+      backgroundImage: "url(https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/mingrixiang1.jpeg)",
     };
   }
 });
