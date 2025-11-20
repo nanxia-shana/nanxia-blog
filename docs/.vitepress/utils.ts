@@ -19,6 +19,10 @@ const menuList = [
                 text: "前端 debugger 技巧",
                 link: "/knowledge/front/base/debugger",
               },
+              {
+                text: "TypeScript入门及实践",
+                link: "/knowledge/front/base/TypeScript",
+              },
             ],
           },
           {

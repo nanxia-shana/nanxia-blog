@@ -141,7 +141,7 @@ Sources 标签主要用于调试和分析 JavaScript 代码，它提供了强大
 
   - 具体步骤：
     1. 更改 Webpack 配置文件
-    ```javascript
+    ```JavaScript
     module.exports = {
     ...,
     // 开发环境生成SourceMap, 一般不推荐包体积会增大，且代码易泄露
@@ -256,3 +256,28 @@ H5 我们在此定义为通过手机浏览器或某些 APP 中内嵌的 Webview 
 
 #### 逻辑层
 相比与 H5，小程序已经内置了自己的开发者工具供我们在真机上使用，只需要在手机小程序上开启即可
+<img src="/markdown/front/debugger/WeChat-Mini-Program-Debugger_1.png" alt="加载失败" />
+<img src="/markdown/front/debugger/WeChat-Mini-Program-Debugger_2.png" alt="加载失败" />
+<img src="/markdown/front/debugger/WeChat-Mini-Program-Debugger_3.png" alt="加载失败" />
+
+#### 样式层
+在样式调试上，微信开发者工具也已经内置好了一套完善的模式-真机调试，我们可以直接在真机调试下进行 Dom 层的调试
+
+- 步骤：
+1. 电脑上打开微信开发者工具，点击真机调试，并且用手机扫描二维码
+<img src="/markdown/front/debugger/WeChat-Mini-Program-real-device-debugging_1.png" alt="加载失败" />
+
+2. 扫描二维码后，电脑会自动打开真机调试界面，即可将真机映射到电脑上进行调试
+<img src="/markdown/front/debugger/WeChat-Mini-Program-real-device-debugging_2.png" alt="加载失败" />
+<img src="/markdown/front/debugger/WeChat-Mini-Program-real-device-debugging_3.png" alt="加载失败" />
+
+
+### 抓包
+我们的互联网在进行数据交互时，无论是获取静态资源如网页，图片，样式等，还是接口数据，本质上都是数据包的传递，而抓包指的就是在数据传递过程中，进行数据捕获，一般用于发生异常时，先排查是后端数据源的问题，还是前端展示的问题。
+
+在 PC 端，我们通过浏览器开发者工具的 Network 去查看资源，本质上也是抓包，只是开发者工具已经帮我们简化了该功能，那么在真机上，我们如何进行抓包呢？
+
+市面上有许多抓包工具供我们使用，如老牌的 Charles,Fiddler，以及国产开发的新锐 Whistle,大家可以自行选择，在此我们使用 Whistle 来进行演示
+
+#### Whistle
+[whistle 使用教程](https://blog.csdn.net/qq_42445025/article/details/121796927)

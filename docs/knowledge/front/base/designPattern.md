@@ -25,7 +25,7 @@ nextText: 下一页
 - 处理大量具有相似属性的小对象
 
 #### 代码示例
-```javascript
+```JavaScript
 // 简单工厂模式示例
 class UserFactory {
     static createUser(role) {
@@ -54,7 +54,7 @@ const admin = UserFactory.createUser('admin');
 - 排序算法选择
 
 #### 代码示例
-```javascript
+```JavaScript
 // 策略模式示例
 const strategies = {
     isNonEmpty: (value, errorMsg) => {
@@ -89,7 +89,7 @@ const validate = (value, rules) => {
 - 数据绑定
 
 #### 代码示例
-```javascript
+```JavaScript
 // Observer类：数据监听者，负责把数据转换成getter/setter形式
 class Observer {
     constructor(data) {
@@ -200,7 +200,7 @@ Watcher(AllWatcher) 检测到age更新: 21
 - 组件通信
 
 #### 代码示例
-```javascript
+```JavaScript
 class EventEmitter {
     constructor() {
         this.events = {};
@@ -236,7 +236,7 @@ emitter.emit('userLogin', { userId: 1 });
 - 缓存机制
 
 #### 代码示例
-```javascript
+```JavaScript
 class Singleton {
     static instance = null;
 
@@ -266,7 +266,7 @@ class Singleton {
 - 权限验证
 
 #### 代码示例
-```javascript
+```JavaScript
 // TypeScript装饰器示例
 function log(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
@@ -299,7 +299,7 @@ class Example {
 - 第三方库整合
 
 #### 代码示例
-```javascript
+```JavaScript
 // 旧接口
 class OldAPI {
     getOldData() {
@@ -329,7 +329,7 @@ class APIAdapter {
 - MobX 状态管理实现对象观察
 
 #### 代码示例
-```javascript
+```JavaScript
 // ES6 Proxy示例
 const handler = {
     get: function(target, prop) {
