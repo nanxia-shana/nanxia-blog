@@ -1,8 +1,7 @@
 ---
 layout: doc
 
-prevText: "上一页:"
-nextText: 下一页
+lastUpdated: false
 ---
 
 # 前端 debugger 技巧
@@ -61,15 +60,15 @@ Console 标签提供了非常丰富的功能，除了简单的日志输出，还
 - console.table：对数组和对象的输出，输出内容以表格展示，方便查看
 - console.time：常用于函数计时的开始，用于测试复杂函数的执行性能
 - console.timeEnd：函数计时的结束
-  <img src="/markdown/front/debugger/console.timeEnd.png" alt="加载失败" />
+  <img src="/markdown/front/debugger/console-timeEnd.png" alt="加载失败" />
 
 - console.count: 常用于函数执行次数统计，每执行一次返回值则在当前作用域下+1
 - console.countReset：搭配 count 使用，可以重置当前作用域下的 count 次数
 - console.trace：打印当前输出被调用的完整调用栈，类似于 debugger 中的 call-stack
-  <img src="/markdown/front/debugger/console.trace.png" alt="加载失败" />
+  <img src="/markdown/front/debugger/console-trace.png" alt="加载失败" />
 
 - console.group：和 console.groupEnd()搭配使用给 console 分组
-  <img src="/markdown/front/debugger/console.group.png" alt="加载失败" />
+  <img src="/markdown/front/debugger/console-group.png" alt="加载失败" />
 
 - console.clear：清除所有 console 的记录
 

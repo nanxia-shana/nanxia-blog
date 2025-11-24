@@ -80,6 +80,17 @@ export default defineConfig({
         },
       },
     },
+    lastUpdated: {
+      text: "最后更新于",
+      formatOptions: {
+        dateStyle: "short",
+        timeStyle: "short",
+      },
+    },
+    docFooter: {
+      prev: "上一篇",
+      next: "下一篇",
+    },
     socialLinks: [{ icon: "github", link: "https://github.com/nanxia-shana" }],
     sidebar: {
       "/knowledge/": getSideBar("知识库"),
