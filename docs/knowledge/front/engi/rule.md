@@ -1,5 +1,7 @@
 ---
 layout: doc
+
+lastUpdated: false
 ---
 
 # 前端项目规范化
