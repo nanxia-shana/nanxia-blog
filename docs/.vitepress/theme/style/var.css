@@ -11,6 +11,9 @@
   font-style: normal;
   font-display: swap;
 }
+.Fira-Code-Font {
+  font-family: "Fira Code", "Consolas", "Monaco", "Courier New", monospace;
+}
 * {
   font-family: 'Source Han Serif SC';
 }

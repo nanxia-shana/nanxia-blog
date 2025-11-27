@@ -51,7 +51,7 @@ export default defineConfig({
           { text: "🌌 绘梦织霞", link: "/spiritual-food/anime/" }, // 番剧动画
           { text: "🎮 游心太玄", link: "/spiritual-food/games/" }, // 游戏娱乐
           { text: "✒️ 墨池云篆", link: "/spiritual-food/novels/" }, // 网络文学
-          { text: "🍵 闲窗絮语", link: "/spiritual-food/others/zhuizhu" }, // 其他杂项
+          { text: "🍵 闲窗絮语", link: "/spiritual-food/others/" }, // 其他杂项
         ],
       },
     ],
