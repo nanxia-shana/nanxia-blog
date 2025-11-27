@@ -12,6 +12,14 @@ const menuList = [
             collapsed: false,
             items: [
               {
+                text: "HTML 标签：从基础到语义化布局",
+                link: "/knowledge/front/base/HTML-semantic",
+              },
+              {
+                text: "JavaScript - 每日 API 笔记",
+                link: "/knowledge/front/base/JS-API",
+              },
+              {
                 text: "前端常用设计模式",
                 link: "/knowledge/front/base/designPattern",
               },
@@ -77,7 +85,7 @@ const menuList = [
       },
       {
         text: "🍵 闲窗絮语",
-        // link: "/spiritual-food/others/",
+        link: "/spiritual-food/others/",
         collapsed: false,
         items: [
           {
