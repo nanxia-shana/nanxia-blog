@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import detailCard from '../components/detail-card.vue';
+import detailCard from '../components/Detail-card.vue';
 // 分类数据
 const categories = [
   { label: "全部", value: "all" },
