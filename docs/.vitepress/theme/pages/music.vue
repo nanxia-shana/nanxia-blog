@@ -74,9 +74,10 @@ const filteredMusic = computed(() => {
 }
 /* 标题样式 */
 h1 {
-  font-family: "Ma Shan Zheng", cursive;
+  font-family: "Oswald", "站酷高端黑", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
   font-size: 2.5rem;
-  font-weight: bolder;
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
@@ -165,14 +166,11 @@ h1::after {
   align-items: center;
   margin-top: 4px;
   cursor: pointer;
-  transition: 0.3s all;
 }
 @media (hover: hover) and (pointer: fine) {
   .music-card:hover{
     background: rgba(255, 137, 255, 0.4);
     box-shadow: 1px 2px 6px 2px rgba(255, 137, 255, 0.2);
-    width: calc(100% - 30px);
-    transition: 0.3s all;
   }
   .music-card:hover .music-cover{
     animation: rotate 10s infinite linear;

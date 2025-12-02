@@ -22,7 +22,7 @@ lastUpdated: false
   | Object.hasOwn     | 静态 | 安全地检查自身属性       | 拥有自己的属性吗？|
   | hasOwnProperty    | 原型 | 检查自身属性（可能被覆盖）| 同上，但不安全   |
   - #### <span class="Fira-Code-Font">Object.assign(target, ...sources)</span>
-  > Object.assign() 方法用于将所有可枚举的自身属性从一个或多个源对象复制到目标对象，并返回修改后的目标对象。
+  > `Object.assign()` 方法用于将所有可枚举的自身属性从一个或多个源对象复制到目标对象，并返回修改后的目标对象。
 
   > [!IMPORTANT]
   > - ***target：*** 目标对象，接收源对象的属性。会被修改。
@@ -30,7 +30,7 @@ lastUpdated: false
   > - ***返回值：*** 经过修改的 target 对象。
 
   ::: details 特性 1：浅拷贝 (Shallow Copy)
-  这是最重要也是最容易踩坑的特性。Object.assign() 只复制属性的值。如果属性值是引用类型（如对象、数组），则复制的是内存地址的引用，而非对象本身。
+  这是最重要也是最容易踩坑的特性。`Object.assign()` 只复制属性的值。如果属性值是引用类型（如对象、数组），则复制的是内存地址的引用，而非对象本身。
   ```JavaScript
   // 示例：浅拷贝的陷阱
   const source = {
@@ -49,6 +49,7 @@ lastUpdated: false
   console.log(source.details.age); // 30 (源对象也被改变了！)
   ```
   :::
+
   ::: details 特性 2：属性覆盖 (Property Overwriting)
   当多个源对象具有相同的属性时，后面的源对象会覆盖前面的。
   ```JavaScript
@@ -64,6 +65,7 @@ lastUpdated: false
   // d: 来自 source2
   ```
   :::
+
   ::: details 特性 3：只复制可枚举的自身属性
   - **自身属性**：不包括从原型链继承的属性。
   - **可枚举属性**：enumerable: true 的属性（通常是我们自己定义的属性）。
@@ -93,6 +95,7 @@ lastUpdated: false
   // 注意：inheritedEnumerable 和 inheritedNonEnum 都没有被拷贝进来！
   ```
   :::
+  
   ::: details 特性 4：目标对象会被修改
   Object.assign() 直接修改第一个参数 target。如果不想修改现有对象，通常需要传入一个空对象 {} 作为目标。
   ```JavaScript
@@ -123,7 +126,85 @@ lastUpdated: false
   - 需要兼容不支持 ES2018 的旧环境（展开语法用于对象是在 ES2018 中标准化的）。
   - 需要显式地将属性赋值到一个已存在的目标对象上（而不是总是创建新对象）。
   :::
-  - #### <span class="Fira-Code-Font">Object.keys()</span>
+
+  - #### <span class="Fira-Code-Font">Object.keys(obj) 和 Object.values(obj)</span>
+  > - `object.keys()` 是一个静态方法，它返回一个由一个给定对象的自身可枚举属性名组成的数组，其顺序与通过 `for...in` 循环遍历该对象时返回的顺序一致（对于字符串键，现代 JS 引擎保证了插入顺序）。
+  > - `Object.values()` 是一个静态方法，它返回一个由一个给定对象的自身可枚举属性值组成的数组，其顺序与 `Object.keys()` 返回的键名数组的顺序一一对应。
+  >
+  > 它们是一对“孪生兄弟”，一个拿“键”（key），一个拿“值”（value）。
+
+  > [!IMPORTANT]
+  > - ***obj：*** 要返回其可枚举自身属性的对象。非对象类型（如原始值）会被强制转换为对象。
+  > - ***返回值：*** 一个由字符串组成的数组，每个字符串是该对象的一个自身可枚举属性的名称/值。
+
+  ::: details 特性 1：传入的参数会被强制转换为对象
+  如果传入的参数不是对象，它会被强制转换为对象。例如，Object.keys("abc")会将字符串 "abc"转换为 String 对象，然后返回其索引 ["0", "1", "2"]。
+  ```JavaScript
+  const text = "abc";
+
+  console(object.keys(text));   //输出：["0", "1", "2"]
+  console(object.value(text));   //输出：["a", "b", "c"]
+  ```
+  :::
+
+  ::: details 特性 2：只返回“自身”属性 (Own Properties)
+  它不会返回从原型链继承来的属性的键/值。
+  ```JavaScript
+  function MyConstructor() {
+  this.instanceProp = 'I am an instance property';
+  }
+  MyConstructor.prototype.prototypeProp = 'I am a prototype property';
+
+  const myObj = new MyConstructor();
+
+  console.log(Object.keys(myObj)); // 输出: ['instanceProp']
+  console.log(Object.values(myObj)); // 输出: ['I am an instance property']
+  // 'prototypeProp' 没有被包含在内
+  ```
+  :::
+  
+  ::: details 特性 3：只返回“可枚举”属性 (Enumerable Properties)
+  使用 Object.defineProperty定义的 enumerable: false的属性会被忽略。
+  ```JavaScript
+  const book = {};
+
+  // 可枚举属性 (默认)
+  book.title = 'The Great Gatsby';
+
+  // 不可枚举属性
+  Object.defineProperty(book, 'isbn', {
+    value: '9780743273565',
+    enumerable: false
+  });
+
+  console.log(Object.keys(book)); // 输出: ['title']
+  console.log(Object.values(book)); // 输出: ['The Great Gatsby']
+  // 'isbn' 没有被包含在内
+  ```
+  :::
+
+  ::: details 特性 4：属性顺序
+  对于 ES6 及以后，属性顺序遵循以下规则：
+  - 所有**数字键**按升序排列。
+  - 所有**字符串键**（包括 Symbols 除外）按插入顺序排列。
+  - 所有 **Symbol 键**按插入顺序排列。
+  - Object.keys()返回的数组只包含字符串键，并按上述规则排序。
+  ```JavaScript
+  const obj = {
+    z: 1,
+    2: 'a',
+    b: 2,
+    1: 'b',
+    a: 3
+  };
+
+  // 顺序解释: 数字键 '1', '2' 最先，按数值排序。然后是字符串键 'z', 'b', 'a'，按插入顺序。
+  console.log(Object.keys(obj)); // 输出: ['1', '2', 'z', 'b', 'a']\
+  // Object.values()返回的数组顺序严格依赖于 Object.keys()返回的键的顺序。
+  console.log(Object.values(obj)); // 输出: ['b', 'a', 1, 2, 3]
+  ```
+  :::
+
   - #### <span class="Fira-Code-Font">Object.entries()</span>
   - #### <span class="Fira-Code-Font">Object.fromEntries()</span>
   - #### <span class="Fira-Code-Font">Object.freeze()</span>

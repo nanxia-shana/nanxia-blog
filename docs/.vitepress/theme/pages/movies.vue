@@ -12,15 +12,7 @@
     </div>
     <div class="movies-grid">
       <div v-for="movie in filteredmovies" :key="movie.title" class="movie-card" :data-category="movie.category">
-        <div class="movie-cover">
-          <img :src="movie.cover" :alt="movie.title" />
-        </div>
-        <div class="movie-info">
-          <h2>{{ movie.title }}</h2>
-          <p class="author">{{ movie.author }}</p>
-          <p class="tags">{{ movie.tags.join(" | ") }}</p>
-          <p v-if="movie.note" class="note">{{ movie.note }}</p>
-        </div>
+        <detail-card :title="movie.title" :country="movie.country" :cover="movie.cover" :year="movie.year" :runtime="movie.runtime" ></detail-card>
       </div>
     </div>
   </div>
@@ -28,6 +20,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import detailCard from '../components/detail-card.vue';
 // 分类数据
 const categories = [
   { label: "全部", value: "all" },
@@ -42,11 +35,11 @@ const currentCategory = ref("all");
 // 模拟书籍数据
 const movies = ref([
   {
-    title: "肖申克的救赎", // 电影中文名（必填）
+    title: "肖申克的救赎  ", // 电影中文名（必填）
     originalTitle: "The Shawshank Redemption", // 原始片名（非必填）
     director: "弗兰克·德拉邦特", // 导演
     year: 1994, // 上映年份
-    country: ["美国"], // 制片国家（数组支持多国）
+    country: "美国", // 制片国家
     genre: ["剧情", "犯罪"], // 类型标签（数组）
     runtime: 142, // 时长（分钟）
     cover: "/nanxia-blog/movie-covers/shawshank-redemption.jpeg", // 封面图片路径
@@ -81,7 +74,9 @@ const filteredmovies = computed(() => {
 
 /* 标题样式 */
 h1 {
-  font-family: "Ma Shan Zheng", cursive;
+  font-family: "Oswald", "站酷高端黑", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
   font-size: 2.5rem;
   font-weight: bolder;
   text-align: center;
@@ -124,87 +119,19 @@ h1::after {
 /* 书籍卡片网格 */
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 /* 书籍卡片 */
 .movie-card {
-  position: relative;
-  padding-right: 1rem;
   display: flex;
-  border-radius: 8px;
-  border: 1px solid #aaa;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
-  transition: transform 0.3s;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.movie-card:hover {
-  background: rgba(255, 137, 255, 0.2);
-  border-color: rgba(255, 137, 255, 0.8);
-  box-shadow: 0 3px 15px 2px rgba(255, 137, 255, 0.4);
-}
-
-.movie-card:hover {
-  transform: translateY(-5px);
-}
-
-/* 书籍封面 */
-.movie-cover {
-  position: relative;
-  width: 150px;
-  height: 225px;
-  margin-right: 1rem;
-}
-
-.movie-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 4px;
-}
-
-/* 书籍信息 */
-.movie-info {
-  flex: 1;
-}
-
-.movie-info h2 {
-  margin: 0.5rem 0;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.author {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
-}
-
-.tags {
-  font-size: 0.9rem;
-  margin: 0.3rem 0 1rem 0;
-}
-
-.note {
-  font-style: italic;
-  font-size: 0.8rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .filter-bar {
-    overflow-x: auto;
-    white-space: nowrap;
-    justify-content: flex-start;
-  }
-
-  /* 书籍卡片网格 */
-  .movies-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
+  
 }
 </style>

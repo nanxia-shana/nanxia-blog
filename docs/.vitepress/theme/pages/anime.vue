@@ -12,15 +12,7 @@
     </div>
     <div class="movies-grid">
       <div v-for="movie in filteredmovies" :key="movie.title" class="movie-card" :data-category="movie.category">
-        <div class="movie-cover">
-          <img :src="movie.cover" :alt="movie.title" />
-        </div>
-        <div class="movie-info">
-          <h2>{{ movie.title }}</h2>
-          <p class="author">{{ movie.author }}</p>
-          <p class="tags">{{ movie.tags.join(" | ") }}</p>
-          <p v-if="movie.note" class="note">{{ movie.note }}</p>
-        </div>
+        <Card :title="movie.title" :cover="movie.cover" :note="movie.note" />
       </div>
     </div>
   </div>
@@ -28,6 +20,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import Card from "../components/Card.vue";
 // 分类数据
 const categories = [
   { label: "全部", value: "all" },
@@ -42,17 +35,30 @@ const currentCategory = ref("all");
 // 模拟书籍数据
 const movies = ref([
   {
-    title: "肖申克的救赎", // 电影中文名（必填）
-    originalTitle: "The Shawshank Redemption", // 原始片名（非必填）
-    director: "弗兰克·德拉邦特", // 导演
-    year: 1994, // 上映年份
-    country: ["美国"], // 制片国家（数组支持多国）
-    genre: ["剧情", "犯罪"], // 类型标签（数组）
-    runtime: 142, // 时长（分钟）
-    cover: "/nanxia-blog/movie-covers/shawshank-redemption.jpeg", // 封面图片路径
-    cast: ["蒂姆·罗宾斯", "摩根·弗里曼"], // 主演阵容（数组）
-    tags: ["希望", "体制化", "经典"], // 自定义标签
-    note: "自由意志与人性救赎的永恒命题，结尾震撼人心", // 观看笔记
+    title: "魔女之旅", // 电影中文名（必填）
+    originalTitle: "Wandering Witch: The Journey of Elaina", // 原始片名（非必填）
+    director: "渡边政治", // 导演（《魔女之旅》动画第1季导演）
+    year: 2020, // 上映年份（第一季首播时间）
+    country: ["日本"], // 制片国家（数组支持多国）
+    genre: ["动画", "奇幻", "冒险"], // 类型标签（数组）
+    runtime: 300, // 时长（分钟）（按第一季总时长示例，含多集累计）
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/Elaina.jpeg", // 封面图片路径
+    cast: ["安济知佳", "高桥李依", "木曾宽子"], // 主演阵容（数组）（主要声优）
+    tags: ["旅行", "治愈", "异世界", "成长"], // 自定义标签
+    note: "跟随魔女伊蕾娜游历众多国度，聆听各地的故事，感受世界的美好与哀愁，温柔而富有哲思的旅程",
+  },
+  {
+    title: "葬送的芙莉莲", // 电影中文名（必填）
+    originalTitle: "Sousou no Frieren: Beyond Journey's End", // 原始片名（非必填）
+    director: "斋藤圭一郎", // 导演（动画版导演）
+    year: 2023, // 上映年份（第一季首播时间）
+    country: ["日本"], // 制片国家（数组支持多国）
+    genre: ["动画", "奇幻", "冒险", "剧情"], // 类型标签（数组）
+    runtime: 600, // 时长（分钟）（按第一季总时长示例，含多集累计）
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/Frieren.jpeg", // 封面图片路径
+    cast: ["种崎敦美", "小林千晃", "艾拉"], // 主演阵容（数组）（主要声优）
+    tags: ["长寿种族", "时间与生命", "友情", "史诗"], // 自定义标签
+    note: "勇者击败魔王后，精灵法师芙莉莲踏上百年旅程重新理解人类与生命的温度，故事悠远感人，画面细腻隽永",
   },
 ]);
 
@@ -81,9 +87,9 @@ const filteredmovies = computed(() => {
 
 /* 标题样式 */
 h1 {
-  font-family: "Ma Shan Zheng", cursive;
+  font-family: "Cinzel", "庞门正道标题体", serif;
+  font-weight: 600;
   font-size: 2.5rem;
-  font-weight: bolder;
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
@@ -100,7 +106,6 @@ h1::after {
 /* 筛选栏 */
 .filter-bar {
   display: flex;
-  justify-content: center;
   gap: 10px;
   margin-bottom: 2rem;
   flex-wrap: wrap;
@@ -124,87 +129,23 @@ h1::after {
 /* 书籍卡片网格 */
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
 }
-
-/* 书籍卡片 */
 .movie-card {
-  position: relative;
-  padding-right: 1rem;
   display: flex;
-  border-radius: 8px;
-  border: 1px solid #aaa;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
-  transition: transform 0.3s;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.movie-card:hover {
-  background: rgba(255, 137, 255, 0.2);
-  border-color: rgba(255, 137, 255, 0.8);
-  box-shadow: 0 3px 15px 2px rgba(255, 137, 255, 0.4);
-}
-
-.movie-card:hover {
-  transform: translateY(-5px);
-}
-
-/* 书籍封面 */
-.movie-cover {
-  position: relative;
-  width: 150px;
-  height: 225px;
-  margin-right: 1rem;
-}
-
-.movie-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 4px;
-}
-
-/* 书籍信息 */
-.movie-info {
-  flex: 1;
-}
-
-.movie-info h2 {
-  margin: 0.5rem 0;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.author {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
-}
-
-.tags {
-  font-size: 0.9rem;
-  margin: 0.3rem 0 1rem 0;
-}
-
-.note {
-  font-style: italic;
-  font-size: 0.8rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .filter-bar {
-    overflow-x: auto;
-    white-space: nowrap;
-    justify-content: flex-start;
-  }
-
-  /* 书籍卡片网格 */
+}
+@media (max-width: 500px) {
   .movies-grid {
-    grid-template-columns: repeat(1, 1fr);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 </style>
