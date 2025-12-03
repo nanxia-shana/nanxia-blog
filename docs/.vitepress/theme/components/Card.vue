@@ -26,7 +26,7 @@
       <div class="tracker tr-23"></div>
       <div class="tracker tr-24"></div>
       <div class="tracker tr-25"></div>
-      <div id="card" :style="{'--bg-cover': `url(${props.cover})`}">
+      <div id="card" ref="bgEl" :style="{'--bg-cover': isLoaded ? `url(${props.cover})` : ''}">
         <p id="prompt">{{ props.title }}</p>
         <div class="title">{{ props.note }}</div>
         <!-- <div class="subtitle">
@@ -38,6 +38,7 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 const props = defineProps({
   title: {
     type: String,
@@ -52,6 +53,26 @@ const props = defineProps({
     required: true,
   }
 });
+const bgEl = ref(null)
+const isLoaded = ref(false)
+onMounted(() => {
+  if (!('IntersectionObserver' in window)) {
+    // 兼容老浏览器：直接加载
+    isLoaded.value = true
+    return
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        isLoaded.value = true
+        observer.unobserve(bgEl.value)
+      }
+    })
+  })
+
+  observer.observe(bgEl.value)
+})
 </script>
 
 <style scoped>
@@ -77,7 +98,9 @@ const props = defineProps({
   align-items: center;
   border-radius: 20px;
   transition: 700ms;
-  /* background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%); */
+}
+#card:not(.loaded) {
+  background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%); /* 占位色 */
 }
 #card::after {
   content: "";
@@ -135,7 +158,7 @@ const props = defineProps({
   font-weight: bold;
   transition: 300ms ease-in-out-out;
   position: absolute;
-  max-width: 140px;
+  max-width: 180px;
   color: #eee;
   word-break: keep-all;
 }

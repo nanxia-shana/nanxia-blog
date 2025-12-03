@@ -205,7 +205,63 @@ console.log(Object.values(obj)); // 输出: ['b', 'a', 1, 2, 3]
 ```
 :::
 
-- #### <span class="Fira-Code-Font">Object.entries()</span>
+- #### <span class="Fira-Code-Font">Object.entries(obj)</span>
+> `Object.entries()` 是一个静态方法，它返回一个由一个给定对象的自身可枚举属性的键值对组成的数组。这个数组中的每个元素都是一个 [key, value] 形式的子数组。
+
+> [!IMPORTANT]
+> - ***obj：*** 要返回其可枚举自身属性键值对的对象。
+> - ***返回值：*** 一个由 [key, value]子数组组成的新数组。
+
+::: details 特性 1：只返回“自身”属性 (Own Properties)
+它**不会**返回从原型链继承来的属性的键值对。
+```JavaScript
+function MyConstructor() {
+  this.instanceData = 'Instance Value';
+}
+MyConstructor.prototype.prototypeData = 'Prototype Value';
+
+const myObj = new MyConstructor();
+
+console.log(Object.entries(myObj)); // 输出: [ ['instanceData', 'Instance Value'] ]
+// 原型链上的 'prototypeData' 没有被包含在内
+```
+:::
+
+::: details 特性 2：只返回“可枚举”属性 (Enumerable Properties)
+使用 `Object.defineProperty` 定义的 `enumerable: false` 的属性的键值对会被忽略。
+```JavaScript
+const config = {};
+
+config.apiUrl = 'https://api.example.com'; // 可枚举
+
+Object.defineProperty(config, 'secretToken', {
+  value: 'xyz-123-abc',
+  enumerable: false
+});
+
+console.log(Object.entries(config)); // 输出: [ ['apiUrl', 'https://api.example.com'] ]
+// 'secretToken' 没有被包含在内
+```
+:::
+
+::: details 特性 3：顺序保证
+返回的二维数组中，子数组的顺序与 `Object.keys()` 返回的键名数组的顺序完全一致。
+```JavaScript
+const data = {
+  z: 1,
+  2: 'a',
+  b: 2,
+  1: 'b',
+};
+
+const entries = Object.entries(data);
+const keys = Object.keys(data);
+
+console.log('Keys:', keys);     // Keys: ['1', '2', 'z', 'b']
+console.log('Entries:', entries);
+// Entries: [ ['1', 'b'], ['2', 'a'], ['z', 1], ['b', 2] ]
+```
+:::
 - #### <span class="Fira-Code-Font">Object.fromEntries()</span>
 - #### <span class="Fira-Code-Font">Object.freeze()</span>
 ### 1-2. 数组：

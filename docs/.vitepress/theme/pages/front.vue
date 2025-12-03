@@ -171,7 +171,7 @@ import { ref, computed } from "vue";
   padding: 2rem;
 }
 .category {
-  background: white;
+  background:  var(--vp-sidebar-bg-color);
   border-radius: 12px;
   margin-bottom: 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -179,11 +179,11 @@ import { ref, computed } from "vue";
 }
 
 .category h2 {
-  background: #f1f3f4;
+  background: var(--vp-sidebar-bg-color);
   padding: 1rem;
   font-size: 1.25rem;
-  color: #2c3e50;
-  border-bottom: 1px solid #e0e0e0;
+  color: var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-divider);
 }
 
 .links {
@@ -196,7 +196,7 @@ import { ref, computed } from "vue";
 
 .link-item a {
   display: block;
-  color: #3498db;
+  color: var(--vp-c-brand-3);
   text-decoration: none;
   font-size: 0.95rem;
   padding: 0.3rem 0;
@@ -204,14 +204,14 @@ import { ref, computed } from "vue";
 }
 
 .link-item a:hover {
-  color: #2980b9;
+  color: var(--vp-c-brand-1);
   text-decoration: underline;
 }
 
 .link-item .url {
   display: block;
   font-size: 0.8rem;
-  color: #6c757d;
+  color: var(--vp-c-text-2);
   margin-top: 0.1rem;
   word-break: break-all;
 }

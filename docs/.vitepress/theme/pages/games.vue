@@ -109,7 +109,7 @@ h1::after {
 .filter-btn {
   padding: 3px 16px;
   border: 1px solid #ddd;
-  border-radius: 20px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
 }

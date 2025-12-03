@@ -79,6 +79,7 @@ const props = defineProps({
   background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,
      rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
   color: coral;
+  opacity: 0.9
 }
 
 .flip-card-back {

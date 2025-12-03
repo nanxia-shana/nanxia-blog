@@ -21,6 +21,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import detailCard from '../components/Detail-card.vue';
+import { moiveList } from '../../data/movieData.ts';
 // 分类数据
 const categories = [
   { label: "全部", value: "all" },
@@ -33,21 +34,7 @@ const categories = [
 const currentCategory = ref("all");
 
 // 模拟书籍数据
-const movies = ref([
-  {
-    title: "肖申克的救赎  ", // 电影中文名（必填）
-    originalTitle: "The Shawshank Redemption", // 原始片名（非必填）
-    director: "弗兰克·德拉邦特", // 导演
-    year: 1994, // 上映年份
-    country: "美国", // 制片国家
-    genre: ["剧情", "犯罪"], // 类型标签（数组）
-    runtime: 142, // 时长（分钟）
-    cover: "/nanxia-blog/movie-covers/shawshank-redemption.jpeg", // 封面图片路径
-    cast: ["蒂姆·罗宾斯", "摩根·弗里曼"], // 主演阵容（数组）
-    tags: ["希望", "体制化", "经典"], // 自定义标签
-    note: "自由意志与人性救赎的永恒命题，结尾震撼人心", // 观看笔记
-  },
-]);
+const movies = ref(moiveList);
 
 // 设置当前分类
 const setCategory = (category) => {
@@ -104,7 +91,7 @@ h1::after {
 .filter-btn {
   padding: 3px 16px;
   border: 1px solid #ddd;
-  border-radius: 20px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
 }
