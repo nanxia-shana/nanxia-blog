@@ -5,7 +5,7 @@ lastUpdated: false
 
 ---
 
-# JavaScript - 每日 API 笔记
+# JavaScript - API 特性与实用技巧
 ## 
 > [!TIP]
 > 未标注说明的API均为静态方法。
@@ -21,6 +21,9 @@ lastUpdated: false
   | Object.freeze     | 静态 | 冻结对象，使其不可变     | 冻结住           |
   | Object.hasOwn     | 静态 | 安全地检查自身属性       | 拥有自己的属性吗？|
   | hasOwnProperty    | 原型 | 检查自身属性（可能被覆盖）| 同上，但不安全   |
+
+---
+
 - #### <span class="Fira-Code-Font">Object.assign(target, ...sources)</span>
 > `Object.assign()` 方法用于将所有可枚举的自身属性从一个或多个源对象复制到目标对象，并返回修改后的目标对象。
 
@@ -127,6 +130,8 @@ console.log(newObject); // { a: 1, b: 2 }
 - 需要显式地将属性赋值到一个已存在的目标对象上（而不是总是创建新对象）。
 :::
 
+---
+
 - #### <span class="Fira-Code-Font">Object.keys(obj) 和 Object.values(obj)</span>
 > - `object.keys()` 是一个静态方法，它返回一个由一个给定对象的自身可枚举属性名组成的数组，其顺序与通过 `for...in` 循环遍历该对象时返回的顺序一致（对于字符串键，现代 JS 引擎保证了插入顺序）。
 > - `Object.values()` 是一个静态方法，它返回一个由一个给定对象的自身可枚举属性值组成的数组，其顺序与 `Object.keys()` 返回的键名数组的顺序一一对应。
@@ -205,6 +210,8 @@ console.log(Object.values(obj)); // 输出: ['b', 'a', 1, 2, 3]
 ```
 :::
 
+---
+
 - #### <span class="Fira-Code-Font">Object.entries(obj)</span>
 > `Object.entries()` 是一个静态方法，它返回一个由一个给定对象的自身可枚举属性的键值对组成的数组。这个数组中的每个元素都是一个 [key, value] 形式的子数组。
 
@@ -262,7 +269,74 @@ console.log('Entries:', entries);
 // Entries: [ ['1', 'b'], ['2', 'a'], ['z', 1], ['b', 2] ]
 ```
 :::
+
+---
+
 - #### <span class="Fira-Code-Font">Object.fromEntries()</span>
+> `Object.fromEntries()`是一个静态方法，它接收一个**键值对列表**（如数组或其他实现了可迭代协议的对象），并将其转换回一个**新的对象**。
+
+> [!IMPORTANT]
+> - ***iterable：*** 一个可迭代的对象（如 Array, Map, Set等），其每个元素本身也必须是一个可迭代的**长度为 2**​ 的序列（最常见的是 [key, value] 形式的数组）。
+> - ***返回值：*** 一个由 iterable 中的键值对构成的新对象。
+
+::: details 特性 1：基本转换逻辑
+它将一个 `[[k1, v1], [k2, v2], ...]` 结构的数组，转换为 `{ k1: v1, k2: v2, ... }` 结构的对象。
+```JavaScript
+const entries = [ ['name', 'Alice'], ['age', 30], ['city', 'Paris'] ];
+
+const obj = Object.fromEntries(entries);
+console.log(obj);
+// 输出: { name: 'Alice', age: 30, city: 'Paris' }
+```
+:::
+
+::: details 特性 2：键的唯一性：后出现者覆盖先出现者
+如果输入的键值对列表中有重复的键，最终对象中只会保留最后一个该键对应的值。
+```JavaScript
+const entriesWithDuplicateKeys = [
+  ['id', 101],
+  ['role', 'user'],
+  ['id', 202] // 重复的键 'id'
+];
+
+const obj = Object.fromEntries(entriesWithDuplicateKeys);
+console.log(obj);
+// 输出: { id: 202, role: 'user' } // 只有最后一个 'id' 生效
+```
+:::
+
+::: details 特性 3：与 `Object.entries()` 的互逆关系
+这是它最核心的特性。对一个对象使用 `Object.entries()` 再用 `Object.fromEntries()` 转换回去，可以得到一个**浅拷贝**的新对象（键的顺序可能会根据 ES6+ 规范被规范化）。
+```JavaScript
+const originalObj = { a: 1, b: 2, c: 3 };
+
+const roundTrip = Object.fromEntries(Object.entries(originalObj));
+
+console.log(roundTrip); // 输出: { a: 1, b: 2, c: 3 }
+console.log(roundTrip === originalObj); // 输出: false (是不同的对象)
+```
+:::
+
+::: details 特性 4：接受任何可迭代对象
+只要传入的对象是可迭代的，并且其元素是长度为 2 的可迭代对象，就可以被正确转换。
+```JavaScript
+// 1. 使用 Map
+const map = new Map([ ['x', 10], ['y', 20] ]);
+console.log(Object.fromEntries(map)); // 输出: { x: 10, y: 20 }
+
+// 2. 使用 Set (Set 的元素必须是 [key, value] 数组)
+const set = new Set([ ['p', 'apple'], ['q', 'banana'] ]);
+console.log(Object.fromEntries(set)); // 输出: { p: 'apple', q: 'banana' }
+
+// 3. 使用 Generator (高级用法)
+function* entryGenerator() {
+  yield ['key1', 'value1'];
+  yield ['key2', 'value2'];
+}
+console.log(Object.fromEntries(entryGenerator())); // 输出: { key1: 'value1', key2: 'value2' }
+```
+:::
+
 - #### <span class="Fira-Code-Font">Object.freeze()</span>
 ### 1-2. 数组：
 - #### <span class="Fira-Code-Font">Array.map()</span>

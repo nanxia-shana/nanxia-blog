@@ -16,7 +16,7 @@ const menuList = [
                 link: "/knowledge/front/base/HTML-semantic",
               },
               {
-                text: "JavaScript - 每日 API 笔记",
+                text: "JavaScript - API 特性与实用技巧",
                 link: "/knowledge/front/base/JS-API",
               },
               {
