@@ -12,7 +12,7 @@
     </div>
     <div class="animations-grid">
       <div v-for="anime in filteredanimations" :key="anime.title" class="anime-card" :data-category="anime.category">
-        <Card :title="anime.title" :cover="anime.cover" :note="anime.note" />
+        <Card :title="anime.title" :cover="anime.cover" :thumb="anime.thumb" :note="anime.note" />
       </div>
     </div>
   </div>
@@ -114,12 +114,20 @@ h1::after {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-}
-@media (max-width: 500px) {
   .animations-grid {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+  .anime-card {
+    width: 90%;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 500px) {
+  .anime-card {
+    width: 100%;
   }
 }
 </style>

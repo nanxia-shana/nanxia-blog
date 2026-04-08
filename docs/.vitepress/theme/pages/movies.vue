@@ -98,9 +98,9 @@ h1::after {
 
 .filter-btn:hover,
 .filter-btn.active {
-  background: rgba(255, 137, 255, 0.4);
-  border-color: rgba(255, 137, 255, 0.8);
-  box-shadow: 0 3px 15px 2px rgba(255, 137, 255, 0.4);
+  background: rgba(212, 175, 55, 0.4);
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 0 3px 15px 2px rgba(212, 175, 55, 0.4);
 }
 
 /* 书籍卡片网格 */
@@ -119,6 +119,20 @@ h1::after {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  
+  .movies-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .movie-card {
+    width: 90%;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 500px) {
+  .movie-card {
+    width: 100%;
+  }
 }
 </style>

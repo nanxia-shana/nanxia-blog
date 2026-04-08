@@ -14,6 +14,9 @@
 .Fira-Code-Font {
   font-family: "Fira Code", "Consolas", "Monaco", "Courier New", monospace;
 }
+.Red-Font {
+  color: #e74c3c;
+}
 * {
   font-family: 'Source Han Serif SC';
 }

@@ -8,9 +8,9 @@
       </div>
       <div class="front">
         <div class="img">
-          <div class="circle"></div>
-          <div class="circle" id="right"></div>
-          <div class="circle" id="bottom"></div>
+          <div class="circle" :style="{ backgroundColor: color1 }"></div>
+          <div class="circle" id="right" :style="{ backgroundColor: color2 }"></div>
+          <div class="circle" id="bottom" :style="{ backgroundColor: color3 }"></div>
         </div>
         <div class="front-content">
           <small class="badge">{{ props.country }}</small>
@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
+
 const props = defineProps({
   title: {
     type: String,
@@ -54,14 +55,37 @@ const props = defineProps({
     required: true,
   },
 });
+
+// 预定义几组和谐的配色方案
+const colorSchemes = [
+  ['#ffbb66', '#ff8866', '#ff2233'], // 原配色（橙红）
+  ['#66bbff', '#4488ff', '#2233ff'], // 蓝系
+  ['#66ffbb', '#44ddaa', '#22bb88'], // 绿系
+  ['#ff66bb', '#dd4488', '#bb2266'], // 粉紫系
+  ['#aabbff', '#8866dd', '#5533bb'], // 紫蓝系
+  ['#ffdd66', '#ffaa33', '#ff7700'], // 金黄系
+  ['#88ddff', '#66aadd', '#4488bb'], // 青蓝
+  ['#ff9966', '#dd6644', '#bb3322'], // 橙红
+]
+
+// 随机选择一组配色
+const randomIndex = Math.floor(Math.random() * colorSchemes.length)
+const [color1, color2, color3] = colorSchemes[randomIndex]
 </script>
 
 <style scoped>
 /* From Uiverse.io by ElSombrero2 */ 
 .card {
   overflow: visible;
-  width: 190px;
-  height: 254px;
+  width: 100%;
+  aspect-ratio: 190 / 254;
+  max-width: 190px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: none;
+  }
 }
 
 .content {
@@ -121,8 +145,12 @@ const props = defineProps({
   gap: 30px;
 }
 
-.card:hover .content {
+.content {
   transform: rotateY(180deg);
+}
+
+.card:hover .content {
+  transform: rotateY(0deg);
 }
 
 @keyframes rotation_481 {
@@ -197,14 +225,12 @@ const props = defineProps({
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background-color: #ffbb66;
   position: relative;
   filter: blur(15px);
   animation: floating 2600ms infinite linear;
 }
 
 #bottom {
-  background-color: #ff8866;
   left: 50px;
   top: 0px;
   width: 150px;
@@ -213,7 +239,6 @@ const props = defineProps({
 }
 
 #right {
-  background-color: #ff2233;
   left: 160px;
   top: -80px;
   width: 30px;

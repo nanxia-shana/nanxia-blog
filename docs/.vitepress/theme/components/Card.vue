@@ -26,7 +26,11 @@
       <div class="tracker tr-23"></div>
       <div class="tracker tr-24"></div>
       <div class="tracker tr-25"></div>
-      <div id="card" ref="bgEl" :style="{'--bg-cover': isLoaded ? `url(${props.cover})` : ''}">
+      <div id="card" ref="bgEl">
+        <!-- 低质量占位图 -->
+        <div v-if="props.thumb && !isLoaded" class="thumb-placeholder" :style="{'--thumb': `url(${props.thumb})`}"></div>
+        <!-- 原图 -->
+        <div v-if="isLoaded" class="cover-image" :style="{'--bg-cover': `url(${props.cover})`}"></div>
         <p id="prompt">{{ props.title }}</p>
         <div class="title">{{ props.note }}</div>
         <!-- <div class="subtitle">
@@ -48,6 +52,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  thumb: {
+    type: String,
+    default: null,
+  },
   note: {
     type: String,
     required: true,
@@ -65,10 +73,18 @@ onMounted(() => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        isLoaded.value = true
+        // 开始加载原图
+        const img = new Image()
+        img.onload = () => {
+          isLoaded.value = true
+        }
+        img.src = props.cover
         observer.unobserve(bgEl.value)
       }
     })
+  }, {
+    // 提前 200px 开始加载
+    rootMargin: '200px'
   })
 
   observer.observe(bgEl.value)
@@ -78,15 +94,24 @@ onMounted(() => {
 <style scoped>
 .container {
   position: relative;
-  width: 190px;
-  height: 254px;
+  width: 100%;
+  aspect-ratio: 190 / 254;
+  max-width: 190px;
   transition: 200ms;
   margin-bottom: 1rem;
 }
 
 .container:active {
-  width: 180px;
-  height: 245px;
+  max-width: 180px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: none;
+  }
+  .container:active {
+    max-width: none;
+  }
 }
 
 #card {
@@ -98,16 +123,33 @@ onMounted(() => {
   align-items: center;
   border-radius: 20px;
   transition: 700ms;
-}
-#card:not(.loaded) {
   background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%); /* 占位色 */
 }
-#card::after {
+
+.thumb-placeholder {
   content: "";
   position: absolute;
-  top: 0; 
+  top: 0;
   left: 0;
-  width: 100%; 
+  width: 100%;
+  height: 100%;
+  background-image: var(--thumb);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border-radius: 20px;
+  filter: blur(8px);
+  opacity: 0.7;
+  z-index: -2;
+  transition: opacity 300ms;
+}
+
+.cover-image {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
   background-image: var(--bg-cover);
   background-repeat: no-repeat;
@@ -115,11 +157,12 @@ onMounted(() => {
   background-size: cover;
   border-radius: 20px;
   filter: blur(0px);
-  opacity: 100%;    
-  z-index: -2;   
+  opacity: 100%;
+  z-index: -2;
+  transition: all 300ms;
 }
 
-.container:hover #card::after{
+.container:hover .cover-image {
   filter: blur(2px);
   opacity: 70%;
 }

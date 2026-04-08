@@ -115,6 +115,20 @@ h1::after {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  
+  .books-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .book-card {
+    width: 90%;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 500px) {
+  .book-card {
+    width: 100%;
+  }
 }
 </style>

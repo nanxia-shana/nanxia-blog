@@ -8,6 +8,7 @@ export interface AnimeItem {
   genre: string[]; // 类型标签（数组）
   runtime: number; // 时长（分钟）
   cover: string; // 封面图片路径
+  thumb?: string; // 低质量缩略图占位（可选）
   cast: string[]; // 主演阵容（声优，数组）
   tags: string[]; // 自定义标签
   note: string; // 备注
@@ -24,6 +25,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "奇幻", "冒险"], // 类型标签（数组）
     runtime: 300, // 时长（分钟）（按第一季总时长示例，含多集累计）
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/Elaina.jpeg", // 封面图片路径
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/Elaina.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["安济知佳", "高桥李依", "木曾宽子"], // 主演阵容（数组）（主要声优）
     tags: ["旅行", "治愈", "异世界", "成长"], // 自定义标签
     note: "跟随魔女伊蕾娜游历众多国度，聆听各地的故事，感受世界的美好与哀愁，温柔而富有哲思的旅程",
@@ -33,10 +35,11 @@ export const animeList: AnimeItem[] = [
     originalTitle: "Sousou no Frieren: Beyond Journey's End", // 原始片名（非必填）
     director: "斋藤圭一郎", // 导演（动画版导演）
     year: 2023, // 上映年份（第一季首播时间）
-    country: ["日本"], // 制片国家（数组支持多国）
+    country: ["日本"], // 制片国家（数组）
     genre: ["动画", "奇幻", "冒险", "剧情"], // 类型标签（数组）
     runtime: 600, // 时长（分钟）（按第一季总时长示例，含多集累计）
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/Frieren.jpeg", // 封面图片路径
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/Frieren.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["种崎敦美", "小林千晃", "艾拉"], // 主演阵容（数组）（主要声优）
     tags: ["长寿种族", "时间与生命", "友情", "史诗"], // 自定义标签
     note: "勇者击败魔王后，精灵法师芙莉莲踏上百年旅程重新理解人类与生命的温度，故事悠远感人，画面细腻隽永",
@@ -50,6 +53,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "奇幻", "冒险"],
     runtime: 360,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/arcane.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/arcane.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["海莉·斯坦菲尔德", "凯文·阿历詹卓", "艾拉·珀内尔"],
     tags: ["英雄联盟", "蒸汽朋克", "姐妹情", "史诗"],
     note: "以《英雄联盟》为背景，讲述双生姐妹在魔法与科技冲突中的命运纠葛，画面与叙事皆为顶级水准",
@@ -63,6 +67,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "剧情", "奇幻", "战争"],
     runtime: 1800,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/aot.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/aot.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["梶裕贵", "石川由依", "井上麻里奈"],
     tags: ["巨人", "人性", "自由", "史诗"],
     note: "人类与巨人的生存之战，层层揭秘带来震撼心灵的故事与反转",
@@ -76,6 +81,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "喜剧", "音乐"],
     runtime: 300,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/bocchi-the-rock.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/bocchi-the-rock.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["青山吉能", "铃代纱弓", "水野朔"],
     tags: ["乐队", "社恐", "治愈", "青春"],
     note: "社恐少女踏上摇滚之路，爆笑与感动交织的青春音乐物语",
@@ -89,6 +95,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "科幻", "动作"],
     runtime: 300,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/edgerunners.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/edgerunners.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["KENN", "悠木碧", "楠大典"],
     tags: ["赛博朋克", "热血", "背叛", "成长"],
     note: "在夜之城中为生存而战，描绘绚烂又残酷的反乌托邦冒险",
@@ -102,6 +109,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "奇幻", "喜剧", "恋爱"],
     runtime: 240,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/dandadan.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/dandadan.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["若山诗音", "花江夏树", "岛崎信长"],
     tags: ["灵异", "青春", "超自然", "热血"],
     note: "灵异与外星人交织的爆笑恋爱冒险，节奏飞快、脑洞大开",
@@ -115,6 +123,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "动作", "奇幻"],
     runtime: 2100,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/demon-slayer.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/demon-slayer.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["花江夏树", "鬼头明里", "下野纮"],
     tags: ["兄妹情", "热血", "战斗", "和风"],
     note: "少年为拯救妹妹与恶鬼战斗，唯美画风与燃魂剧情并存",
@@ -128,6 +137,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "冒险", "动作"],
     runtime: 10800,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/dragon-ball.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/dragon-ball.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["野泽雅子", "堀川亮", "古川登志夫"],
     tags: ["热血", "战斗", "成长", "传奇"],
     note: "悟空与伙伴们的冒险史诗，全球最具影响力的少年漫画动画之一",
@@ -141,6 +151,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "科幻", "剧情"],
     runtime: 600,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/guilty-crown.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/guilty-crown.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["梶裕贵", "茅野爱衣", "花泽香菜"],
     tags: ["超能力", "悲剧", "爱情", "末世"],
     note: "在末世中通过神秘力量寻找希望与救赎，音乐与画面极具冲击力",
@@ -154,6 +165,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "喜剧", "恋爱"],
     runtime: 1200,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/kaguya-sama.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/kaguya-sama.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["古贺葵", "古川慎", "富田美忧"],
     tags: ["智斗", "恋爱", "校园", "搞笑"],
     note: "两名学生会长互相试探追求对方，爆笑与甜蜜并存的恋爱头脑战",
@@ -167,6 +179,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "喜剧", "恋爱"],
     runtime: 600,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/chunibyo.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/chunibyo.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["福原香织", "内田真礼", "赤崎千夏"],
     tags: ["中二病", "青春", "校园", "甜宠"],
     note: "保留中二之魂的高中生恋爱故事，温馨又充满幻想色彩",
@@ -180,6 +193,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "动作", "日常"],
     runtime: 600,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/lycoris-recoil.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/lycoris-recoil.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["安济知佳", "若山诗音", "久保田未梦"],
     tags: ["特工", "日常", "治愈", "青春"],
     note: "表面平静的日常下暗潮涌动，描绘少女们的羁绊与守护",
@@ -193,6 +207,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "动作", "冒险"],
     runtime: 7200,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/naruto.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/naruto.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["竹内顺子", "杉山纪彰", "中村千绘"],
     tags: ["忍者", "热血", "成长", "羁绊"],
     note: "忍者少年的成长史，梦想、努力与伙伴情谊的经典篇章",
@@ -206,6 +221,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "科幻", "心理"],
     runtime: 1560,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/eva.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/eva.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["绪方惠美", "林原惠美", "宫村优子"],
     tags: ["机甲", "心理", "哲学", "末世"],
     note: "人类补完计划的宏大寓言，重塑动画表现力的里程碑之作",
@@ -219,6 +235,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "科幻", "校园"],
     runtime: 900,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/railgun.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/railgun.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["佐藤利奈", "新井里美", "丰崎爱生"],
     tags: ["学园都市", "超能力", "日常", "战斗"],
     note: "以御坂美琴为主角的学园都市日常与战斗，科学幻想与轻松氛围兼具",
@@ -232,6 +249,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "剧情", "偶像"],
     runtime: 300,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/oshi-no-ko.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/oshi-no-ko.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["高桥李依", "大冢刚央", "伊驹百合绘"],
     tags: ["偶像", "轮回", "娱乐圈", "悬疑"],
     note: "转生成偶像孩子的医生揭开幕后真相，剧情反转与情感冲击极强",
@@ -245,6 +263,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "冒险", "奇幻"],
     runtime: 21600,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/pokemon.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/pokemon.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["大谷育江", "松本梨香", "饭冢雅弓"],
     tags: ["宝可梦", "冒险", "友情", "成长"],
     note: "小智与皮卡丘的冒险旅程，陪伴数代人成长的国民动画",
@@ -258,6 +277,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "喜剧", "日常"],
     runtime: 600,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/spy-family.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/spy-family.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["江口拓也", "种崎敦美", "早见沙织"],
     tags: ["间谍", "假家庭", "搞笑", "治愈"],
     note: "为任务组建临时家庭，意外收获真挚情感与欢乐日常",
@@ -271,6 +291,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "科幻", "冒险"],
     runtime: 1800,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/sao.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/sao.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["松冈祯丞", "户松遥", "泽城美雪"],
     tags: ["虚拟现实", "冒险", "爱情", "战斗"],
     note: "在虚拟世界中求生与恋爱，引发无数观众共鸣的异世界故事",
@@ -284,6 +305,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "剧情", "治愈"],
     runtime: 480,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/violet-evergarden.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/violet-evergarden.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["石川由依", "浪川大辅"],
     tags: ["书信", "情感", "成长", "唯美"],
     note: "代笔书信师探寻情感的意义，每一封信都是心的刻画",
@@ -297,6 +319,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "爱情", "奇幻"],
     runtime: 112,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/weathering-with-you.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/weathering-with-you.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["森七菜", "醍醐虎汰朗"],
     tags: ["气候", "爱情", "奇幻", "唯美"],
     note: "在雨中相遇的少年少女改变天气与命运，画面如诗如画",
@@ -310,6 +333,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "剧情", "音乐"],
     runtime: 660,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/your-lie-in-april.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/your-lie-in-april.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["花江夏树", "种田梨沙", "佐仓绫音"],
     tags: ["钢琴", "青春", "音乐", "治愈"],
     note: "失明少女与钢琴少年的相遇，用音乐治愈创伤与孤独",
@@ -323,6 +347,7 @@ export const animeList: AnimeItem[] = [
     genre: ["动画", "爱情", "奇幻"],
     runtime: 106,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/your-name.jpeg",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/your-name.jpeg?imageView2/2/w/40/format/webp/q/50", // 低质量占位图
     cast: ["神木隆之介", "上白石萌音"],
     tags: ["时空穿越", "羁绊", "唯美"],
     note: "身体互换的奇幻设定牵出跨越时空的爱情，画面与故事皆唯美动人",

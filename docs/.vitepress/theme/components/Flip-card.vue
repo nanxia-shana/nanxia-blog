@@ -34,11 +34,18 @@ const props = defineProps({
 /* From Uiverse.io by joe-watson-sbf */ 
 .flip-card {
   background-color: transparent;
-  width: 190px;
-  height: 254px;
+  width: 100%;
+  aspect-ratio: 190 / 254;
+  max-width: 190px;
   perspective: 1000px;
   font-family: sans-serif;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .flip-card {
+    max-width: none;
+  }
 }
 
 .title {

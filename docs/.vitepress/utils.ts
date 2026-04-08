@@ -31,6 +31,10 @@ const menuList = [
                 text: "TypeScript入门及实践",
                 link: "/knowledge/front/base/TypeScript",
               },
+              {
+                text: "前端面试题解析",
+                link: "/knowledge/front/base/frontend-interview-questions",
+              },
             ],
           },
           {

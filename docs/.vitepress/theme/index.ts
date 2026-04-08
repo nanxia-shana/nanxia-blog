@@ -15,6 +15,7 @@ import Movies from "./pages/movies.vue";
 import Anime from "./pages/anime.vue";
 import Games from "./pages/games.vue";
 import Novels from "./pages/novels.vue";
+import OthersNotes from "./pages/others-notes.vue";
 
 export default {
   ...Theme,
@@ -30,6 +31,7 @@ export default {
     app.component("Anime", Anime);
     app.component("Games", Games);
     app.component("Novels", Novels);
+    app.component("OthersNotes", OthersNotes);
   },
   Layout: Layout,
 };
