@@ -3,6 +3,7 @@ export interface NovelItem {
   title: string; // 小说中文名（必填）
   author: string; // 作者
   cover: string; // 封面图片路径
+  thumb?: string; // 低质量缩略图（可选）
   category: string; // 分类
   tags: string[]; // 标签
   status: string; // 状态（连载/完结）
@@ -15,6 +16,7 @@ export const novelList: NovelItem[] = [
     title: "诡秘之主",
     author: "爱潜水的乌贼",
     cover: "/nanxia-blog/novel-covers/guimei.webp",
+    thumb: "/nanxia-blog/novel-covers/guimei.webp",
     category: "literature",
     tags: ["西方魔幻", "克苏鲁", "智斗"],
     status: "完结",
@@ -24,6 +26,7 @@ export const novelList: NovelItem[] = [
     title: "三体",
     author: "刘慈欣",
     cover: "/nanxia-blog/novel-covers/santi.webp",
+    thumb: "/nanxia-blog/novel-covers/santi.webp",
     category: "technology",
     tags: ["科幻", "宇宙", "人性"],
     status: "完结",
@@ -33,6 +36,7 @@ export const novelList: NovelItem[] = [
     title: "凡人修仙传",
     author: "忘语",
     cover: "/nanxia-blog/novel-covers/fanren.webp",
+    thumb: "/nanxia-blog/novel-covers/fanren.webp",
     category: "literature",
     tags: ["仙侠", "草根", "修真"],
     status: "完结",
@@ -42,6 +46,7 @@ export const novelList: NovelItem[] = [
     title: "盗墓笔记",
     author: "南派三叔",
     cover: "/nanxia-blog/novel-covers/daomu.webp",
+    thumb: "/nanxia-blog/novel-covers/daomu.webp",
     category: "literature",
     tags: ["悬疑", "盗墓", "冒险"],
     status: "完结",
@@ -51,6 +56,7 @@ export const novelList: NovelItem[] = [
     title: "全职高手",
     author: "蝴蝶蓝",
     cover: "/nanxia-blog/novel-covers/quansheng.webp",
+    thumb: "/nanxia-blog/novel-covers/quansheng.webp",
     category: "literature",
     tags: ["电竞", "竞技", "群像"],
     status: "完结",

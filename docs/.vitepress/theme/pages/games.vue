@@ -12,7 +12,7 @@
     </div>
     <div class="games-grid">
       <div v-for="game in filteredGames" :key="game.title" class="game-card" :data-category="game.genre">
-        <SmitPrajapati :title="game.title" :author="game.developer" :platform="game.platform" :cover="game.cover"></SmitPrajapati>
+        <SmitPrajapati :title="game.title" :author="game.developer" :platform="game.platform" :cover="game.cover" :thumb="game.thumb"></SmitPrajapati>
       </div>
     </div>
   </div>
@@ -22,13 +22,34 @@
 import { ref, computed } from "vue";
 import SmitPrajapati from '../components/Smit-Prajapati.vue';
 import { gameList } from '../../data/gamesData.ts';
+
+// 从游戏数据中提取并整理分类
+const getCategories = () => {
+  // 预定义主要分类（合并相似分类，避免过多筛选按钮）
+  return [
+    { label: "全部", value: "all" },
+    { label: "开放世界", value: "开放世界" },
+    { label: "动作", value: "动作" },
+    { label: "生存", value: "生存" },
+    { label: "角色扮演", value: "RPG" },
+    { label: "射击", value: "射击" },
+    { label: "冒险", value: "冒险" },
+    { label: "竞技", value: "竞技" },
+    { label: "恐怖", value: "恐怖" },
+    { label: "网络游戏", value: "MMORPG" },
+    { label: "沙盒", value: "沙盒" },
+    { label: "大逃杀", value: "大逃杀" },
+    { label: "解谜", value: "解谜" },
+    { label: "合作", value: "合作" },
+    { label: "建造", value: "建造" },
+    { label: "策略", value: "策略" },
+    { label: "二次元", value: "二次元" },
+    { label: "国产", value: "国产" },
+  ];
+};
+
 // 分类数据
-const categories = [
-  { label: "全部", value: "all" },
-  { label: "动作冒险", value: "action" },
-  { label: "角色扮演", value: "rpg" },
-  { label: "沙盒开放世界", value: "openworld" },
-];
+const categories = getCategories();
 
 // 当前选中的分类
 const currentCategory = ref("all");
@@ -46,11 +67,18 @@ const filteredGames = computed(() => {
   if (currentCategory.value === "all") {
     return games.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   } else {
-    // 根据标签过滤
+    // 根据 genre 过滤
     return games.value
-      .filter(game => game.tags.some(tag =>
-        tag.toLowerCase().includes(currentCategory.value)
-      ))
+      .filter(game => game.genre.some(genre => {
+        // 处理分类映射
+        const categoryMap = {
+          'RPG': ['RPG', 'ARPG', 'CRPG'],
+          '射击': ['射击', 'FPS'],
+          '策略': ['策略', 'RTS', '回合制', '4X'],
+        };
+        const mappedCategories = categoryMap[currentCategory.value] || [currentCategory.value];
+        return mappedCategories.some(c => genre.includes(c));
+      }))
       .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   }
 });
@@ -83,7 +111,6 @@ h1::after {
 /* 筛选栏 */
 .filter-bar {
   display: flex;
-  justify-content: center;
   gap: 10px;
   margin-bottom: 2rem;
   flex-wrap: wrap;

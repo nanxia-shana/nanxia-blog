@@ -12,7 +12,7 @@
     </div>
     <div class="novels-grid">
       <div v-for="novel in filteredNovels" :key="novel.title" class="novel-card" :data-category="novel.category">
-        <Novel-card :title="novel.title" :author="novel.author" :cover="novel.cover"></Novel-card>
+        <Novel-card :title="novel.title" :author="novel.author" :cover="novel.cover" :thumb="novel.thumb"></Novel-card>
       </div>
     </div>
   </div>

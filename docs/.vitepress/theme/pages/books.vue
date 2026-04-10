@@ -12,7 +12,7 @@
     </div>
     <div class="books-grid">
       <div v-for="book in filteredBooks" :key="book.title" class="book-card" :data-category="book.category">
-        <flip-card :title="book.title" :author="book.author" :cover="book.cover" />
+        <flip-card :title="book.title" :author="book.author" :cover="book.cover" :thumb="book.thumb" />
       </div>
     </div>
   </div>

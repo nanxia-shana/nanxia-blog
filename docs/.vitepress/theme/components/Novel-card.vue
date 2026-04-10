@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" ref="cardEl">
     <div class="first-content">
       <div class="info">
         <div class="title">{{ props.title }}</div>
@@ -7,11 +7,15 @@
       </div>
     </div>
     <div class="second-content">
-      <div class="cover-bg" :style="{'--bg-cover': `url(${props.cover})`}"></div>
+      <!-- 低质量占位图 -->
+      <div v-if="props.thumb && !isLoaded" class="thumb-placeholder" :style="{'--thumb': `url(${props.thumb})`}"></div>
+      <!-- 原图 -->
+      <div v-if="isLoaded" class="cover-bg" :style="{'--bg-cover': `url(${props.cover})`}"></div>
     </div>
   </div>
 </template>
 <script setup>
+import { ref, onMounted } from 'vue'
 const props = defineProps({
   title: {
     type: String,
@@ -25,7 +29,40 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  thumb: {
+    type: String,
+    default: null,
+  },
 });
+
+const cardEl = ref(null)
+const isLoaded = ref(false)
+onMounted(() => {
+  if (!('IntersectionObserver' in window)) {
+    // 兼容老浏览器：直接加载
+    isLoaded.value = true
+    return
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 开始加载原图
+        const img = new Image()
+        img.onload = () => {
+          isLoaded.value = true
+        }
+        img.src = props.cover
+        observer.unobserve(cardEl.value)
+      }
+    })
+  }, {
+    // 提前 200px 开始加载
+    rootMargin: '200px'
+  })
+
+  observer.observe(cardEl.value)
+})
 </script>
 <style scoped>
   .card {
@@ -41,6 +78,32 @@ const props = defineProps({
     .card {
       max-width: 190px;
     }
+  }
+
+  .thumb-placeholder {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--thumb);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    filter: blur(8px);
+    opacity: 0.7;
+    z-index: -2;
+    transition: opacity 300ms;
+  }
+
+  .cover-bg {
+    width: 100%;
+    height: 100%;
+    background-image: var(--bg-cover);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
   }
 
   .card:hover {
@@ -96,15 +159,7 @@ const props = defineProps({
     transition: all 0.4s;
     transform: rotate(90deg) scale(-1);
     overflow: hidden;
-  }
-
-  .cover-bg {
-    width: 100%;
-    height: 100%;
-    background-image: var(--bg-cover);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    position: relative;
   }
 
   .card:hover .second-content {

@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" ref="cardEl">
     <div class="content">
       <div class="back">
         <div class="back-content" :style="{'--bg-cover': `url(${props.cover})`}">
@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 
 const props = defineProps({
   title: {
@@ -56,6 +57,35 @@ const props = defineProps({
   },
 });
 
+const cardEl = ref(null)
+const isLoaded = ref(false)
+onMounted(() => {
+  if (!('IntersectionObserver' in window)) {
+    // 兼容老浏览器：直接加载
+    isLoaded.value = true
+    return
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 开始加载原图
+        const img = new Image()
+        img.onload = () => {
+          isLoaded.value = true
+        }
+        img.src = props.cover
+        observer.unobserve(cardEl.value)
+      }
+    })
+  }, {
+    // 提前 200px 开始加载
+    rootMargin: '200px'
+  })
+
+  observer.observe(cardEl.value)
+})
+
 // 预定义几组和谐的配色方案
 const colorSchemes = [
   ['#ffbb66', '#ff8866', '#ff2233'], // 原配色（橙红）
@@ -74,7 +104,7 @@ const [color1, color2, color3] = colorSchemes[randomIndex]
 </script>
 
 <style scoped>
-/* From Uiverse.io by ElSombrero2 */ 
+/* From Uiverse.io by ElSombrero2 */
 .card {
   overflow: visible;
   width: 100%;
@@ -132,6 +162,7 @@ const [color1, color2, color3] = colorSchemes[randomIndex]
   width: 99%;
   height: 99%;
   /* background-color: #151515; */
+  background-color: transparent;
   background-image: var(--bg-cover);
   background-repeat: no-repeat;
   background-position: center center;
