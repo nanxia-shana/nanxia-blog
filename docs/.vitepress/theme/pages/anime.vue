@@ -1,6 +1,6 @@
 <template>
   <div class="anime-collection">
-    <h1>🌌 绘梦织霞</h1>
+    <h1>🌌 绘梦织霞​​</h1>
     <div class="filter-bar">
       <button
         v-for="category in categories"
@@ -11,43 +11,55 @@
       </button>
     </div>
     <div class="animations-grid">
-      <div v-for="anime in filteredanimations" :key="anime.title" class="anime-card" :data-category="anime.category">
+      <div v-for="anime in filteredanimations" :key="anime.title" class="anime-card">
         <Card :title="anime.title" :cover="anime.cover" :thumb="anime.thumb" :note="anime.note" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, computed } from "vue";
 import Card from "../components/Card.vue";
 import { animeList } from '../../data/animeData.ts';
-// 分类数据
-const categories = [
-  { label: "全部", value: "all" },
-  { label: "文学", value: "literature" },
-  { label: "人文社科", value: "social-science" },
-  { label: "科普/科技", value: "technology" },
-];
+
+// 从所有动画中提取唯一标签，并排序
+const getAllTags = () => {
+  const tagSet = new Set<string>();
+  animeList.forEach(anime => {
+    anime.tags.forEach(tag => tagSet.add(tag));
+  });
+  // 转换为分类格式，并按字母排序
+  const tagCategories = Array.from(tagSet)
+    .sort()
+    .map(tag => ({ label: tag, value: tag }));
+  return [
+    { label: "全部", value: "all" },
+    ...tagCategories
+  ];
+};
+
+// 分类数据（从标签动态提取）
+const categories = getAllTags();
 
 // 当前选中的分类
 const currentCategory = ref("all");
 
-// 模拟书籍数据
+// 动画数据
 const animations = ref(animeList);
 
 // 设置当前分类
-const setCategory = (category) => {
+const setCategory = (category: string) => {
   currentCategory.value = category;
-};3444
+};
 
-// 过滤后的书籍列表
+// 过滤后的动画列表：按标签筛选
 const filteredanimations = computed(() => {
   if (currentCategory.value === "all") {
     return animations.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   } else {
     return animations.value
-      .filter((anime) => anime.category === currentCategory.value)
+      .filter((anime) => anime.tags.includes(currentCategory.value))
       .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   }
 });
@@ -62,7 +74,7 @@ const filteredanimations = computed(() => {
 /* 标题样式 */
 h1 {
   font-family: "Cinzel", "庞门正道标题体", serif;
-  font-weight: 600;
+ font-weight: bold;
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 3rem;
@@ -75,6 +87,7 @@ h1::after {
   font-size: 0.9rem;
   margin-top: 1.5rem;
   font-family: "Noto Serif SC", serif;
+  color: #666666;
 }
 
 /* 筛选栏 */
@@ -114,6 +127,11 @@ h1::after {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+  .filter-bar {
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start;
+  }
   .animations-grid {
     display: flex;
     flex-direction: column;

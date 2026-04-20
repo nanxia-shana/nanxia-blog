@@ -15,21 +15,10 @@
         v-for="note in displayedNotes"
         :key="note.title"
         :href="note.link"
-        class="note-card"
+        class="note-item"
       >
-        <div class="note-info">
-          <div class="note-header">
-            <h2>{{ note.title }}</h2>
-            <span class="date">{{ note.date }}</span>
-          </div>
-          <p class="excerpt">{{ note.excerpt }}</p>
-          <div class="tags">
-            <span v-for="tag in note.tags" :key="tag" class="tag">{{ tag }}</span>
-          </div>
-        </div>
-        <div v-if="note.cover" class="note-cover">
-          <img :src="note.cover" :alt="note.title" />
-        </div>
+        <span class="title">{{ note.title }}</span>
+        <span class="date">{{ note.date }}</span>
       </a>
       <div v-if="hasMore" ref="loadMoreTrigger" class="loading-trigger"></div>
       <div v-if="loading" class="loading">加载中...</div>
@@ -132,8 +121,8 @@ onMounted(() => {
 /* 标题样式 */
 h1 {
   font-family: "Ma Shan Zheng", cursive;
+  font-weight: bold;
   font-size: 2.5rem;
-  font-weight: bolder;
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
@@ -150,7 +139,6 @@ h1::after {
 /* 筛选栏 */
 .filter-bar {
   display: flex;
-  justify-content: center;
   gap: 10px;
   margin-bottom: 2rem;
   flex-wrap: wrap;
@@ -175,118 +163,54 @@ h1::after {
 .notes-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.4rem;
+  padding: 1.2rem;
+  border-radius: 8px;
+  background: rgba(128, 128, 128, 0.05);
+  border: 1px solid rgba(255, 127, 80, 0.2);
 }
 
-/* 笔记卡片 */
-.note-card {
-  display: flex;
-  gap: 1rem;
-  padding: 1.5rem;
-  border-image: linear-gradient(135deg, #ffaa80, #ff7f50) 1;
-  box-shadow: 0 2px 15px rgba(255, 127, 80, 0.15);
-  transition: all 0.3s;
-  background: linear-gradient(120deg, rgba(255, 127, 80, 0.08) 0%, transparent 100%);
-  text-decoration: none;
-  color: inherit;
-  overflow: hidden;
-  position: relative;
-}
-
-/* 渐变圆角边框 */
-.note-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  padding: 2px;
-  background: linear-gradient(135deg, #ffaa80, #ff7f50);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  pointer-events: none;
-}
-
-html.dark .note-card {
-  background: linear-gradient(120deg, rgba(255, 127, 80, 0.15) 0%, transparent 100%);
-}
-
-.note-card:hover {
-  background: rgba(255, 127, 80, 0.15);
-  box-shadow: 0 8px 25px 5px rgba(255, 127, 80, 0.25);
-  transform: translateY(-3px);
-}
-
-html.dark .note-card:hover {
-  background: rgba(255, 127, 80, 0.25);
-}
-
-.note-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.note-header {
+/* 笔记项 */
+.note-item {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 0.8rem;
+  padding: 0.7rem 0.8rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+  border-radius: 4px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
 }
 
-.note-header h2 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #cc5500;
+/* 最后一项不需要分割线 */
+.note-item:last-child {
+  border-bottom: none;
 }
 
-.date {
-  font-size: 0.85rem;
-  color: var(--vp-c-text-3);
-}
-
-.excerpt {
-  color: var(--vp-c-text-2);
-  line-height: 1.6;
-  margin-bottom: 0.8rem;
-}
-
-html.dark .excerpt {
+.note-item .title {
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--vp-c-text-1);
 }
 
-.tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+.note-item .date {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-3);
+  flex-shrink: 0;
+  margin-left: 1rem;
 }
 
-.tag {
-  font-size: 0.75rem;
-  padding: 2px 8px;
-  border-radius: 12px;
-  background: rgba(255, 127, 80, 0.2);
+.note-item:hover {
+  background: radial-gradient(ellipse at center, rgba(255, 127, 80, 0.25) 0%, rgba(255, 127, 80, 0.05) 60%, transparent 100%);
+}
+
+.note-item:hover .title {
   color: #cc5500;
 }
 
-.note-cover {
-  width: 120px;
-  height: 80px;
-  flex-shrink: 0;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.note-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+html.dark .note-item:hover {
+  background: radial-gradient(ellipse at center, rgba(255, 127, 80, 0.35) 0%, rgba(255, 127, 80, 0.1) 60%, transparent 100%);
 }
 
 /* 加载状态 */
@@ -309,25 +233,17 @@ html.dark .excerpt {
 }
 
 /* 响应式设计 */
-@media (max-width: 768px) {
-  .note-card {
-    flex-direction: column;
-  }
-
-  .note-cover {
-    width: 100%;
-    height: 160px;
-  }
-
-  .note-header {
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-}
-
 @media (max-width: 500px) {
   .notes-collection {
     padding: 1rem;
+  }
+  .note-item {
+    flex-direction: column;
+    gap: 0.2rem;
+    align-items: flex-start;
+  }
+  .date {
+    padding-left: 0.2rem;
   }
 }
 </style>

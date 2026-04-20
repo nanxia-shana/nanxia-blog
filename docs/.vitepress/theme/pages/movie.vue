@@ -11,43 +11,55 @@
       </button>
     </div>
     <div class="movies-grid">
-      <div v-for="movie in filteredmovies" :key="movie.title" class="movie-card" :data-category="movie.category">
+      <div v-for="movie in filteredmovies" :key="movie.title" class="movie-card">
         <detail-card :title="movie.title" :country="movie.country" :cover="movie.cover" :year="movie.year" :runtime="movie.runtime" ></detail-card>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, computed } from "vue";
 import detailCard from '../components/Detail-card.vue';
 import { moiveList } from '../../data/movieData.ts';
-// 分类数据
-const categories = [
-  { label: "全部", value: "all" },
-  { label: "文学", value: "literature" },
-  { label: "人文社科", value: "social-science" },
-  { label: "科普/科技", value: "technology" },
-];
+
+// 从所有电影中提取唯一标签，并排序
+const getAllTags = () => {
+  const tagSet = new Set<string>();
+  moiveList.forEach(movie => {
+    movie.tags.forEach(tag => tagSet.add(tag));
+  });
+  // 转换为分类格式，并按字母排序
+  const tagCategories = Array.from(tagSet)
+    .sort()
+    .map(tag => ({ label: tag, value: tag }));
+  return [
+    { label: "全部", value: "all" },
+    ...tagCategories
+  ];
+};
+
+// 分类数据（从标签动态提取）
+const categories = getAllTags();
 
 // 当前选中的分类
 const currentCategory = ref("all");
 
-// 模拟书籍数据
+// 电影数据
 const movies = ref(moiveList);
 
 // 设置当前分类
-const setCategory = (category) => {
+const setCategory = (category: string) => {
   currentCategory.value = category;
 };
 
-// 过滤后的书籍列表
+// 过滤后的电影列表：按标签筛选
 const filteredmovies = computed(() => {
   if (currentCategory.value === "all") {
     return movies.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   } else {
     return movies.value
-      .filter((movie) => movie.category === currentCategory.value)
+      .filter((movie) => movie.tags.includes(currentCategory.value))
       .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   }
 });
@@ -62,10 +74,8 @@ const filteredmovies = computed(() => {
 /* 标题样式 */
 h1 {
   font-family: "Oswald", "站酷高端黑", sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: bold;
   font-size: 2.5rem;
-  font-weight: bolder;
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
@@ -77,12 +87,12 @@ h1::after {
   font-size: 0.9rem;
   margin-top: 1.5rem;
   font-family: "Noto Serif SC", serif;
+  color: #666666;
 }
 
 /* 筛选栏 */
 .filter-bar {
   display: flex;
-  justify-content: center;
   gap: 10px;
   margin-bottom: 2rem;
   flex-wrap: wrap;
@@ -119,6 +129,11 @@ h1::after {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+  .filter-bar {
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start;
+  }
   .movies-grid {
     display: flex;
     flex-direction: column;

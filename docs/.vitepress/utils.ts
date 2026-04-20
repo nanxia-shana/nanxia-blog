@@ -55,7 +55,7 @@ const menuList = [
       },
       {
         text: "🧩 其它",
-        link: "/knowledge/others/",
+        link: "/knowledge/other/",
       },
     ],
   },
@@ -65,7 +65,7 @@ const menuList = [
     items: [
       {
         text: "📚 书山拾叶",
-        link: "/spiritual-food/books/",
+        link: "/spiritual-food/book/",
       },
       {
         text: "🎧 听海观澜",
@@ -73,7 +73,7 @@ const menuList = [
       },
       {
         text: "🎥 浮光掠影",
-        link: "/spiritual-food/movies/",
+        link: "/spiritual-food/movie/",
       },
       {
         text: "🌌 绘梦织霞",
@@ -81,21 +81,21 @@ const menuList = [
       },
       {
         text: "✒️ 墨池云篆",
-        link: "/spiritual-food/novels/",
+        link: "/spiritual-food/novel/",
       },
       {
         text: "🎮 游心太玄",
-        link: "/spiritual-food/games/",
+        link: "/spiritual-food/game/",
       },
       {
         text: "🍵 闲窗絮语",
-        link: "/spiritual-food/others/",
+        link: "/spiritual-food/other/",
         collapsed: false,
         items: [
           {
             text: "追逐",
             collapsed: false,
-            link: "/spiritual-food/others/zhuizhu",
+            link: "/spiritual-food/other/zhuizhu",
           },
         ],
       },
@@ -140,7 +140,7 @@ const menuList_en = [
       },
       {
         text: "Others",
-        link: "/en/knowledge/others/",
+        link: "/en/knowledge/other/",
       },
     ],
   },
@@ -150,7 +150,7 @@ const menuList_en = [
     items: [
       {
         text: "Books",
-        link: "/en/spiritual-food/books/",
+        link: "/en/spiritual-food/book/",
       },
       {
         text: "Music",
@@ -158,7 +158,7 @@ const menuList_en = [
       },
       {
         text: "Movies",
-        link: "/en/spiritual-food/movies/",
+        link: "/en/spiritual-food/movie/",
       },
       {
         text: "Anime",
@@ -166,15 +166,15 @@ const menuList_en = [
       },
       {
         text: "Novels",
-        link: "/en/spiritual-food/novels/",
+        link: "/en/spiritual-food/novel/",
       },
       {
         text: "Games",
-        link: "/en/spiritual-food/games/",
+        link: "/en/spiritual-food/game/",
       },
       {
         text: "Others",
-        link: "/en/spiritual-food/others/",
+        link: "/en/spiritual-food/other/",
       },
     ],
   },

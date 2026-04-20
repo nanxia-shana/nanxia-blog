@@ -21,7 +21,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import NovelCard from '../components/Novel-card.vue';
-import { novelList } from '../../data/novelsData.ts';
+import { novelList } from '../../data/novelData.ts';
 // 分类数据
 const categories = [
   { label: "全部", value: "all" },
@@ -62,8 +62,8 @@ const filteredNovels = computed(() => {
 /* 标题样式 */
 h1 {
   font-family: "Ma Shan Zheng", cursive;
+  font-weight: bold;
   font-size: 2.5rem;
-  font-weight: bolder;
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
@@ -75,12 +75,12 @@ h1::after {
   font-size: 0.9rem;
   margin-top: 1.5rem;
   font-family: "Noto Serif SC", serif;
+  color: #666666;
 }
 
 /* 筛选栏 */
 .filter-bar {
   display: flex;
-  justify-content: center;
   gap: 10px;
   margin-bottom: 2rem;
   flex-wrap: wrap;

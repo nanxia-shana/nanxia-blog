@@ -3,6 +3,9 @@ layout: doc
 
 prevText: '上一页:'
 nextText: 下一页
+
+message: 'Released under the MIT License.'
+copyright: 'Copyright © 2019-present Evan You'
 ---
 
 # 追逐

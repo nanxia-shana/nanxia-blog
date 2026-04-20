@@ -21,7 +21,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import SmitPrajapati from '../components/Smit-Prajapati.vue';
-import { gameList } from '../../data/gamesData.ts';
+import { gameList } from '../../data/gameData.ts';
 
 // 从游戏数据中提取并整理分类
 const getCategories = () => {
@@ -93,8 +93,8 @@ const filteredGames = computed(() => {
 /* 标题样式 */
 h1 {
   font-family: "Ma Shan Zheng", cursive;
+  font-weight: bold;
   font-size: 2.5rem;
-  font-weight: bolder;
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
@@ -106,6 +106,7 @@ h1::after {
   font-size: 0.9rem;
   margin-top: 1.5rem;
   font-family: "Noto Serif SC", serif;
+  color: #666666;
 }
 
 /* 筛选栏 */
@@ -154,7 +155,19 @@ h1::after {
   }
 
   .games-grid {
-    grid-template-columns: repeat(1, 1fr);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .game-card {
+    width: 90%;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 500px) {
+  .game-card {
+    width: 100%;
   }
 }
 </style>

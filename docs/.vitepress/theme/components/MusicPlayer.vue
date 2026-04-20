@@ -19,7 +19,7 @@
               - {{ playbackState.currentMusic.author }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
           </div>
-          <div class="music-duration">{{ formatter(playbackState.currentTime) }}</div>
+          <div class="music-duration">{{ formatter(Math.max(0, (playbackState.duration || 0) - playbackState.currentTime)) }}</div>
         </div>
         <div class="music-progress">
           <div class="music-rate" :style="slider">
@@ -348,30 +348,30 @@ const toMusic = () => {
 @keyframes combo-breathe {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 0 1px rgba(255, 137, 255, 0.8);
+    box-shadow: 0 0 1px rgba(220, 20, 60, 0.8);
   }
   50% {
     transform: scale(1.1);
-    box-shadow: 0 0 2px rgba(255, 137, 255, 0.8), 0 0 3px rgba(255, 137, 255, 0.8), 0 0 4px rgba(255, 137, 255, 0.8);
+    box-shadow: 0 0 2px rgba(220, 20, 60, 0.8), 0 0 3px rgba(220, 20, 60, 0.8), 0 0 4px rgba(220, 20, 60, 0.8);
   }
 }
 /* 桌面端 hover 效果：仅当设备支持 hover 时才生效 */
-@media (hover: hover) and (pointer: fine) {
-  .music-player:hover ::before {
-  }
-  .music-player:hover .music-control {
-    height: 70px;
-    background: rgba(255, 137, 255, 0.2);
-    border-color: rgba(255, 137, 255, 0.8);
-    border-radius: 20px 20px 10px 10px;
-    transition: all 0.3s ease-out;
-  }
-  .music-player:hover .music-bottom {
-    opacity: 1;
-    display: flex;
-    transition: all 0.2s ease-out 0.1s;
-  }
+/* @media (hover: hover) and (pointer: fine) { */
+.music-player:hover ::before {
 }
+.music-player:hover .music-control {
+  height: 70px;
+  background: rgba(220, 20, 60, 0.2);
+  border-color: rgba(220, 20, 60, 0.8);
+  border-radius: 20px 20px 10px 10px;
+  transition: all 0.3s ease-out;
+}
+.music-player:hover .music-bottom {
+  opacity: 1;
+  display: flex;
+  transition: all 0.2s ease-out 0.1s;
+}
+/* } */
 .music-bottom {
   width: 100%;
   height: 30px;

@@ -4,4 +4,4 @@ layout: page
 
 ---
 
-<Novels></Novels>
+<Game></Game>

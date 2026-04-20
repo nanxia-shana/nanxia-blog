@@ -73,12 +73,12 @@ h1::after {
   font-size: 0.9rem;
   margin-top: 1.5rem;
   font-family: "Noto Serif SC", serif;
+  color: #666666;
 }
 
 /* 筛选栏 */
 .filter-bar {
   display: flex;
-  justify-content: start;
   gap: 10px;
   margin-bottom: 2rem;
   flex-wrap: wrap;

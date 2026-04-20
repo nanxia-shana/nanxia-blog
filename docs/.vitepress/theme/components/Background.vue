@@ -2,41 +2,54 @@
   <div class="background" :style="backgroundStyle"></div>
 </template>
 
-<script setup>
-import { watch, ref, onMounted } from "vue";
+<script lang="ts" setup>
+import { watch, ref, computed, onMounted } from "vue";
 import { useData } from "vitepress";
 
 const { isDark } = useData();
 
-// 1. 定义响应式的 style 对象
-const backgroundStyle = ref({
-  backgroundImage: "url(/nanxia-blog/bg/light-theme.jpeg)", // 默认浅色主题
-});
+// 背景图片 URLs
+const bgUrls = {
+  dark: {
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/yexi3.jpeg?imageView2/2/w/80/format/webp/q/30",
+    full: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/yexi3.jpeg?imageView2/2/w/1920/format/webp/q/80",
+  },
+  light: {
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/mingrixiang1.jpeg?imageView2/2/w/80/format/webp/q/30",
+    full: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/mingrixiang1.jpeg?imageView2/2/w/1920/format/webp/q/80",
+  },
+};
 
-// 2. 监听 isDark 变化
+// 当前背景 URL
+const currentBgUrl = ref("");
+
+// 计算样式
+const backgroundStyle = computed(() => ({
+  backgroundImage: `url(${currentBgUrl.value})`,
+}));
+
+// 渐进式加载图片：先加载缩略图，再加载全尺寸图
+function loadBackgroundProgressive(isDarkMode: boolean) {
+  const { thumb, full } = isDarkMode ? bgUrls.dark : bgUrls.light;
+  // 1. 先显示缩略图（极小文件，瞬间加载）
+  currentBgUrl.value = thumb;
+  // 2. 异步加载全尺寸图
+  const img = new Image();
+  img.onload = () => {
+    // 3. 加载完成后切换到全尺寸图
+    currentBgUrl.value = full;
+  };
+  img.src = full;
+}
+
+// 监听主题变化
 watch(isDark, (newVal) => {
-  if (newVal) {
-    backgroundStyle.value = {
-      backgroundImage: "url(https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/yexi3.jpeg)",
-    };
-  } else {
-    backgroundStyle.value = {
-      backgroundImage: "url(https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/mingrixiang1.jpeg)",
-    };
-  }
+  loadBackgroundProgressive(newVal);
 });
 
 onMounted(() => {
-  // 组件挂载时根据当前主题设置背景
-  if(isDark.value) {
-    backgroundStyle.value = {
-      backgroundImage: "url(/nanxia-blog/bg/dark-theme.jpeg)",
-    };
-  } else {
-    backgroundStyle.value = {
-      backgroundImage: "url(/nanxia-blog/bg/light-theme.jpeg)",
-    };
-  }
+  // 组件挂载时渐进式加载
+  loadBackgroundProgressive(isDark.value);
 });
 </script>
 
@@ -47,7 +60,7 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("/nanxia-blog/bg/yexi3.jpeg"); /* 替换为你的背景图片路径 */
+  background-image: url("https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/yexi3.jpeg"); /* 替换为你的背景图片路径 */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

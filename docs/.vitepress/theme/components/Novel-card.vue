@@ -1,21 +1,20 @@
 <template>
-  <div class="card" ref="cardEl">
-    <div class="first-content">
-      <div class="info">
+  <a :href="coverLink" target="_blank" class="card-link">
+    <div class="card" ref="cardEl">
+      <!-- 缩略图占位 -->
+      <div v-if="props.thumb && !isLoaded" class="thumb" :style="{backgroundImage: `url(${props.thumb})`}"></div>
+      <!-- 封面图 -->
+      <div v-if="isLoaded" class="cover" :style="{backgroundImage: `url(${props.cover})`}"></div>
+      <!-- 底部信息遮罩 -->
+      <div class="info-overlay">
         <div class="title">{{ props.title }}</div>
-        <div class="author">作者：{{ props.author }}</div>
+        <div class="author">{{ props.author }}</div>
       </div>
     </div>
-    <div class="second-content">
-      <!-- 低质量占位图 -->
-      <div v-if="props.thumb && !isLoaded" class="thumb-placeholder" :style="{'--thumb': `url(${props.thumb})`}"></div>
-      <!-- 原图 -->
-      <div v-if="isLoaded" class="cover-bg" :style="{'--bg-cover': `url(${props.cover})`}"></div>
-    </div>
-  </div>
+  </a>
 </template>
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 const props = defineProps({
   title: {
     type: String,
@@ -37,6 +36,11 @@ const props = defineProps({
 
 const cardEl = ref(null)
 const isLoaded = ref(false)
+const coverLink = computed(() => {
+  // 可以这里配置点击跳转链接，现在直接打开封面图片
+  return props.cover
+})
+
 onMounted(() => {
   if (!('IntersectionObserver' in window)) {
     // 兼容老浏览器：直接加载
@@ -65,13 +69,22 @@ onMounted(() => {
 })
 </script>
 <style scoped>
+  .card-link {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+
   .card {
+    position: relative;
     width: 100%;
     aspect-ratio: 190 / 254;
-    background: linear-gradient(135deg, #8a2be2 0%, #d4af37 100%);
-    transition: all 0.4s;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 5px rgba(138, 43, 226, 0.4);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    background: #f5f5f5;
+    margin: 0 auto;
   }
 
   @media (min-width: 769px) {
@@ -80,91 +93,61 @@ onMounted(() => {
     }
   }
 
-  .thumb-placeholder {
-    content: "";
+  .thumb, .cover {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: var(--thumb);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    filter: blur(8px);
-    opacity: 0.7;
-    z-index: -2;
-    transition: opacity 300ms;
   }
 
-  .cover-bg {
-    width: 100%;
-    height: 100%;
-    background-image: var(--bg-cover);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+  .thumb {
+    filter: blur(6px);
+    opacity: 0.8;
+  }
+
+  .info-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.2rem 0.8rem 0.8rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+    color: #fff;
+    text-align: center;
+    transform: translateY(4px);
+    transition: all 0.3s ease;
+  }
+
+  .info-overlay .title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 0.3rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+  }
+
+  .info-overlay .author {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    font-weight: normal;
   }
 
   .card:hover {
-    border-radius: 15px;
-    cursor: pointer;
-    transform: scale(1.08);
-    box-shadow: 0px 0px 15px 8px rgba(138, 43, 226, 0.6);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 10px 24px rgba(138, 43, 226, 0.35);
   }
 
-  .first-content {
-    height: 100%;
-    width: 100%;
-    transition: all 0.4s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    border-radius: 15px;
-    background: linear-gradient(135deg, rgba(138, 43, 226, 0.95), rgba(212, 175, 55, 0.95));
+  .card:hover .info-overlay {
+    transform: translateY(0);
   }
 
-  .first-content .info {
-    text-align: center;
-    padding: 1rem;
-  }
-
-  .first-content .title {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-  }
-
-  .first-content .author {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .card:hover .first-content {
-    height: 0px;
-    opacity: 0;
-  }
-
-  .second-content {
-    height: 0%;
-    width: 100%;
-    opacity: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    transition: all 0.4s;
-    transform: rotate(90deg) scale(-1);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .card:hover .second-content {
-    opacity: 1;
-    height: 100%;
-    transform: rotate(0deg);
+  html.dark .card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 </style>

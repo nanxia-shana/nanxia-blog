@@ -4,4 +4,4 @@ layout: page
 
 ---
 
-<Movies></Movies>
+<Movie></Movie>

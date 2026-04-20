@@ -77,23 +77,19 @@ const filteredMusic = computed(() => {
 /* 标题样式 */
 h1 {
   font-family: "Oswald", "站酷高端黑", sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: bold;
   font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   position: relative;
-  color: #1a1a1a;
 }
 
 h1::after {
   content: "「一浪知海，一澜见心」";
   display: block;
   font-size: 0.9rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   font-family: "Noto Serif SC", serif;
-  font-weight: normal;
-  text-transform: none;
   color: #666666;
 }
 
@@ -128,7 +124,6 @@ h1::after {
 
 .filter-bar {
   display: flex;
-  justify-content: center;
   gap: 10px;
   margin-bottom: 2rem;
   flex-wrap: wrap;
