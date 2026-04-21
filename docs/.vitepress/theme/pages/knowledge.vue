@@ -4,81 +4,184 @@
 
 <template>
   <div class="knowledge-collection">
-    <div class="card">
-      <div class="card__content">
-        <p class="card__title">Card Title</p>
-        <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <div v-for="category in linksData" :key="category.title" class="category">
+      <h2>{{ category.icon }} {{ category.title }}</h2>
+      <div class="links">
+        <div v-for="link in category.links" :key="link.url" :class="['link-item', `link-${link.type}`]">
+          <a :href="link.url" target="_blank" class="link-name">{{ link.name }}</a>
+          <span class="link-url">{{ link.url }}</span>
+          <span v-if="link.type === 'hot'" class="link-tag hot-tag">热门</span>
+          <span v-else-if="link.type === 'personal'" class="link-tag personal-tag">常用</span>
+        </div>
       </div>
     </div>
+
+    <footer>
+      <p>© 2026 前端网址导航 | 持续更新中 💻🎯</p>
+    </footer>
   </div>
 </template>
 
+<script setup>
+import { linksData } from '../../data/linksData.ts';
+</script>
+
 <style scoped>
-.knowledge-collection{
+.knowledge-collection {
   margin: 0 auto;
   padding: 2rem;
-  gap: 20px;
+  max-width: 1200px;
 }
-.card {
-  position: relative;
-  width: 300px;
-  height: 200px;
-  background-color: #f2f2f2;
+
+.category {
+  background: var(--vp-sidebar-bg-color);
   border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  perspective: 1000px;
-  box-shadow: 0 0 0 5px #ffffff80;
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: box-shadow 0.3s ease;
 }
 
-.card svg {
-  width: 48px;
-  fill: #333;
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.category:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
-}
-
-.card__content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: #f2f2f2;
-  transform: rotateX(-90deg);
-  transform-origin: bottom;
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.card:hover .card__content {
-  transform: rotateX(0deg);
-}
-
-.card__title {
+.category h2 {
+  background: var(--vp-sidebar-bg-color);
+  padding: 0.75rem 1rem;
+  font-size: 1.05rem;
+  color: var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-divider);
   margin: 0;
-  font-size: 24px;
-  color: #333;
-  font-weight: 700;
+  font-weight: 600;
 }
 
-.card:hover svg {
-  scale: 0;
+.links {
+  padding: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.5rem;
 }
 
-.card__description {
-  margin: 10px 0 0;
-  font-size: 14px;
-  color: #777;
-  line-height: 1.4;
+.link-item {
+  position: relative;
+  border-radius: 6px;
+  padding: 0.6rem 0.85rem;
+  transition: all 0.25s ease;
+  cursor: pointer;
 }
 
+.link-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* 普通链接 - 默认样式 */
+.link-normal {
+  background: var(--vp-c-bg-soft);
+  border: 2px solid var(--vp-c-divider);
+}
+
+.link-normal:hover {
+  border-color: var(--vp-c-divider-dark);
+}
+
+/* 自用链接 - 蓝色 */
+.link-personal {
+  background: rgba(59, 130, 246, 0.1);
+  border: 2px solid #3b82f6;
+}
+
+.link-personal:hover {
+  background: rgba(59, 130, 246, 0.18);
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.25);
+}
+
+/* 热门链接 - 红色 */
+.link-hot {
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid #ef4444;
+}
+
+.link-hot:hover {
+  background: rgba(239, 68, 68, 0.18);
+  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.25);
+}
+
+.link-name {
+  display: block;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  transition: color 0.2s;
+}
+
+.link-item:hover .link-name {
+  color: var(--vp-c-brand-1);
+}
+
+.link-url {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  word-break: break-all;
+  line-height: 1.3;
+}
+
+.link-tag {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.6rem;
+  font-size: 0.6rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.personal-tag {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.hot-tag {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 0 1rem;
+  color: var(--vp-c-text-2);
+  font-size: 0.85rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .knowledge-collection {
+    padding: 1rem;
+  }
+
+  .links {
+    grid-template-columns: 1fr;
+  }
+
+  .category h2 {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+
+  .link-item {
+    padding: 0.75rem;
+  }
+
+  .link-tag {
+    display: none;
+  }
+}
 </style>

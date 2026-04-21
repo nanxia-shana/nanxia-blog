@@ -12,7 +12,7 @@
     </div>
     <div class="books-grid">
       <div v-for="book in filteredBooks" :key="book.title" class="book-card" :data-category="book.category">
-        <flip-card :title="book.title" :author="book.author" :cover="book.cover" :thumb="book.thumb" />
+        <book-card :title="book.title" :author="book.author" :cover="book.cover" :thumb="book.thumb" :note="book.note" />
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import flipCard from '../components/Flip-card.vue';
+import BookCard from '../components/Book-card.vue';
 import { bookList } from '../../data/bookData.ts';
 // 分类数据
 const categories = [

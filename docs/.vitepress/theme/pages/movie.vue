@@ -12,7 +12,7 @@
     </div>
     <div class="movies-grid">
       <div v-for="movie in filteredmovies" :key="movie.title" class="movie-card">
-        <detail-card :title="movie.title" :country="movie.country" :cover="movie.cover" :year="movie.year" :runtime="movie.runtime" ></detail-card>
+        <movie-card :title="movie.title" :country="movie.country" :cover="movie.cover" :year="movie.year" :runtime="movie.runtime" :note="movie.note" />
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import detailCard from '../components/Detail-card.vue';
+import MovieCard from '../components/Movie-card.vue';
 import { moiveList } from '../../data/movieData.ts';
 
 // 从所有电影中提取唯一标签，并排序

@@ -12,7 +12,7 @@
     </div>
     <div class="animations-grid">
       <div v-for="anime in filteredanimations" :key="anime.title" class="anime-card">
-        <Card :title="anime.title" :cover="anime.cover" :thumb="anime.thumb" :note="anime.note" />
+        <anime-card :title="anime.title" :cover="anime.cover" :thumb="anime.thumb" :note="anime.note" />
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import Card from "../components/Card.vue";
+import AnimeCard from "../components/Anime-card.vue";
 import { animeList } from '../../data/animeData.ts';
 
 // 从所有动画中提取唯一标签，并排序

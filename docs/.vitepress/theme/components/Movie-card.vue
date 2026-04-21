@@ -14,6 +14,7 @@
         </div>
         <div class="front-content">
           <small class="badge">{{ props.country }}</small>
+          <div class="movie-note">{{ props.note }}</div>
           <div class="description">
             <div class="title">
               <p class="title">
@@ -54,6 +55,10 @@ const props = defineProps({
   runtime: {
     type: Number,
     required: true,
+  },
+  note: {
+    type: String,
+    default: '',
   },
 });
 
@@ -216,6 +221,23 @@ const [color1, color2, color3] = colorSchemes[randomIndex]
   border-radius: 10px;
   backdrop-filter: blur(2px);
   width: fit-content;
+}
+
+.movie-note {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 8px 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+  /* border-left: 2px solid rgba(255, 153, 102, 0.6); */
+  flex-grow: 1;
 }
 
 .description {

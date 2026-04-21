@@ -12,7 +12,7 @@
     </div>
     <div class="games-grid">
       <div v-for="game in filteredGames" :key="game.title" class="game-card" :data-category="game.genre">
-        <SmitPrajapati :title="game.title" :author="game.developer" :platform="game.platform" :cover="game.cover" :thumb="game.thumb"></SmitPrajapati>
+        <game-card :title="game.title" :author="game.developer" :platform="game.platform" :cover="game.cover" :thumb="game.thumb" />
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import SmitPrajapati from '../components/Smit-Prajapati.vue';
+import GameCard from '../components/Game-card.vue';
 import { gameList } from '../../data/gameData.ts';
 
 // 从游戏数据中提取并整理分类

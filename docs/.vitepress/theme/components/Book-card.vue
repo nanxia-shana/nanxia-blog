@@ -2,8 +2,12 @@
   <div class="flip-card" ref="cardEl">
     <div class="flip-card-inner">
         <div class="flip-card-front">
-            <p class="title">{{ props.title }}</p>
-            <p>{{ props.author }}</p>
+            <div class="book-info">
+              <h3 class="book-title">{{ props.title }}</h3>
+              <p class="book-author">{{ props.author }}</p>
+              <div class="divider"></div>
+              <p class="book-note">{{ props.note }}</p>
+            </div>
         </div>
         <div class="flip-card-back">
             <!-- 低质量占位图 -->
@@ -33,6 +37,10 @@ const props = defineProps({
   thumb: {
     type: String,
     default: null,
+  },
+  note: {
+    type: String,
+    default: '',
   },
 });
 
@@ -120,13 +128,6 @@ onMounted(() => {
   transition: all 300ms;
 }
 
-.title {
-  font-size: 1.3em;
-  font-weight: 900;
-  text-align: center;
-  margin: 0 0 0.5rem 0;
-}
-
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -156,9 +157,67 @@ onMounted(() => {
 
 .flip-card-front {
   background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,
-     rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
-  color: coral;
-  opacity: 0.9
+    rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
+  padding: 1.2rem;
+  box-sizing: border-box;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  box-sizing: border-box;
+}
+
+.book-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #d2691e;
+  margin: 0;
+  line-height: 1.4;
+  font-family: "Noto Serif SC", serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.8rem;
+  flex-shrink: 0;
+}
+
+.book-author {
+  font-size: 0.85rem;
+  color: #a0522d;
+  margin: 0.4rem 0;
+  font-family: "Noto Serif SC", serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.divider {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #cd853f, transparent);
+  margin: 0.4rem auto;
+  flex-shrink: 0;
+}
+
+.book-note {
+  font-size: 0.78rem;
+  color: #8b4513;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: "Noto Serif SC", serif;
+  opacity: 0.9;
+  flex: 1;
 }
 
 .flip-card-back {

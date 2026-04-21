@@ -276,6 +276,7 @@ const toMusic = () => {
   flex-direction: column;
   align-items: end;
   overflow: hidden;
+  z-index: 1;
 }
 .music-top {
   width: 100%;

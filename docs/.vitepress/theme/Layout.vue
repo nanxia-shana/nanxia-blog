@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import { useData } from 'vitepress'
 import { nextTick, provide, reactive } from 'vue'
 
+import Live2d from "./components/Live2d.vue";
 import MusicPlayer from "./components/MusicPlayer.vue";
 import musicData from '../store/index';
+import PostDate from "./components/PostData.vue";
 
 const { Layout } = DefaultTheme
 
@@ -56,8 +58,12 @@ provide('playback-state', playbackState)
     <template #nav-bar-content-before>
       <MusicPlayer></MusicPlayer>
     </template>
-    <Live2d></Live2d>
+    <template #doc-footer-before>
+      <PostDate></PostDate>
+    </template>
   </Layout>
+  <!-- Live2d 放在 Layout 外面，确保在所有页面渲染 -->
+  <Live2d></Live2d>
 </template>
 
 <style>

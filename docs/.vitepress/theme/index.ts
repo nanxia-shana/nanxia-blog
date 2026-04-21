@@ -3,8 +3,6 @@ import Theme from "vitepress/theme";
 import "./style/var.css";
 import Layout from "./Layout.vue";
 
-import Live2d from "./components/Live2d.vue";
-
 import Background from "./components/Background.vue";
 
 import Knowledge from "./pages/knowledge.vue";
@@ -21,7 +19,6 @@ export default {
   ...Theme,
   enhanceApp({ app }: { app: App }) {
     app.component("Background", Background);
-    app.component("Live2d", Live2d);
     // Pages
     app.component("Knowledge", Knowledge);
     app.component("Front", Front);
