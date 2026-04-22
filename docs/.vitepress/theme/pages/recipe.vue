@@ -1,5 +1,5 @@
 <template>
-  <div class="front-collection">
+  <div class="recipe-collection">
     <div class="card">
       <div class="card__content">
         <p class="card__title">Card Title</p>
@@ -38,7 +38,7 @@
 </script>
 
 <style scoped>
-.front-collection {
+.recipe-collection {
   margin: 0 auto;
   padding: 2rem;
   display: flex;
@@ -111,13 +111,13 @@
 
 /* 响应式布局 */
 @media (max-width: 1000px) {
-  .front-collection {
+  .recipe-collection {
     max-width: calc(300px * 2 + 20px + 4rem);
   }
 }
 
 @media (max-width: 768px) {
-  .front-collection {
+  .recipe-collection {
     padding: 1rem;
     gap: 15px;
     max-width: 100%;
@@ -131,7 +131,7 @@
 }
 
 @media (max-width: 480px) {
-  .front-collection {
+  .recipe-collection {
     padding: 1.5rem;
     gap: 1.5rem;
   }

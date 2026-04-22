@@ -11,7 +11,7 @@
       </button>
     </div>
     <div class="games-grid">
-      <div v-for="game in filteredGames" :key="game.title" class="game-card" :data-category="game.genre">
+      <div v-for="game in filteredGames.slice(0, displayCount)" :key="game.title" class="game-card" :data-category="game.genre">
         <game-card :title="game.title" :author="game.developer" :platform="game.platform" :cover="game.cover" :thumb="game.thumb" />
       </div>
     </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, watch, nextTick } from "vue";
 import GameCard from '../components/Game-card.vue';
 import { gameList } from '../../data/gameData.ts';
 
@@ -81,6 +81,33 @@ const filteredGames = computed(() => {
       }))
       .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   }
+});
+
+// ========== 渐进式渲染 ==========
+const displayCount = ref(8); // 首屏显示数量
+const batchSize = 4; // 每帧增加数量
+
+const renderProgressively = () => {
+  if (displayCount.value >= filteredGames.value.length) return;
+
+  requestAnimationFrame(() => {
+    displayCount.value += batchSize;
+    renderProgressively();
+  });
+};
+
+watch(currentCategory, () => {
+  displayCount.value = window.innerWidth > 768 ? 8 : 4;
+  nextTick(() => {
+    requestAnimationFrame(renderProgressively);
+  });
+});
+
+onMounted(() => {
+  displayCount.value = window.innerWidth > 768 ? 8 : 4;
+  nextTick(() => {
+    requestAnimationFrame(renderProgressively);
+  });
 });
 </script>
 
@@ -144,6 +171,29 @@ h1::after {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: slideIn 0.3s ease backwards;
+}
+
+.game-card:nth-child(1) { animation-delay: 0.05s; }
+.game-card:nth-child(2) { animation-delay: 0.1s; }
+.game-card:nth-child(3) { animation-delay: 0.15s; }
+.game-card:nth-child(4) { animation-delay: 0.2s; }
+.game-card:nth-child(5) { animation-delay: 0.25s; }
+.game-card:nth-child(6) { animation-delay: 0.3s; }
+.game-card:nth-child(7) { animation-delay: 0.35s; }
+.game-card:nth-child(8) { animation-delay: 0.4s; }
+.game-card:nth-child(9) { animation-delay: 0.45s; }
+.game-card:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 响应式设计 */

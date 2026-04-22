@@ -11,7 +11,7 @@
       </button>
     </div>
     <div class="novels-grid">
-      <div v-for="novel in filteredNovels" :key="novel.title" class="novel-card" :data-category="novel.category">
+      <div v-for="novel in filteredNovels.slice(0, displayCount)" :key="novel.title" class="novel-card" :data-category="novel.category">
         <Novel-card :title="novel.title" :author="novel.author" :cover="novel.cover" :thumb="novel.thumb"></Novel-card>
       </div>
     </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, watch, nextTick } from "vue";
 import NovelCard from '../components/Novel-card.vue';
 import { novelList } from '../../data/novelData.ts';
 // 分类数据
@@ -50,6 +50,33 @@ const filteredNovels = computed(() => {
       .filter((novel) => novel.category === currentCategory.value)
       .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   }
+});
+
+// ========== 渐进式渲染 ==========
+const displayCount = ref(8); // 首屏显示数量
+const batchSize = 4; // 每帧增加数量
+
+const renderProgressively = () => {
+  if (displayCount.value >= filteredNovels.value.length) return;
+
+  requestAnimationFrame(() => {
+    displayCount.value += batchSize;
+    renderProgressively();
+  });
+};
+
+watch(currentCategory, () => {
+  displayCount.value = window.innerWidth > 768 ? 8 : 4;
+  nextTick(() => {
+    requestAnimationFrame(renderProgressively);
+  });
+});
+
+onMounted(() => {
+  displayCount.value = window.innerWidth > 768 ? 8 : 4;
+  nextTick(() => {
+    requestAnimationFrame(renderProgressively);
+  });
 });
 </script>
 
@@ -113,6 +140,29 @@ h1::after {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: slideIn 0.3s ease backwards;
+}
+
+.novel-card:nth-child(1) { animation-delay: 0.05s; }
+.novel-card:nth-child(2) { animation-delay: 0.1s; }
+.novel-card:nth-child(3) { animation-delay: 0.15s; }
+.novel-card:nth-child(4) { animation-delay: 0.2s; }
+.novel-card:nth-child(5) { animation-delay: 0.25s; }
+.novel-card:nth-child(6) { animation-delay: 0.3s; }
+.novel-card:nth-child(7) { animation-delay: 0.35s; }
+.novel-card:nth-child(8) { animation-delay: 0.4s; }
+.novel-card:nth-child(9) { animation-delay: 0.45s; }
+.novel-card:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 响应式设计 */

@@ -366,4 +366,4 @@ module.exports = {
     };
     ```
     至此配置完成，后续提交代码使用 git cz 命令即可进行可视化提交，具体效果如下：
-    <img src="/markdown/front/engi/cz.nqCw_TZy.png" alt="加载失败" />
+    <img src="/markdown/frontend/engi/cz.nqCw_TZy.png" alt="加载失败" />

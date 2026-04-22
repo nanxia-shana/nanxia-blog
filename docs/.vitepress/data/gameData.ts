@@ -22,7 +22,8 @@ export const gameList: GameItem[] = [
     publisher: "任天堂",
     releaseYear: 2017,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/zelda-botw.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/zelda-botw.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/zelda-botw.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["开放世界", "冒险", "动作"],
     platform: ["Switch", "Wii U"],
     tags: ["探索", "解密", "神作", "openworld"],
@@ -35,7 +36,8 @@ export const gameList: GameItem[] = [
     publisher: "任天堂",
     releaseYear: 2023,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/zelda-totk.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/zelda-totk.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/zelda-totk.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["开放世界", "冒险", "动作"],
     platform: ["Switch"],
     tags: ["探索", "建造", "神作", "openworld", "action"],
@@ -48,7 +50,8 @@ export const gameList: GameItem[] = [
     publisher: "万代南梦宫",
     releaseYear: 2022,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/elden-ring.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/elden-ring.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/elden-ring.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["开放世界", "魂系", "RPG"],
     platform: ["PC", "PS5", "Xbox"],
     tags: ["苦难", "探索", "宫崎英高", "rpg", "openworld", "action"],
@@ -61,7 +64,8 @@ export const gameList: GameItem[] = [
     publisher: "米哈游",
     releaseYear: 2020,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/genshin.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/genshin.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/genshin.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["开放世界", "ARPG", "二次元"],
     platform: ["PC", "iOS", "Android", "PS5"],
     tags: ["抽卡", "肝", "风景", "openworld", "rpg"],
@@ -74,7 +78,8 @@ export const gameList: GameItem[] = [
     publisher: "游戏科学",
     releaseYear: 2024,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/black-myth.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/black-myth.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/black-myth.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["动作", "RPG", "神话"],
     platform: ["PC", "PS5", "Xbox"],
     tags: ["国产", "西游记", "3A", "action", "rpg"],
@@ -87,7 +92,8 @@ export const gameList: GameItem[] = [
     publisher: "Mojang",
     releaseYear: 2009,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/minecraft.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/minecraft.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/minecraft.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["沙盒", "生存", "创造"],
     platform: ["全平台"],
     tags: ["方块", "自由", "创造", "openworld", "sandbox"],
@@ -100,7 +106,8 @@ export const gameList: GameItem[] = [
     publisher: "动视",
     releaseYear: 2019,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/sekiro.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/sekiro.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/sekiro.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["动作", "魂系", "武士"],
     platform: ["PC", "PS4", "Xbox One"],
     tags: ["打铁", "死， Respect", "狼", "action"],
@@ -113,7 +120,8 @@ export const gameList: GameItem[] = [
     publisher: "网易",
     releaseYear: 2007,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/tianxia2.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/tianxia2.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/tianxia2.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["MMORPG", "国产", "古风"],
     platform: ["PC"],
     tags: ["国产", "网游", "古风", "rpg"],
@@ -126,7 +134,8 @@ export const gameList: GameItem[] = [
     publisher: "网易",
     releaseYear: 2011,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/tianxia3.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/tianxia3.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/tianxia3.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["MMORPG", "国产", "古风"],
     platform: ["PC"],
     tags: ["国产", "网游", "古风", "rpg"],
@@ -139,7 +148,8 @@ export const gameList: GameItem[] = [
     publisher: "盛大游戏",
     releaseYear: 2010,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/dragon-nest.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/dragon-nest.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/dragon-nest.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["动作", "MMORPG"],
     platform: ["PC"],
     tags: ["动作", "网游", "无锁定", "action", "rpg"],
@@ -152,7 +162,8 @@ export const gameList: GameItem[] = [
     publisher: "腾讯游戏",
     releaseYear: 2013,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/blade-and-soul.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/blade-and-soul.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/blade-and-soul.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["动作", "MMORPG"],
     platform: ["PC"],
     tags: ["动作", "网游", "韩式美学", "action", "rpg"],
@@ -165,7 +176,8 @@ export const gameList: GameItem[] = [
     publisher: "腾讯游戏",
     releaseYear: 2007,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/crossfire.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/crossfire.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/crossfire.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["FPS", "射击"],
     platform: ["PC"],
     tags: ["竞技", "射击", "网游", "action"],
@@ -178,7 +190,8 @@ export const gameList: GameItem[] = [
     publisher: "Valve",
     releaseYear: 2012,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/csgo.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/csgo.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/csgo.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["FPS", "射击", "竞技"],
     platform: ["PC"],
     tags: ["竞技", "射击", "开箱", "action"],
@@ -191,7 +204,8 @@ export const gameList: GameItem[] = [
     publisher: "EA",
     releaseYear: 2019,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/apex.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/apex.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/apex.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["FPS", "大逃杀", "竞技"],
     platform: ["PC", "PS5", "Xbox"],
     tags: ["射击", "大逃杀", "滑铲", "action"],
@@ -204,7 +218,8 @@ export const gameList: GameItem[] = [
     publisher: "腾讯游戏",
     releaseYear: 2011,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/lol.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/lol.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/lol.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["MOBA", "竞技"],
     platform: ["PC"],
     tags: ["竞技", "多人", "开黑"],
@@ -212,12 +227,13 @@ export const gameList: GameItem[] = [
   },
   {
     title: "300英雄",
-    originalTitle: "",
+    originalTitle: "300 hero",
     developer: "中青宝",
     publisher: "跳跃网络",
     releaseYear: 2013,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/300hero.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/300hero.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/300hero.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["MOBA", "二次元"],
     platform: ["PC"],
     tags: ["二次元", "动漫", "moba"],
@@ -230,7 +246,8 @@ export const gameList: GameItem[] = [
     publisher: "Square Enix",
     releaseYear: 2013,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/ff14.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/ff14.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/ff14.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["MMORPG"],
     platform: ["PC", "PS5"],
     tags: ["RPG", "剧情", "网游", "rpg"],
@@ -243,7 +260,8 @@ export const gameList: GameItem[] = [
     publisher: "Atlus",
     releaseYear: 2019,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/13-sentinels.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/13-sentinels.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/13-sentinels.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["冒险", "科幻", "视觉小说"],
     platform: ["PS4", "Switch", "PC"],
     tags: ["剧情", "科幻", "adv", "rpg"],
@@ -256,7 +274,8 @@ export const gameList: GameItem[] = [
     publisher: "网易游戏",
     releaseYear: 2016,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/shadowverse.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/shadowverse.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/shadowverse.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["CCG", "卡牌", "二次元"],
     platform: ["iOS", "Android", "PC"],
     tags: ["卡牌", "二次元", "竞技"],
@@ -269,7 +288,8 @@ export const gameList: GameItem[] = [
     publisher: "Hooded Horse",
     releaseYear: 2021,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/timberborn.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/timberborn.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/timberborn.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["建造", "经营", "生存"],
     platform: ["PC"],
     tags: ["建造", "城建", "生存", "openworld"],
@@ -282,7 +302,8 @@ export const gameList: GameItem[] = [
     publisher: "Softstar Entertainment",
     releaseYear: 2022,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/the-bridge-curse2.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/the-bridge-curse2.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/the-bridge-curse2.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["恐怖", "解谜"],
     platform: ["PC"],
     tags: ["恐怖", "悬疑", "台湾", "action"],
@@ -295,7 +316,8 @@ export const gameList: GameItem[] = [
     publisher: "蓝洞",
     releaseYear: 2017,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/pubg.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/pubg.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/pubg.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["大逃杀", "射击"],
     platform: ["PC"],
     tags: ["大逃杀", "射击", "吃鸡", "action"],
@@ -304,11 +326,12 @@ export const gameList: GameItem[] = [
   {
     title: "Peak",
     originalTitle: "Peak",
-    developer: "",
-    publisher: "",
+    developer: "Team Peak",
+    publisher: "Aggro Crab",
     releaseYear: 0,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/peak.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/peak.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/peak.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["FPS", "射击"],
     platform: ["PC"],
     tags: ["射击", "action"],
@@ -321,7 +344,8 @@ export const gameList: GameItem[] = [
     publisher: "腾讯游戏",
     releaseYear: 2024,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/delta.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/delta.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/delta.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["FPS", "射击"],
     platform: ["PC", "iOS", "Android"],
     tags: ["射击", "抽枪", "战术", "action"],
@@ -334,7 +358,8 @@ export const gameList: GameItem[] = [
     publisher: "Creepy Jar",
     releaseYear: 2018,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/green-hell.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/green-hell.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/green-hell.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["生存", "开放世界"],
     platform: ["PC", "PS4", "Switch", "Xbox"],
     tags: ["生存", "雨林", "开放世界", "openworld", "action"],
@@ -347,7 +372,8 @@ export const gameList: GameItem[] = [
     publisher: "EA",
     releaseYear: 2021,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/it-takes-two.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/it-takes-two.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/it-takes-two.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["合作", "解谜", "平台"],
     platform: ["PC", "PS5", "Xbox", "Switch"],
     tags: ["合作", "双人", "解谜", "action"],
@@ -360,7 +386,8 @@ export const gameList: GameItem[] = [
     publisher: "Triband",
     releaseYear: 2025,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/koira.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/koira.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/koira.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["解谜", "冒险", "合作"],
     platform: ["PC", "PS5", "Xbox"],
     tags: ["解谜", "艺术", "冒险", "action"],
@@ -373,7 +400,8 @@ export const gameList: GameItem[] = [
     publisher: "Rebuilt Games",
     releaseYear: 2018,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/pummel-party.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/pummel-party.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/pummel-party.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["派对", "多人", "休闲"],
     platform: ["PC"],
     tags: ["多人", "派对", "友尽", "action"],
@@ -386,7 +414,8 @@ export const gameList: GameItem[] = [
     publisher: "Unknown Worlds Entertainment",
     releaseYear: 2018,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/subnautica.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/subnautica.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/subnautica.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["生存", "开放世界", "探险"],
     platform: ["PC", "PS5", "Xbox", "Switch"],
     tags: ["生存", "海底", "探险", "openworld", "action"],
@@ -399,7 +428,8 @@ export const gameList: GameItem[] = [
     publisher: "Square Enix",
     releaseYear: 2017,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/nier.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/nier.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/nier.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["动作", "RPG"],
     platform: ["PC", "PS4", "Switch"],
     tags: ["动作", "剧情", "2B", "action", "rpg"],
@@ -412,7 +442,8 @@ export const gameList: GameItem[] = [
     publisher: "2K Games",
     releaseYear: 2016,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/civilization6.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/civilization6.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/civilization6.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["策略", "回合制", "4X"],
     platform: ["PC", "Switch", "PS4", "Xbox"],
     tags: ["策略", "回合制", "4X"],
@@ -425,7 +456,8 @@ export const gameList: GameItem[] = [
     publisher: "Curve Games",
     releaseYear: 2024,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/backpack-battles.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/backpack-battles.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/backpack-battles.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["自走棋", "整理", "竞技"],
     platform: ["PC"],
     tags: ["策略", "整理", "pvp"],
@@ -438,7 +470,8 @@ export const gameList: GameItem[] = [
     publisher: "轻量游戏",
     releaseYear: 2021,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/guigu-bahuang.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/guigu-bahuang.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/guigu-bahuang.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["修仙", "开放世界", "国产"],
     platform: ["PC"],
     tags: ["修仙", "开放世界", "国产", "rpg", "openworld"],
@@ -451,7 +484,8 @@ export const gameList: GameItem[] = [
     publisher: "nevercenter 游戏工作室",
     releaseYear: 2023,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/volcano-daughter.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/volcano-daughter.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/volcano-daughter.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["养成", "国产", "文字"],
     platform: ["PC"],
     tags: ["养成", "国产", "美少女", "rpg"],
@@ -464,7 +498,8 @@ export const gameList: GameItem[] = [
     publisher: "Fair Games Studio",
     releaseYear: 2023,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/necesse.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/necesse.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/necesse.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["沙盒", "生存", "建造"],
     platform: ["PC"],
     tags: ["沙盒", "生存", "建造", "openworld"],
@@ -477,7 +512,8 @@ export const gameList: GameItem[] = [
     publisher: "Klei Entertainment",
     releaseYear: 2013,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/dont-starve.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/dont-starve.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/dont-starve.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["生存", "沙盒"],
     platform: ["全平台"],
     tags: ["生存", "沙盒", "哥特", "openworld"],
@@ -490,7 +526,8 @@ export const gameList: GameItem[] = [
     publisher: "Pocketpair",
     releaseYear: 2024,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/palworld.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/palworld.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/palworld.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["开放世界", "生存", "收集"],
     platform: ["PC", "Xbox"],
     tags: ["开放世界", "生存", "宝可梦", "openworld", "action"],
@@ -499,11 +536,12 @@ export const gameList: GameItem[] = [
   {
     title: "辐射之海",
     originalTitle: "Sea of Radiation",
-    developer: "",
-    publisher: "",
+    developer: "NightWalker",
+    publisher: "NightWalker",
     releaseYear: 0,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/sea-of-radiation.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/sea-of-radiation.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/sea-of-radiation.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["生存", "开放世界"],
     platform: ["PC"],
     tags: ["生存", "开放世界", "末日", "openworld", "action"],
@@ -512,11 +550,12 @@ export const gameList: GameItem[] = [
   {
     title: "暗黑潜水员",
     originalTitle: "Dark Diver",
-    developer: "",
-    publisher: "",
+    developer: "Embers",
+    publisher: "Embers",
     releaseYear: 0,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/dark-diver.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/dark-diver.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/dark-diver.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["恐怖", "生存", "潜水"],
     platform: ["PC"],
     tags: ["恐怖", "生存", "海底", "action"],
@@ -529,7 +568,8 @@ export const gameList: GameItem[] = [
     publisher: "Qooland Games",
     releaseYear: 2024,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/soulmask.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/soulmask.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/soulmask.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["开放世界", "生存", "建造"],
     platform: ["PC"],
     tags: ["开放世界", "生存", "建造", "openworld", "action"],
@@ -542,7 +582,8 @@ export const gameList: GameItem[] = [
     publisher: "Hello Games",
     releaseYear: 2016,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/no-mans-sky.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/no-mans-sky.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/no-mans-sky.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["开放世界", "探索", "太空"],
     platform: ["PC", "PS5", "Xbox", "Switch"],
     tags: ["探索", "宇宙", " procedurally generated", "openworld"],
@@ -555,7 +596,8 @@ export const gameList: GameItem[] = [
     publisher: "Singularity 6",
     releaseYear: 2023,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/palia.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/palia.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/palia.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["MMO", "生活", "模拟"],
     platform: ["PC", "Switch"],
     tags: ["生活模拟", "种田", "社交", "openworld"],
@@ -568,7 +610,8 @@ export const gameList: GameItem[] = [
     publisher: "Fancy Games",
     releaseYear: 2022,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/escape-backrooms.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/escape-backrooms.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/escape-backrooms.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["恐怖", "解谜", "多人"],
     platform: ["PC"],
     tags: ["恐怖", "解谜", "后室", "action"],
@@ -581,7 +624,8 @@ export const gameList: GameItem[] = [
     publisher: "Valve",
     releaseYear: 2008,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/left4dead.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/left4dead.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/left4dead.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["FPS", "僵尸", "合作"],
     platform: ["PC"],
     tags: ["射击", "僵尸", "合作", "action"],
@@ -594,7 +638,8 @@ export const gameList: GameItem[] = [
     publisher: "Team17",
     releaseYear: 2022,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/ship-of-fools.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/ship-of-fools.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/ship-of-fools.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["合作", "roguelike", "航海"],
     platform: ["PC", "PS5", "Switch", "Xbox"],
     tags: ["合作", "roguelike", "双人", "action"],
@@ -607,7 +652,8 @@ export const gameList: GameItem[] = [
     publisher: "Daedalic Entertainment",
     releaseYear: 2019,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/barotrauma.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/barotrauma.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/barotrauma.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["合作", "生存", "潜水"],
     platform: ["PC"],
     tags: ["生存", "合作", "潜艇", "action"],
@@ -620,7 +666,8 @@ export const gameList: GameItem[] = [
     publisher: "Larian Studios",
     releaseYear: 2023,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/baldurs-gate3.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/baldurs-gate3.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/baldurs-gate3.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["CRPG", "开放世界", "龙与地下城"],
     platform: ["PC", "PS5", "Xbox"],
     tags: ["CRPG", "D&D", "剧情", "rpg", "openworld"],
@@ -633,7 +680,8 @@ export const gameList: GameItem[] = [
     publisher: "Focus Entertainment",
     releaseYear: 2024,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/forever-skies.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/forever-skies.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/forever-skies.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["生存", "开放世界", "探索"],
     platform: ["PC", "PS5"],
     tags: ["生存", "开放世界", "探索", "openworld", "action"],
@@ -646,7 +694,8 @@ export const gameList: GameItem[] = [
     publisher: "Acid Wizard Studio",
     releaseYear: 2017,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/darkwood.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/darkwood.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/darkwood.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["恐怖", "生存", "开放世界"],
     platform: ["PC", "PS5", "Switch"],
     tags: ["恐怖", "生存", "top-down", "openworld", "action"],
@@ -659,7 +708,8 @@ export const gameList: GameItem[] = [
     publisher: "Xbox Game Studios",
     releaseYear: 2015,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/ori.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/ori.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/ori.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["平台", "动作", "冒险"],
     platform: ["PC", "Xbox", "Switch"],
     tags: ["平台跳跃", "美术", "剧情", "action"],
@@ -672,7 +722,8 @@ export const gameList: GameItem[] = [
     publisher: "Yostar",
     releaseYear: 2018,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/mahjong-soul.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/mahjong-soul.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/mahjong-soul.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["棋牌", "休闲"],
     platform: ["PC", "iOS", "Android"],
     tags: ["麻将", "二次元", "棋牌"],
@@ -685,7 +736,8 @@ export const gameList: GameItem[] = [
     publisher: "Capcom",
     releaseYear: 2018,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/mhw.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/mhw.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/mhw.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["动作", "狩猎"],
     platform: ["PC", "PS4", "Xbox"],
     tags: ["狩猎", "动作", "刷怪", "action", "rpg"],
@@ -698,7 +750,8 @@ export const gameList: GameItem[] = [
     publisher: "Rockstar Games",
     releaseYear: 2013,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/gta5.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/gta5.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/gta5.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["开放世界", "动作"],
     platform: ["PC", "PS5", "Xbox"],
     tags: ["开放世界", "犯罪", "洛圣都", "action", "openworld"],
@@ -711,7 +764,8 @@ export const gameList: GameItem[] = [
     publisher: "网易游戏",
     releaseYear: 2021,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/naraka.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/naraka.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/naraka.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["武侠", "大逃杀", "动作"],
     platform: ["PC", "PS5", "Xbox"],
     tags: ["武侠", "大逃杀", "勾锁", "action", "openworld"],
@@ -724,7 +778,8 @@ export const gameList: GameItem[] = [
     publisher: "Endnight Games",
     releaseYear: 2014,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/the-forest.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/the-forest.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/the-forest.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["生存", "恐怖", "开放世界"],
     platform: ["PC", "PS4", "Xbox"],
     tags: ["生存", "恐怖", "野人", "openworld", "action"],
@@ -737,7 +792,8 @@ export const gameList: GameItem[] = [
     publisher: "Blizzard",
     releaseYear: 2010,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/starcraft2.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/starcraft2.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/starcraft2.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["RTS", "竞技"],
     platform: ["PC"],
     tags: ["即时战略", "竞技", "暴雪"],
@@ -750,7 +806,8 @@ export const gameList: GameItem[] = [
     publisher: "The Fun Pimps",
     releaseYear: 2013,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/7-days-to-die.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/7-days-to-die.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/7-days-to-die.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["生存", "僵尸", "开放世界"],
     platform: ["PC", "PS5", "Xbox"],
     tags: ["生存", "僵尸", "建造", "openworld", "action"],
@@ -763,7 +820,8 @@ export const gameList: GameItem[] = [
     publisher: "Xbox Game Studios",
     releaseYear: 2021,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/age-of-empire4.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/age-of-empire4.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/age-of-empire4.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["RTS", "策略"],
     platform: ["PC"],
     tags: ["即时战略", "历史", "建造"],
@@ -776,7 +834,8 @@ export const gameList: GameItem[] = [
     publisher: "Blizzard",
     releaseYear: 2002,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/warcraft3.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/warcraft3.webp?imageView2/2/w/80/format/webp/q/50",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/warcraft3.webp?imageView2/2/w/80/format/webp/q/50",
     genre: ["RTS", "RPG"],
     platform: ["PC"],
     tags: ["即时战略", "地图编辑器", "rpg"],

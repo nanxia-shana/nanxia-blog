@@ -63,7 +63,7 @@ provide('playback-state', playbackState)
     </template>
   </Layout>
   <!-- Live2d 放在 Layout 外面，确保在所有页面渲染 -->
-  <Live2d></Live2d>
+  <!-- <Live2d></Live2d> -->
 </template>
 
 <style>

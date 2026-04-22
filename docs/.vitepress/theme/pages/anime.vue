@@ -11,7 +11,7 @@
       </button>
     </div>
     <div class="animations-grid">
-      <div v-for="anime in filteredanimations" :key="anime.title" class="anime-card">
+      <div v-for="anime in filteredanimations.slice(0, displayCount)" :key="anime.title" class="anime-card">
         <anime-card :title="anime.title" :cover="anime.cover" :thumb="anime.thumb" :note="anime.note" />
       </div>
     </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, watch, nextTick } from "vue";
 import AnimeCard from "../components/Anime-card.vue";
 import { animeList } from '../../data/animeData.ts';
 
@@ -47,6 +47,36 @@ const currentCategory = ref("all");
 
 // 动画数据
 const animations = ref(animeList);
+
+// ========== 渐进式渲染 ==========
+const displayCount = ref(8); // 首屏显示数量
+const batchSize = 4; // 每帧增加数量
+
+// 渐进式渲染函数
+const renderProgressively = () => {
+  if (displayCount.value >= filteredanimations.value.length) return;
+
+  requestAnimationFrame(() => {
+    displayCount.value += batchSize;
+    renderProgressively();
+  });
+};
+
+// 监听分类变化，重置并重新开始渐进渲染
+watch(currentCategory, () => {
+  displayCount.value = window.innerWidth > 768 ? 8 : 4;
+  nextTick(() => {
+    requestAnimationFrame(renderProgressively);
+  });
+});
+
+// 页面挂载后启动渐进渲染
+onMounted(() => {
+  displayCount.value = window.innerWidth > 768 ? 8 : 4;
+  nextTick(() => {
+    requestAnimationFrame(renderProgressively);
+  });
+});
 
 // 设置当前分类
 const setCategory = (category: string) => {
@@ -123,6 +153,29 @@ h1::after {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: slideIn 0.3s ease backwards;
+}
+
+.anime-card:nth-child(1) { animation-delay: 0.05s; }
+.anime-card:nth-child(2) { animation-delay: 0.1s; }
+.anime-card:nth-child(3) { animation-delay: 0.15s; }
+.anime-card:nth-child(4) { animation-delay: 0.2s; }
+.anime-card:nth-child(5) { animation-delay: 0.25s; }
+.anime-card:nth-child(6) { animation-delay: 0.3s; }
+.anime-card:nth-child(7) { animation-delay: 0.35s; }
+.anime-card:nth-child(8) { animation-delay: 0.4s; }
+.anime-card:nth-child(9) { animation-delay: 0.45s; }
+.anime-card:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 响应式设计 */

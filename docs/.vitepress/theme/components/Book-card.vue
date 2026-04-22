@@ -83,7 +83,6 @@ onMounted(() => {
   max-width: 190px;
   perspective: 1000px;
   font-family: sans-serif;
-  cursor: pointer;
 }
 
 @media (max-width: 768px) {

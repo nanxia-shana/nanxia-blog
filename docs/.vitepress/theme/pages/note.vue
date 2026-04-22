@@ -46,7 +46,7 @@ const currentCategory = ref("all");
 const notes = ref(noteList);
 
 // 分页
-const pageSize = ref(5);
+const pageSize = ref(window.innerWidth > 768 ? 8 : 5); // 响应式首屏数量
 const currentPage = ref(1);
 const loading = ref(false);
 const hasMore = ref(true);
@@ -181,6 +181,29 @@ h1::after {
   transition: all 0.2s;
   border-radius: 4px;
   border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+  animation: slideIn 0.3s ease backwards;
+}
+
+.note-item:nth-child(1) { animation-delay: 0.05s; }
+.note-item:nth-child(2) { animation-delay: 0.1s; }
+.note-item:nth-child(3) { animation-delay: 0.15s; }
+.note-item:nth-child(4) { animation-delay: 0.2s; }
+.note-item:nth-child(5) { animation-delay: 0.25s; }
+.note-item:nth-child(6) { animation-delay: 0.3s; }
+.note-item:nth-child(7) { animation-delay: 0.35s; }
+.note-item:nth-child(8) { animation-delay: 0.4s; }
+.note-item:nth-child(9) { animation-delay: 0.45s; }
+.note-item:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 最后一项不需要分割线 */

@@ -11,7 +11,7 @@
       </button>
     </div>
     <div class="books-grid">
-      <div v-for="book in filteredBooks" :key="book.title" class="book-card" :data-category="book.category">
+      <div v-for="book in filteredBooks.slice(0, displayCount)" :key="book.title" class="book-card" :data-category="book.category">
         <book-card :title="book.title" :author="book.author" :cover="book.cover" :thumb="book.thumb" :note="book.note" />
       </div>
     </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, watch, nextTick } from "vue";
 import BookCard from '../components/Book-card.vue';
 import { bookList } from '../../data/bookData.ts';
 // 分类数据
@@ -48,6 +48,33 @@ const filteredBooks = computed(() => {
   } else {
     return books.value.filter((book) => book.category === currentCategory.value).sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
   }
+});
+
+// ========== 渐进式渲染 ==========
+const displayCount = ref(8); // 首屏显示数量
+const batchSize = 4; // 每帧增加数量
+
+const renderProgressively = () => {
+  if (displayCount.value >= filteredBooks.value.length) return;
+
+  requestAnimationFrame(() => {
+    displayCount.value += batchSize;
+    renderProgressively();
+  });
+};
+
+watch(currentCategory, () => {
+  displayCount.value = window.innerWidth > 768 ? 8 : 4;
+  nextTick(() => {
+    requestAnimationFrame(renderProgressively);
+  });
+});
+
+onMounted(() => {
+  displayCount.value = window.innerWidth > 768 ? 8 : 4;
+  nextTick(() => {
+    requestAnimationFrame(renderProgressively);
+  });
 });
 </script>
 
@@ -111,6 +138,29 @@ h1::after {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: slideIn 0.3s ease backwards;
+}
+
+.book-card:nth-child(1) { animation-delay: 0.05s; }
+.book-card:nth-child(2) { animation-delay: 0.1s; }
+.book-card:nth-child(3) { animation-delay: 0.15s; }
+.book-card:nth-child(4) { animation-delay: 0.2s; }
+.book-card:nth-child(5) { animation-delay: 0.25s; }
+.book-card:nth-child(6) { animation-delay: 0.3s; }
+.book-card:nth-child(7) { animation-delay: 0.35s; }
+.book-card:nth-child(8) { animation-delay: 0.4s; }
+.book-card:nth-child(9) { animation-delay: 0.45s; }
+.book-card:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 响应式设计 */

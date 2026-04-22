@@ -30,8 +30,8 @@ export default defineConfig({
   markdown: {
     image: {
       // 默认禁用；设置为 true 可为所有图片启用懒加载。
-      lazyLoading: true
-    }
+      lazyLoading: true,
+    },
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -42,9 +42,9 @@ export default defineConfig({
         text: "知识库",
         activeMatch: "/knowledge/",
         items: [
-          { text: "🌐 前端", link: "/knowledge/front/" },
-          { text: "🖥️ 后端", link: "/knowledge/back/" },
-          { text: "🧩 其它", link: "/knowledge/other/" },
+          { text: "💻 前端", link: "/knowledge/frontend/" },
+          { text: "🌐 后端", link: "/knowledge/backend/" },
+          { text: "🧩 更多", link: "/knowledge/misc/" },
         ],
       },
       {
@@ -57,7 +57,7 @@ export default defineConfig({
           { text: "🌌 绘梦织霞", link: "/spiritual-food/anime/" }, // 番剧动画
           { text: "🎮 游心太玄", link: "/spiritual-food/game/" }, // 游戏娱乐
           { text: "✒️ 墨池云篆", link: "/spiritual-food/novel/" }, // 网络文学
-          { text: "🍵 闲窗絮语", link: "/spiritual-food/other/" }, // 其他杂项
+          { text: "🍵 闲窗絮语", link: "/spiritual-food/note/" }, // 其他杂项
         ],
       },
     ],
@@ -136,22 +136,22 @@ export default defineConfig({
   //           text: "Knowledge",
   //           activeMatch: "/knowledge/",
   //           items: [
-  //             { text: "🌐 Front-end", link: "/knowledge/front/" },
-  //             { text: "🖥️ Back-end", link: "/knowledge/back/" },
-  //             { text: "🧩 Others", link: "/knowledge/others/" },
+  //             { text: "🌐 Front-end", link: "/knowledge/frontend/" },
+  //             { text: "🖥️ Back-end", link: "/knowledge/backend/" },
+  //             { text: "🧩 Miscellaneous", link: "/knowledge/misc/" },
   //           ],
   //         },
   //         {
   //           text: "Spiritual-food",
   //           activeMatch: "/spiritual-food/",
   //           items: [
-  //             { text: "📚 Books", link: "/spiritual-food/books/" }, // 书籍小说
+  //             { text: "📚 Book", link: "/spiritual-food/book/" }, // 书籍小说
   //             { text: "🎧 Music", link: "/spiritual-food/music/" }, // 音乐音频
   //             { text: "🌌 Anime", link: "/spiritual-food/anime/" }, // 影视作品
-  //             { text: "🎞 Movies", link: "/spiritual-food/movies/" }, // 番剧动画
-  //             { text: "🖋 Novels", link: "/spiritual-food/novels/" }, // 网络文学
-  //             { text: "🎮 Games", link: "/spiritual-food/games/" }, // 游戏娱乐
-  //             { text: "🍵 Others", link: "/spiritual-food/others/" }, // 其他杂项
+  //             { text: "🎞 Movie", link: "/spiritual-food/movie/" }, // 番剧动画
+  //             { text: "🖋 Novel", link: "/spiritual-food/novel/" }, // 网络文学
+  //             { text: "🎮 Game", link: "/spiritual-food/game/" }, // 游戏娱乐
+  //             { text: "🍵 Note", link: "/spiritual-food/note/" }, // 其他杂项
   //           ],
   //         },
   //       ],

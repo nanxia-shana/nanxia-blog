@@ -1,17 +1,15 @@
 <template>
-  <a :href="coverLink" target="_blank" class="card-link">
-    <div class="card" ref="cardEl">
-      <!-- 缩略图占位 -->
-      <div v-if="props.thumb && !isLoaded" class="thumb" :style="{backgroundImage: `url(${props.thumb})`}"></div>
-      <!-- 封面图 -->
-      <div v-if="isLoaded" class="cover" :style="{backgroundImage: `url(${props.cover})`}"></div>
-      <!-- 底部信息遮罩 -->
-      <div class="info-overlay">
-        <div class="title">{{ props.title }}</div>
-        <div class="author">{{ props.author }}</div>
-      </div>
+  <div class="card" ref="cardEl">
+    <!-- 缩略图占位 -->
+    <div v-if="props.thumb && !isLoaded" class="thumb" :style="{backgroundImage: `url(${props.thumb})`}"></div>
+    <!-- 封面图 -->
+    <div v-if="isLoaded" class="cover" :style="{backgroundImage: `url(${props.cover})`}"></div>
+    <!-- 底部信息遮罩 -->
+    <div class="info-overlay">
+      <div class="title">{{ props.title }}</div>
+      <div class="author">{{ props.author }}</div>
     </div>
-  </a>
+  </div>
 </template>
 <script setup>
 import { ref, computed, onMounted } from 'vue'
@@ -69,12 +67,6 @@ onMounted(() => {
 })
 </script>
 <style scoped>
-  .card-link {
-    text-decoration: none;
-    display: block;
-    width: 100%;
-  }
-
   .card {
     position: relative;
     width: 100%;

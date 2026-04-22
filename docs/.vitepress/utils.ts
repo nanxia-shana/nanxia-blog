@@ -4,58 +4,117 @@ const menuList = [
     link: "/knowledge/",
     items: [
       {
-        text: "🌐 前端",
-        link: "/knowledge/front/",
+        text: "💻 前端",
+        link: "/knowledge/frontend/",
         items: [
           {
             text: "前端基础",
-            collapsed: false,
+            collapsed: true,
             items: [
               {
                 text: "HTML 标签：从基础到语义化布局",
-                link: "/knowledge/front/base/HTML-semantic",
+                link: "/knowledge/frontend/base/HTML-semantic",
               },
               {
                 text: "JavaScript - API 特性与实用技巧",
-                link: "/knowledge/front/base/JS-API",
+                link: "/knowledge/frontend/base/JS-API",
               },
               {
                 text: "前端常用设计模式",
-                link: "/knowledge/front/base/designPattern",
+                link: "/knowledge/frontend/base/designPattern",
               },
               {
                 text: "前端 debugger 技巧",
-                link: "/knowledge/front/base/debugger",
+                link: "/knowledge/frontend/base/debugger",
               },
               {
                 text: "TypeScript入门及实践",
-                link: "/knowledge/front/base/TypeScript",
+                link: "/knowledge/frontend/base/TypeScript",
               },
               {
                 text: "前端面试题解析",
-                link: "/knowledge/front/base/frontend-interview-questions",
+                link: "/knowledge/frontend/base/frontend-interview-questions",
               },
             ],
           },
           {
             text: "前端工程化",
-            collapsed: false,
+            collapsed: true,
             items: [
               {
                 text: "前端项目规范化",
-                link: "/knowledge/front/engi/rule",
+                link: "/knowledge/frontend/engi/rule",
               },
             ],
           },
         ],
       },
       {
-        text: "🖥️ 后端",
-        link: "/knowledge/back/",
+        text: "🌐 后端",
+        link: "/knowledge/backend/",
+        items: [
+          {
+            text: "后端基础",
+            collapsed: true,
+            items: [],
+          },
+          {
+            text: "Node.js",
+            collapsed: true,
+            items: [
+              {
+                text: "Node.js 性能优化",
+                link: "/knowledge/backend/nodejs/performance",
+              },
+            ],
+          },
+          {
+            text: "数据库",
+            collapsed: true,
+            items: [
+              {
+                text: "数据库设计原则",
+                link: "/knowledge/backend/database/database",
+              },
+            ],
+          },
+          {
+            text: "架构与系统设计",
+            collapsed: true,
+            items: [
+              {
+                text: "RESTful API 设计",
+                link: "/knowledge/backend/architecture/restful",
+              },
+              {
+                text: "微服务架构入门",
+                link: "/knowledge/backend/architecture/microservice",
+              },
+            ],
+          },
+        ],
       },
       {
-        text: "🧩 其它",
-        link: "/knowledge/other/",
+        text: "🧩 更多",
+        link: "/knowledge/misc/",
+        items: [
+          {
+            text: "Docker 容器化部署",
+            link: "/knowledge/misc/docker",
+          },
+          {
+            text: "Git 版本控制进阶",
+            link: "/knowledge/misc/git",
+          },
+          {
+            text: "Linux 命令行技巧",
+            link: "/knowledge/misc/linux",
+          },
+          {
+            text: "CI/CD 持续集成",
+            link: "/knowledge/misc/cicd",
+          },
+        ],
       },
     ],
   },
@@ -89,13 +148,13 @@ const menuList = [
       },
       {
         text: "🍵 闲窗絮语",
-        link: "/spiritual-food/other/",
+        link: "/spiritual-food/note/",
         collapsed: false,
         items: [
           {
             text: "追逐",
             collapsed: false,
-            link: "/spiritual-food/other/zhuizhu",
+            link: "/spiritual-food/note/zhuizhu",
           },
         ],
       },
@@ -110,7 +169,7 @@ const menuList_en = [
     items: [
       {
         text: "Front-end",
-        link: "/en/knowledge/front/",
+        link: "/en/knowledge/frontend/",
         items: [
           {
             text: "Front-end Basics",
@@ -118,7 +177,7 @@ const menuList_en = [
             items: [
               {
                 text: "Common Front-end Design Patterns",
-                link: "/en/knowledge/front/base/designPattern",
+                link: "/en/knowledge/frontend/base/designPattern",
               },
             ],
           },
@@ -128,7 +187,7 @@ const menuList_en = [
             items: [
               {
                 text: "Project Standardization",
-                link: "/en/knowledge/front/engi/rule",
+                link: "/en/knowledge/frontend/engi/rule",
               },
             ],
           },
@@ -136,11 +195,11 @@ const menuList_en = [
       },
       {
         text: "Back-end",
-        link: "/en/knowledge/back/",
+        link: "/en/knowledge/backend/",
       },
       {
-        text: "Others",
-        link: "/en/knowledge/other/",
+        text: "Miscellaneous",
+        link: "/en/knowledge/misc/",
       },
     ],
   },
@@ -149,7 +208,7 @@ const menuList_en = [
     link: "/en/spiritual-food/",
     items: [
       {
-        text: "Books",
+        text: "Book",
         link: "/en/spiritual-food/book/",
       },
       {
@@ -157,7 +216,7 @@ const menuList_en = [
         link: "/en/spiritual-food/music/",
       },
       {
-        text: "Movies",
+        text: "Movie",
         link: "/en/spiritual-food/movie/",
       },
       {
@@ -165,16 +224,16 @@ const menuList_en = [
         link: "/en/spiritual-food/anime/",
       },
       {
-        text: "Novels",
+        text: "Novel",
         link: "/en/spiritual-food/novel/",
       },
       {
-        text: "Games",
+        text: "Game",
         link: "/en/spiritual-food/game/",
       },
       {
-        text: "Others",
-        link: "/en/spiritual-food/other/",
+        text: "Other",
+        link: "/en/spiritual-food/note/",
       },
     ],
   },

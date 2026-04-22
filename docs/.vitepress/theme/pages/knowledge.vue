@@ -1,9 +1,36 @@
-<script setup>
-
-</script>
-
 <template>
   <div class="knowledge-collection">
+    <div class="page-header">
+      <h1>📚 知识体系</h1>
+      <p class="subtitle">全方位技术知识库，记录学习与成长的点滴</p>
+    </div>
+
+    <div class="category-grid">
+      <div @click="router.go('/nanxia-blog/knowledge/frontend/')" class="category-card frontend">
+        <div class="category-icon">💻</div>
+        <h2>前端知识</h2>
+        <p>深入探索前端技术栈，从基础到进阶的完整学习路径</p>
+        <div class="article-count">{{ frontendCount }} 篇文章</div>
+        <div class="arrow">→</div>
+      </div>
+
+      <div @click="router.go('/nanxia-blog/knowledge/backend/')" class="category-card backend">
+        <div class="category-icon">🌐</div>
+        <h2>后端知识</h2>
+        <p>构建高性能、可扩展的服务端应用，掌握后端核心技术</p>
+        <div class="article-count">{{ backendCount }} 篇文章</div>
+        <div class="arrow">→</div>
+      </div>
+
+      <div @click="router.go('/nanxia-blog/knowledge/misc/')" class="category-card misc">
+        <div class="category-icon">🧩</div>
+        <h2>技术杂谈</h2>
+        <p>开发工具、DevOps、系统运维等全方位技术知识分享</p>
+        <div class="article-count">{{ miscCount }} 篇文章</div>
+        <div class="arrow">→</div>
+      </div>
+    </div>
+    
     <div v-for="category in linksData" :key="category.title" class="category">
       <h2>{{ category.icon }} {{ category.title }}</h2>
       <div class="links">
@@ -24,6 +51,14 @@
 
 <script setup>
 import { linksData } from '../../data/linksData.ts';
+import { frontendArticles, backendArticles, miscArticles } from '../../data/knowledgeData';
+import { useRouter } from 'vitepress'
+
+const router = useRouter()
+
+const frontendCount = frontendArticles.length;
+const backendCount = backendArticles.length;
+const miscCount = miscArticles.length;
 </script>
 
 <style scoped>
@@ -31,6 +66,191 @@ import { linksData } from '../../data/linksData.ts';
   margin: 0 auto;
   padding: 2rem;
   max-width: 1200px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--vp-c-divider-light);
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  line-height: normal;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.subtitle {
+  color: var(--vp-c-text-2);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.category-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 16px;
+  background: var(--vp-c-bg-soft);
+  border: 2px solid var(--vp-c-divider);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 240px;
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+}
+
+/* 前端主题 - 蓝色 */
+.category-card.frontend:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+  background: rgba(59, 130, 246, 0.08);
+  box-shadow:
+    0 12px 40px rgba(59, 130, 246, 0.2),
+    0 0 0 1px rgba(59, 130, 246, 0.1) inset;
+}
+
+.category-card.frontend .category-icon {
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.category-card.frontend h2 {
+  color: #3b82f6;
+}
+
+.category-card.frontend .article-count {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+/* 后端主题 - 绿色 */
+.category-card.backend:hover {
+  border-color: rgba(16, 185, 129, 0.6);
+  background: rgba(16, 185, 129, 0.08);
+  box-shadow:
+    0 12px 40px rgba(16, 185, 129, 0.2),
+    0 0 0 1px rgba(16, 185, 129, 0.1) inset;
+}
+
+.category-card.backend .category-icon {
+  background: rgba(16, 185, 129, 0.15);
+}
+
+.category-card.backend h2 {
+  color: #10b981;
+}
+
+.category-card.backend .article-count {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+/* 其他主题 - 紫色 */
+.category-card.misc:hover {
+  border-color: rgba(139, 92, 246, 0.6);
+  background: rgba(139, 92, 246, 0.08);
+  box-shadow:
+    0 12px 40px rgba(139, 92, 246, 0.2),
+    0 0 0 1px rgba(139, 92, 246, 0.1) inset;
+}
+
+.category-card.misc .category-icon {
+  background: rgba(139, 92, 246, 0.15);
+}
+
+.category-card.misc h2 {
+  color: #8b5cf6;
+}
+
+.category-card.misc .article-count {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+}
+
+.category-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+  transform: scale(1.1);
+}
+
+.category-card h2 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.category-card p {
+  margin: 0 0 1.5rem 0;
+  font-size: 0.95rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.article-count {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--vp-c-text-3);
+  transition: all 0.3s ease;
+}
+
+.category-card:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .knowledge-collection {
+    padding: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-card {
+    min-height: 200px;
+    padding: 1.5rem;
+  }
 }
 
 .category {

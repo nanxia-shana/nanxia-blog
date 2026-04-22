@@ -213,10 +213,6 @@ onMounted(() => {
   height: 100%;
 }
 
-.tracker:hover {
-  cursor: pointer;
-}
-
 .tracker:hover ~ #card #prompt {
   opacity: 0;
 }

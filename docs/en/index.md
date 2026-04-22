@@ -25,7 +25,7 @@ features:
     link: /en/knowledge/back
   - title: Others
     details: Git operation, network engineering, and some other commonly used programming tools, skills and so on
-    link: /en/knowledge/others
+    link: /en/knowledge/other
 ---
 
 <Background></Background>

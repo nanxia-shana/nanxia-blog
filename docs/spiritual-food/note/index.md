@@ -4,4 +4,4 @@ layout: page
 
 ---
 
-<Other></Other>
+<Note></Note>

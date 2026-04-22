@@ -20,13 +20,13 @@ hero:
 features:
   - title: 前端
     details: 前端框架（如Vue、React）、技术设计（如微前端与低代码），以及常见的前端性能优化方案
-    link: /knowledge/front
+    link: /knowledge/frontend
   - title: 后端
     details: 后端框架应用（如Express、NestJS），以及MySQL、MongoDB等常见数据库的操作
-    link: /knowledge/back
+    link: /knowledge/backend
   - title: 其它
     details: Git版本控制、网络工程，以及其他常用的编程工具与技能等
-    link: /knowledge/other
+    link: /knowledge/misc
 
 ---
 
