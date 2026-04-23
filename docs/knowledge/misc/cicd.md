@@ -26,35 +26,7 @@ CD (Continuous Deployment) 持续部署：
 
 ### 1.2 典型流水线
 
-```
-代码提交
-    ↓
-触发流水线
-    ↓
-┌─────────────────────────────────┐
-│          构建阶段               │
-│  - 依赖安装                     │
-│  - 代码编译                     │
-│  - 静态检查（Lint）             │
-└─────────────────────────────────┘
-    ↓
-┌─────────────────────────────────┐
-│          测试阶段               │
-│  - 单元测试                     │
-│  - 集成测试                     │
-│  - E2E 测试                     │
-│  - 安全扫描                     │
-└─────────────────────────────────┘
-    ↓
-┌─────────────────────────────────┐
-│          部署阶段               │
-│  - 构建镜像                     │
-│  - 推送到镜像仓库               │
-│  - 部署到测试/生产环境          │
-└─────────────────────────────────┘
-    ↓
-通知结果（成功/失败）
-```
+<img src="/markdown/misc/CICD.png" alt="加载失败" />
 
 ## 2. GitHub Actions 实战
 
@@ -184,6 +156,76 @@ jobs:
           key: ${{ runner.os }}-dist-${{ github.sha }}
 ```
 
+### 2.5 示例
+这以下是该博客在 Github Action 中配置的deploy.yml文件
+```yaml
+# 构建 VitePress 站点并将其部署到 GitHub Pages 的示例工作流程
+#
+name: nanxia-blog deploy workflow
+
+on:
+  # 在针对`Prod`分支的推送上运行。如果你
+  # 使用`master`分支作为默认分支，请将其更改为`master`
+  push:
+    branches: [Prod]
+
+  # 允许你从 Actions 选项卡手动运行此工作流程
+  workflow_dispatch:
+
+# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
+# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # 构建工作
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+      # - uses: pnpm/action-setup@v4 # 如果使用 pnpm，请取消此区域注释
+      #   with:
+      #     version: 9
+      # - uses: oven-sh/setup-bun@v1 # 如果使用 Bun，请取消注释
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm # 或 pnpm / yarn
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Install dependencies
+        run: npm ci # 或 pnpm install / yarn install / bun install
+      - name: Build with VitePress
+        run: npm run docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+
+  # 部署工作
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
 ## 3. Docker 构建优化
 
 ### 3.1 多阶段构建镜像
@@ -600,16 +642,3 @@ jobs:
   gpu-job:
     runs-on: [self-hosted, gpu, linux]
 ```
-
-## 总结
-
-CI/CD 核心要点：
-
-1. **流水线设计**：分阶段执行，快速反馈，并行优化
-2. **缓存策略**：依赖缓存、构建缓存、Docker 层缓存加速构建
-3. **质量门禁**：代码扫描、安全检测、测试覆盖率缺一不可
-4. **部署策略**：蓝绿、金丝雀、滚动发布降低发布风险
-5. **安全第一**：密钥管理、最小权限、OIDC 认证
-6. **可观测性**：完整日志、结果通知、失败重试机制
-
-一个好的 CI/CD 流水线应该像空气一样——平时感觉不到它的存在，但关键时刻总能帮你挡住问题。从简单的构建测试开始，逐步完善自动化部署，你的团队效率会有质的飞跃。

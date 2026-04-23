@@ -364,4 +364,4 @@ module.exports = {
   };
     ```
     At this point, the configuration is complete. Subsequent code submissions can use the git cz command for visual submission. The specific effect is as follows:
-    <img src="/markdown/front/engi/cz.nqCw_TZy.png" alt="Loading failed" />
+    <img src="/markdown/frontend/engi/cz.nqCw_TZy.png" alt="Loading failed" />

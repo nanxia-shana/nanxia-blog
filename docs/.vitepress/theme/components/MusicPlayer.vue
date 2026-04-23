@@ -324,7 +324,6 @@ const toMusic = () => {
 }
 .music-progress {
   width: 70px;
-  height: 4px;
   margin-top: 5px;
   border: 1px solid var(--vp-c-text-2);
   border-radius: 2px;

@@ -42,7 +42,6 @@ const articles = frontendArticles;
   line-height: normal;
   font-weight: 700;
   margin-bottom: 0.75rem;
-  color: #3b82f6;
 }
 
 .subtitle {

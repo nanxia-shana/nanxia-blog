@@ -346,8 +346,10 @@ const miscCount = miscArticles.length;
   display: block;
   font-size: 0.7rem;
   color: var(--vp-c-text-3);
-  word-break: break-all;
   line-height: 1.3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .link-tag {

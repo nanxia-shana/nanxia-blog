@@ -232,7 +232,7 @@ const menuList_en = [
         link: "/en/spiritual-food/game/",
       },
       {
-        text: "Other",
+        text: "Note",
         link: "/en/spiritual-food/note/",
       },
     ],

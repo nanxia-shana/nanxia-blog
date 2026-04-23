@@ -11,6 +11,8 @@ const publishDate = frontmatter.value?.date
   || frontmatter.value?.created
   || null
 
+const footertext = frontmatter.value?.footertext || null
+
 // 格式化日期
 const formattedDate = publishDate 
   ? new Date(publishDate).toLocaleDateString('zh-CN', {
@@ -25,11 +27,20 @@ const formattedDate = publishDate
   <div v-if="formattedDate" class="post-date">
     📅 发布于：{{ formattedDate }}
   </div>
+  <div v-if="footertext" class="post-footer">
+    {{ footertext }}
+  </div>
 </template>
 
 <style scoped>
 .post-date {
   margin-top: 2rem;
+  padding: 1rem 0;
+  font-size: 0.875rem;
+  color: var(--vp-c-text-2);
+}
+.post-footer {
+  margin-top: 1rem;
   padding: 1rem 0;
   font-size: 0.875rem;
   color: var(--vp-c-text-2);

@@ -65,6 +65,7 @@ onMounted(() => {
   background-size: cover;
   background-position: center;
   z-index: -1; /* 确保背景在最底层 */
+  overflow-x: hidden;
 }
 </style>
 <style>
