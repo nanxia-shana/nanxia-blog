@@ -20,6 +20,10 @@ const menuList = [
                 link: "/knowledge/frontend/base/JS-API",
               },
               {
+                text: "四种Web实时通信方案解析",
+                link: "/knowledge/frontend/base/web-realtime-communication",
+              },
+              {
                 text: "前端常用设计模式",
                 link: "/knowledge/frontend/base/designPattern",
               },

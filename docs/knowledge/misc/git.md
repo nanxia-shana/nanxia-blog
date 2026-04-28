@@ -2,7 +2,10 @@
 layout: doc
 
 lastUpdated: false
-
+title: Git 版本控制高级技巧
+description: 超越基础命令，深入讲解 Rebase、Cherry-pick、Bisect、Stash 等高效 Git 工作流与排障技巧 
+category: 
+date: 2026-04-28
 ---
 
 # Git 版本控制高级技巧

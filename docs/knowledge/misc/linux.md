@@ -2,7 +2,10 @@
 layout: doc
 
 lastUpdated: false
-
+title: Linux 命令行实战技巧
+description: 精选 Shell 高效操作、文本处理、进程管理、网络诊断等实用技巧，快速提升命令行生产力 
+category: 
+date: 2026-04-28
 ---
 
 # Linux 命令行实战技巧

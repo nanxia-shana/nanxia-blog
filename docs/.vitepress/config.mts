@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { codeInspectorPlugin } from "@agent-eyes/agent-eyes";
 import utils from "./utils";
 import store from "./store/index";
 
@@ -11,6 +12,17 @@ export default defineConfig({
       __MUSIC_LIST__: store.musicList,
       __PLAYBACK_STATE__: store.playbackState,
     },
+    plugins: [
+      codeInspectorPlugin({
+        bundler: "vite",
+        showSwitch: true,
+        agent: {
+          acp: {
+            command: "code",
+          },
+        },
+      }),
+    ],
   },
   base: "/nanxia-blog/",
   lang: "zh-CN",

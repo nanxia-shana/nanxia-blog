@@ -2,6 +2,10 @@
 layout: doc
 
 lastUpdated: false
+title: 前端常用设计模式
+description: 从单例、工厂到观察者、策略模式，系统讲解前端开发中必备的设计模式及其应用场景 
+category: 前端基础
+date: 2025-07-14
 ---
 
 # 前端常用设计模式

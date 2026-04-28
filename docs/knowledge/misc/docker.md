@@ -2,7 +2,10 @@
 layout: doc
 
 lastUpdated: false
-
+title: Docker 容器化部署
+description: 从零到一掌握 Docker 核心概念、镜像构建优化、容器编排与生产环境部署最佳实践 
+category: 
+date: 2026-04-28
 ---
 
 # Docker 容器化部署

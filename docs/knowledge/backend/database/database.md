@@ -2,7 +2,10 @@
 layout: doc
 
 lastUpdated: false
-
+title: 数据库设计原则
+description: 从范式理论到索引优化，系统讲解关系型数据库的设计规范与性能最佳实践 
+category: 数据库
+date: 2026-04-22
 ---
 
 # 数据库设计原则

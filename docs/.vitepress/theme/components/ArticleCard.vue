@@ -3,7 +3,12 @@
     <span class="category-badge" :data-category="article.category">{{ article.category }}</span>
     <h3 class="article-title">{{ article.title }}</h3>
     <p class="article-desc">{{ article.description }}</p>
-    <div class="arrow-icon">→</div>
+    <div class="arrow-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -165,14 +170,27 @@ defineProps<{
 .arrow-icon {
   position: absolute;
   bottom: 1rem;
-  right: 1.5rem;
-  font-size: 1.2rem;
+  right: 1.25rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
   color: var(--vp-c-text-3);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .article-card:hover .arrow-icon {
   transform: translateX(4px);
+  border-color: currentColor;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.dark .article-card:hover .arrow-icon {
+  background: rgba(30, 30, 35, 0.9);
 }
 
 /* 前端主题悬停时箭头颜色 */

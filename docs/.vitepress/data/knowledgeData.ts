@@ -50,6 +50,12 @@ export const frontendArticles: ArticleItem[] = [
     category: "基础",
     link: "/nanxia-blog/knowledge/frontend/base/JS-API",
   },
+  {
+    title: "四种Web实时通信方案解析",
+    description: "短轮询、长轮询、SSE、WebSocket 原理解析、优缺点对比与选型指南。",
+    category: "基础",
+    link: "/nanxia-blog/knowledge/frontend/base/web-realtime-communication",
+  },
 ];
 
 // 后端文章数据

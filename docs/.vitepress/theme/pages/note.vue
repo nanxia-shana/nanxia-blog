@@ -46,7 +46,13 @@ const currentCategory = ref("all");
 const notes = ref(noteList);
 
 // 分页
-const pageSize = ref(window.innerWidth > 768 ? 8 : 5); // 响应式首屏数量
+// 根据屏幕宽度获取每页显示数量
+const getPageSize = () => {
+  if (window.innerWidth > 1440) return 20; // 2K+ 大屏
+  if (window.innerWidth > 768) return 12; // 普通桌面
+  return 8; // 移动端
+};
+const pageSize = ref(getPageSize()); // 响应式首屏数量
 const currentPage = ref(1);
 const loading = ref(false);
 const hasMore = ref(true);
@@ -194,6 +200,16 @@ h1::after {
 .note-item:nth-child(8) { animation-delay: 0.4s; }
 .note-item:nth-child(9) { animation-delay: 0.45s; }
 .note-item:nth-child(10) { animation-delay: 0.5s; }
+.note-item:nth-child(11) { animation-delay: 0.55s; }
+.note-item:nth-child(12) { animation-delay: 0.6s; }
+.note-item:nth-child(13) { animation-delay: 0.65s; }
+.note-item:nth-child(14) { animation-delay: 0.7s; }
+.note-item:nth-child(15) { animation-delay: 0.75s; }
+.note-item:nth-child(16) { animation-delay: 0.8s; }
+.note-item:nth-child(17) { animation-delay: 0.85s; }
+.note-item:nth-child(18) { animation-delay: 0.9s; }
+.note-item:nth-child(19) { animation-delay: 0.95s; }
+.note-item:nth-child(20) { animation-delay: 1s; }
 
 @keyframes slideIn {
   from {

@@ -2,7 +2,10 @@
 layout: doc
 
 lastUpdated: false
-
+title: Node.js 性能优化
+description: 从内存管理、事件循环优化到集群部署，全方位讲解 Node.js 服务端应用性能调优实战指南 
+category: Node.js
+date: 2026-04-23
 ---
 
 # Node.js 性能优化

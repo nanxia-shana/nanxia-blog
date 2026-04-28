@@ -2,7 +2,10 @@
 layout: doc
 
 lastUpdated: false
-
+title: CI/CD 持续集成与部署实践
+description: 从概念到落地，详解 GitHub Actions、GitLab CI 等主流工具的自动化构建、测试与部署流程 
+category: 
+date: 2026-04-28
 ---
 
 # CI/CD 持续集成与部署实践

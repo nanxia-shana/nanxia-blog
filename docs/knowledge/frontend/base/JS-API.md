@@ -2,7 +2,10 @@
 layout: doc
 
 lastUpdated: false
-
+title: JavaScript - API 特性与实用技巧
+description: 盘点 JS 中那些强大但容易被忽略的 API，结合实战案例讲解如何优雅地解决开发难题 
+category: 前端基础
+date: 2026-04-23
 ---
 
 # JavaScript - API 特性与实用技巧

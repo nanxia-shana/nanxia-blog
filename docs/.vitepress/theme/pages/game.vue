@@ -96,15 +96,22 @@ const renderProgressively = () => {
   });
 };
 
+// 根据屏幕宽度获取首屏显示数量
+const getInitialDisplayCount = () => {
+  if (window.innerWidth > 1440) return 20; // 2K+ 大屏
+  if (window.innerWidth > 768) return 12; // 普通桌面
+  return 6; // 移动端
+};
+
 watch(currentCategory, () => {
-  displayCount.value = window.innerWidth > 768 ? 8 : 4;
+  displayCount.value = getInitialDisplayCount();
   nextTick(() => {
     requestAnimationFrame(renderProgressively);
   });
 });
 
 onMounted(() => {
-  displayCount.value = window.innerWidth > 768 ? 8 : 4;
+  displayCount.value = getInitialDisplayCount();
   nextTick(() => {
     requestAnimationFrame(renderProgressively);
   });
@@ -184,6 +191,16 @@ h1::after {
 .game-card:nth-child(8) { animation-delay: 0.4s; }
 .game-card:nth-child(9) { animation-delay: 0.45s; }
 .game-card:nth-child(10) { animation-delay: 0.5s; }
+.game-card:nth-child(11) { animation-delay: 0.55s; }
+.game-card:nth-child(12) { animation-delay: 0.6s; }
+.game-card:nth-child(13) { animation-delay: 0.65s; }
+.game-card:nth-child(14) { animation-delay: 0.7s; }
+.game-card:nth-child(15) { animation-delay: 0.75s; }
+.game-card:nth-child(16) { animation-delay: 0.8s; }
+.game-card:nth-child(17) { animation-delay: 0.85s; }
+.game-card:nth-child(18) { animation-delay: 0.9s; }
+.game-card:nth-child(19) { animation-delay: 0.95s; }
+.game-card:nth-child(20) { animation-delay: 1s; }
 
 @keyframes slideIn {
   from {
