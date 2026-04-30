@@ -26,7 +26,7 @@ export default defineConfig({
   },
   base: "/nanxia-blog/",
   lang: "zh-CN",
-  title: "南夏的博客",
+  title: "南夏",
   head: [
     [
       "link",

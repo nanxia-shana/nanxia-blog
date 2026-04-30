@@ -383,6 +383,8 @@ const miscCount = miscArticles.length;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  max-width: 100%;
+  padding-right: 0.5rem;
 }
 
 .link-tag {
@@ -437,6 +439,28 @@ footer p {
 
   .link-tag {
     display: none;
+  }
+
+  .link-url {
+    font-size: 0.65rem;
+  }
+}
+
+/* 超小屏幕保护（如微信小程序内嵌） */
+@media (max-width: 375px) {
+  .link-url {
+    font-size: 0.6rem;
+    max-width: 180px;
+  }
+
+  .link-name {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .link-url {
+    max-width: 140px;
   }
 }
 </style>

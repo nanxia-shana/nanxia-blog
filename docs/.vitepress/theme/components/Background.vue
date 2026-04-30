@@ -60,12 +60,10 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/yexi3.jpeg"); /* 替换为你的背景图片路径 */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   z-index: -1; /* 确保背景在最底层 */
-  overflow-x: hidden;
 }
 </style>
 <style>

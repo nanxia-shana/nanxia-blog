@@ -234,6 +234,20 @@ const toMusic = () => {
   margin-left: 20px;
   position: relative;
 }
+
+/* 移动端响应式适配 */
+@media (max-width: 375px) {
+  .music-player {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .music-player {
+    margin-left: 6px;
+    transform: scale(0.9);
+  }
+}
 .music-cover {
   width: 38px;
   height: 38px;
@@ -397,12 +411,5 @@ const toMusic = () => {
 }
 .icon:hover {
   opacity: 0.6;
-}
-
-/* 响应式设计 */
-@media (max-width: 375px) {
-  .music-player {
-    margin-left: 10px;
-  }
 }
 </style>
