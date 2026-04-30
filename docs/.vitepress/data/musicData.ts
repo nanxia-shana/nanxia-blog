@@ -16,6 +16,18 @@ export interface MusicItem {
 export const musicList: MusicItem[] = [
   {
     id: 1,
+    title: "Serene Piano Adagio",
+    author: "Piano Ensemble",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/piano-serenity.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/piano-serenity.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/Adagio%20Piano%20Pieces%20%28Satie%20Style%29-1.m4a",
+    album: "Quiet Piano Collection (Satie Style)",
+    release_date: "2026/04/30",
+    category: "piano",
+  },
+  {
+    id: 2,
     title: "光芒",
     author: "川田まみ",
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/guangmang.webp",
@@ -27,7 +39,7 @@ export const musicList: MusicItem[] = [
     category: "jp",
   },
   {
-    id: 2,
+    id: 3,
     title: "ひらひら ひらら",
     author: "ClariS",
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/claris_hirahira.webp",
@@ -39,7 +51,7 @@ export const musicList: MusicItem[] = [
     category: "jp",
   },
   {
-    id: 3,
+    id: 4,
     title: "I Really Want to Stay at Your House",
     author: "Rosa Walton",
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/stay_at_your_house.webp",
@@ -51,7 +63,7 @@ export const musicList: MusicItem[] = [
     category: "pop",
   },
   {
-    id: 4,
+    id: 5,
     title: "Remake",
     author: "ONE OK ROCK",
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/one_ok_rock_remake.webp",
@@ -63,7 +75,7 @@ export const musicList: MusicItem[] = [
     category: "rock",
   },
   {
-    id: 5,
+    id: 6,
     title: "again",
     author: "YUI",
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/yui_again.webp",
@@ -75,7 +87,7 @@ export const musicList: MusicItem[] = [
     category: "jp",
   },
   {
-    id: 6,
+    id: 7,
     title: "ラブ・ストーリーは突然に",
     author: "小田和正",
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/oda_love_story.webp",
@@ -87,7 +99,7 @@ export const musicList: MusicItem[] = [
     category: "jp",
   },
   {
-    id: 7,
+    id: 8,
     title: "One Last Kiss",
     author: "宇多田ヒカル",
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/utada_one_last_kiss.webp",

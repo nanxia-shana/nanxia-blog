@@ -10,36 +10,58 @@
         <div class="category-icon">💻</div>
         <h2>前端知识</h2>
         <p>深入探索前端技术栈，从基础到进阶的完整学习路径</p>
-        <div class="article-count">{{ frontendCount }} 篇文章</div>
-        <div class="arrow">→</div>
+        <div class="article-count">
+          <span>{{ frontendCount }} 篇文章</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
       </div>
 
       <div @click="router.go('/nanxia-blog/knowledge/backend/')" class="category-card backend">
         <div class="category-icon">🌐</div>
         <h2>后端知识</h2>
         <p>构建高性能、可扩展的服务端应用，掌握后端核心技术</p>
-        <div class="article-count">{{ backendCount }} 篇文章</div>
-        <div class="arrow">→</div>
+        <div class="article-count">
+          <span>{{ backendCount }} 篇文章</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
       </div>
 
       <div @click="router.go('/nanxia-blog/knowledge/misc/')" class="category-card misc">
         <div class="category-icon">🧩</div>
         <h2>技术杂谈</h2>
         <p>开发工具、DevOps、系统运维等全方位技术知识分享</p>
-        <div class="article-count">{{ miscCount }} 篇文章</div>
-        <div class="arrow">→</div>
+        <div class="article-count">
+          <span>{{ miscCount }} 篇文章</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
       </div>
     </div>
     
     <div v-for="category in linksData" :key="category.title" class="category">
       <h2>{{ category.icon }} {{ category.title }}</h2>
       <div class="links">
-        <div v-for="link in category.links" :key="link.url" :class="['link-item', `link-${link.type}`]">
-          <a :href="link.url" target="_blank" class="link-name">{{ link.name }}</a>
+        <a
+          v-for="link in category.links"
+          :key="link.url"
+          :href="link.url"
+          target="_blank"
+          :class="['link-item', `link-${link.type}`]"
+          :title="link.description"
+        >
+          <div class="link-name">{{ link.name }}</div>
           <span class="link-url">{{ link.url }}</span>
           <span v-if="link.type === 'hot'" class="link-tag hot-tag">热门</span>
           <span v-else-if="link.type === 'personal'" class="link-tag personal-tag">常用</span>
-        </div>
+        </a>
       </div>
     </div>
 
@@ -211,26 +233,24 @@ const miscCount = miscArticles.length;
 }
 
 .article-count {
-  display: inline-block;
-  padding: 0.35rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.85rem;
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 500;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
+  margin-top: auto;
   transition: all 0.3s ease;
 }
 
-.arrow {
-  position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  font-size: 1.5rem;
-  color: var(--vp-c-text-3);
-  transition: all 0.3s ease;
+.article-count svg {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.category-card:hover .arrow {
-  transform: translateX(6px);
+.category-card:hover .article-count svg {
+  transform: translateX(4px);
 }
 
 /* 响应式 */
@@ -328,10 +348,13 @@ const miscCount = miscArticles.length;
   box-shadow: 0 2px 10px rgba(239, 68, 68, 0.25);
 }
 
+.link-item {
+  text-decoration: none;
+}
+
 .link-name {
   display: block;
   color: var(--vp-c-text-1);
-  text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 0.2rem;
@@ -340,6 +363,16 @@ const miscCount = miscArticles.length;
 
 .link-item:hover .link-name {
   color: var(--vp-c-brand-1);
+}
+
+.link-desc {
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.4;
+  margin: 0.3rem 0 0.4rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .link-url {

@@ -1,7 +1,7 @@
 <template>
   <div class="music-player">
     <audio ref="audioPlayerRef" autoplay @play="onPlay" @pause="onPause" @ended="onEnded" @timeupdate="onTimeUpdate">
-      <source :src="playbackState.currentMusic.url" type="audio/mpeg" />
+      <source :src="playbackState.currentMusic.url" type="audio/mp4" />
       <embed height="0" width="0" :src="playbackState.currentMusic.url" />
     </audio>
     <div :class="`music-cover ${playbackState.isPlaying ? 'rotate' : ''}`">
@@ -291,6 +291,7 @@ const toMusic = () => {
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+  gap: 4px;
 }
 .music-title {
   width: 50%;
