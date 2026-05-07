@@ -60,7 +60,12 @@ const menuList = [
           {
             text: "后端基础",
             collapsed: true,
-            items: [],
+            items: [
+              {
+                text: "Next.js 全栈 + 数据库部署指南",
+                link: "/knowledge/backend/base/nextjs-fullstack-deploy",
+              },
+            ],
           },
           {
             text: "Node.js",

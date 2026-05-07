@@ -84,6 +84,12 @@ export const backendArticles: ArticleItem[] = [
     category: "架构",
     link: "/nanxia-blog/knowledge/backend/architecture/microservice",
   },
+  {
+    title: "Next.js 全栈 + 数据库部署指南",
+    description: "纯前端视角的 Next.js 全栈入门，从写接口到数据库部署完整流程。",
+    category: "后端基础",
+    link: "/nanxia-blog/knowledge/backend/base/nextjs-fullstack-deploy",
+  },
 ];
 
 // 其他技术文章数据

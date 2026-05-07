@@ -24,7 +24,7 @@ export default defineConfig({
       }),
     ],
   },
-  base: "/nanxia-blog/",
+  base: "/",
   lang: "zh-CN",
   title: "南夏",
   head: [

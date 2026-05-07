@@ -383,7 +383,7 @@ const miscCount = miscArticles.length;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: 100%;
+  max-width: 260px;
   padding-right: 0.5rem;
 }
 
