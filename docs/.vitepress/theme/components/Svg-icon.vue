@@ -25,7 +25,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const symbolId = computed(() => `/nanxia-blog/icon/${props.prefix}-${props.name}.svg`);
+    const symbolId = computed(() => `/icon/${props.prefix}-${props.name}.svg`);
     const svgClass = computed(() => {
       if (props.className) {
         return `svg-icon ${props.className}`;

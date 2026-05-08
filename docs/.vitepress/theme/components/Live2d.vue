@@ -24,9 +24,9 @@ const landlordRef = ref(null)
 const isVisible = ref(true)
 
 // 配置路径（根据实际路径修改）
-const messagePath = "/nanxia-blog/live2d/"
+const messagePath = "/live2d/"
 const homePath = "https://haremu.com/"
-const modelPath = "/nanxia-blog/live2d/model/tia/model.json"
+const modelPath = "/live2d/model/tia/model.json"
 
 // 动态加载JS脚本
 const loadScript = (url) => {
@@ -47,8 +47,8 @@ const initLive2D = async () => {
     window.home_Path = homePath
     
     // 加载依赖脚本
-    await loadScript("/nanxia-blog/live2d/js/live2d.js")
-    await loadScript("/nanxia-blog/live2d/js/message.js")
+    await loadScript("/live2d/js/live2d.js")
+    await loadScript("/live2d/js/message.js")
     
     // 调用Live2D初始化
     if (typeof window.loadlive2d === 'function') {

@@ -29,7 +29,7 @@ const playbackState: PlaybackState = {
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/Adagio%20Piano%20Pieces%20%28Satie%20Style%29-1.m4a",
     album: "Quiet Piano Collection (Satie Style)",
     release_date: "2026/04/30",
-    category: "piano",
+    category: ["piano"],
   },
   isPlaying: false,
   currentTime: 0,

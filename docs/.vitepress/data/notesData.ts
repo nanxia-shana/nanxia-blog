@@ -18,6 +18,6 @@ export const noteList: NoteItem[] = [
     excerpt:
       "我们穷极一生在追逐什么？从童年的棒棒糖到中年的房贷车贷，从父母的唠叨到病床上的回首。或许人生本没有意义，重要的是此刻的感受，让过程快乐。",
     tags: ["人生感悟", "成长", "意义", "当下"],
-    link: "/nanxia-blog/spiritual-food/note/zhuizhu",
+    link: "/spiritual-food/note/zhuizhu",
   },
 ];

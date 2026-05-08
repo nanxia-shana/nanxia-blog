@@ -152,14 +152,4 @@ export const novelList: NovelItem[] = [
     status: "连载",
     note: "凡人少年与龙族的战争，每个人心中都有一个死小孩",
   },
-  {
-    title: "华胥引",
-    author: "唐七公子",
-    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/novels/hua_xu_yin.webp",
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/novels/hua_xu_yin.webp?imageView2/2/w/80/format/webp/q/50",
-    category: "literature",
-    tags: ["古言", "仙侠", "虐恋"],
-    status: "完结",
-    note: "华胥一引，乱世成殇，用生命换来的梦境",
-  },
 ];

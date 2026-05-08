@@ -112,6 +112,9 @@ const categories = [
   { label: "流行", value: "pop" },
   { label: "摇滚", value: "rock" },
   { label: "电子", value: "electronic" },
+  { label: "轻音乐", value: "light" },
+  { label: "国语", value: "cn" },
+  { label: "英语", value: "en" },
   { label: "日语", value: "jp" },
 ];
 // 当前选中的分类
@@ -223,7 +226,7 @@ const filteredMusic = computed(() => {
   if (currentCategory.value === "all") {
     return musicList;
   }
-  return musicList.filter((m: MusicItem) => m.category === currentCategory.value);
+  return musicList.filter((m: MusicItem) => m.category.includes(currentCategory.value));
 });
 </script>
 

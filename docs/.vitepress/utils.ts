@@ -39,6 +39,10 @@ const menuList = [
                 text: "前端面试题解析",
                 link: "/knowledge/frontend/base/frontend-interview-questions",
               },
+              {
+                text: "首屏白屏优化",
+                link: "/knowledge/frontend/base/first-screen-optimization",
+              },
             ],
           },
           {

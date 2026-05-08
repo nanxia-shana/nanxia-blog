@@ -1,6 +1,6 @@
 <template>
   <div class="music-player">
-    <audio ref="audioPlayerRef" autoplay @play="onPlay" @pause="onPause" @ended="onEnded" @timeupdate="onTimeUpdate">
+    <audio ref="audioPlayerRef" @play="onPlay" @pause="onPause" @ended="onEnded" @timeupdate="onTimeUpdate">
       <source :src="playbackState.currentMusic.url" type="audio/mp4" />
       <embed height="0" width="0" :src="playbackState.currentMusic.url" />
     </audio>
@@ -139,7 +139,24 @@ onMounted(() => {
   audioPlayerRef.value.addEventListener("durationchange", function () {
     playbackState.duration = audioPlayerRef.value.duration;
   });
+  // 尝试自动播放，处理浏览器限制
+  tryAutoplay();
 });
+
+// 尝试自动播放，处理浏览器自动播放限制
+const tryAutoplay = async () => {
+  try {
+    await audioPlayerRef.value.play();
+  } catch (error) {
+    console.log("自动播放被浏览器阻止，等待用户交互后播放");
+    // 用户第一次点击页面时播放
+    const playOnFirstClick = () => {
+      audioPlayerRef.value.play();
+      document.removeEventListener("click", playOnFirstClick);
+    };
+    document.addEventListener("click", playOnFirstClick, { once: true });
+  }
+};
 
 // 播放时间格式化
 const formatter = (value) => {
@@ -223,7 +240,7 @@ function getPreviousItem(array, targetObj, key = 'id') {
   return null; // 没找到目标对象，或者目标对象是第一项
 }
 const toMusic = () => {
-  router.go('/nanxia-blog/spiritual-food/music/');
+  router.go('/spiritual-food/music/');
 };
 </script>
 

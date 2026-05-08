@@ -6,7 +6,7 @@
     </div>
 
     <div class="category-grid">
-      <div @click="router.go('/nanxia-blog/knowledge/frontend/')" class="category-card frontend">
+      <div @click="router.go('/knowledge/frontend/')" class="category-card frontend">
         <div class="category-icon">💻</div>
         <h2>前端知识</h2>
         <p>深入探索前端技术栈，从基础到进阶的完整学习路径</p>
@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <div @click="router.go('/nanxia-blog/knowledge/backend/')" class="category-card backend">
+      <div @click="router.go('/knowledge/backend/')" class="category-card backend">
         <div class="category-icon">🌐</div>
         <h2>后端知识</h2>
         <p>构建高性能、可扩展的服务端应用，掌握后端核心技术</p>
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div @click="router.go('/nanxia-blog/knowledge/misc/')" class="category-card misc">
+      <div @click="router.go('/knowledge/misc/')" class="category-card misc">
         <div class="category-icon">🧩</div>
         <h2>技术杂谈</h2>
         <p>开发工具、DevOps、系统运维等全方位技术知识分享</p>

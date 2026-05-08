@@ -13,7 +13,7 @@
           <span class="section-icon">📚</span>
           <h2>书山拾叶</h2>
         </div>
-        <div @click="router.go('/nanxia-blog/spiritual-food/book/')" class="more-btn">
+        <div @click="router.go('/spiritual-food/book/')" class="more-btn">
           查看更多 <span class="arrow">→</span>
         </div>
       </div>
@@ -34,7 +34,7 @@
           <span class="section-icon">🎧</span>
           <h2>听海观澜</h2>
         </div>
-        <div @click="router.go('/nanxia-blog/spiritual-food/music/')" class="more-btn">
+        <div @click="router.go('/spiritual-food/music/')" class="more-btn">
           查看更多 <span class="arrow">→</span>
         </div>
       </div>
@@ -65,7 +65,7 @@
           <span class="section-icon">🎥</span>
           <h2>浮光掠影</h2>
         </div>
-        <div @click="router.go('/nanxia-blog/spiritual-food/movie/')" class="more-btn">
+        <div @click="router.go('/spiritual-food/movie/')" class="more-btn">
           查看更多 <span class="arrow">→</span>
         </div>
       </div>
@@ -86,7 +86,7 @@
           <span class="section-icon">🌌</span>
           <h2>绘梦织霞</h2>
         </div>
-        <div @click="router.go('/nanxia-blog/spiritual-food/anime/')" class="more-btn">
+        <div @click="router.go('/spiritual-food/anime/')" class="more-btn">
           查看更多 <span class="arrow">→</span>
         </div>
       </div>
@@ -107,7 +107,7 @@
           <span class="section-icon">✒️</span>
           <h2>墨池云篆</h2>
         </div>
-        <div @click="router.go('/nanxia-blog/spiritual-food/novel/')" class="more-btn">
+        <div @click="router.go('/spiritual-food/novel/')" class="more-btn">
           查看更多 <span class="arrow">→</span>
         </div>
       </div>
@@ -128,7 +128,7 @@
           <span class="section-icon">🎮</span>
           <h2>游心太玄</h2>
         </div>
-        <div @click="router.go('/nanxia-blog/spiritual-food/game/')" class="more-btn">
+        <div @click="router.go('/spiritual-food/game/')" class="more-btn">
           查看更多 <span class="arrow">→</span>
         </div>
       </div>
@@ -149,7 +149,7 @@
           <span class="section-icon">✍️</span>
           <h2>闲窗细语</h2>
         </div>
-        <div @click="router.go('/nanxia-blog/spiritual-food/note/')" class="more-btn">
+        <div @click="router.go('/spiritual-food/note/')" class="more-btn">
           查看更多 <span class="arrow">→</span>
         </div>
       </div>
