@@ -169,6 +169,11 @@ const menuList = [
             collapsed: false,
             link: "/spiritual-food/note/zhuizhu",
           },
+          {
+            text: "一句话的力量",
+            collapsed: false,
+            link: "/spiritual-food/note/one-sentence-power",
+          },
         ],
       },
     ],

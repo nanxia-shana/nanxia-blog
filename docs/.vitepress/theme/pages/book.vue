@@ -25,9 +25,9 @@ import { bookList } from '../../data/bookData.ts';
 // 分类数据
 const categories = [
   { label: "全部", value: "all" },
-  { label: "文学", value: "literature" },
-  { label: "人文社科", value: "social-science" },
-  { label: "科普/科技", value: "technology" },
+  { label: "文学", value: "文学" },
+  { label: "人文社科", value: "人文社科" },
+  { label: "科普/科技", value: "科普/科技" },
 ];
 
 // 当前选中的分类
@@ -44,10 +44,12 @@ const setCategory = (category) => {
 // 过滤后的书籍列表
 const filteredBooks = computed(() => {
   if (currentCategory.value === "all") {
-    return books.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
-  } else {
-    return books.value.filter((book) => book.category === currentCategory.value).sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
-  }
+  return books.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+} else {
+  return books.value
+    .filter((book) => book.tags && book.tags.includes(currentCategory.value))
+    .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+}
 });
 
 // ========== 渐进式渲染 ==========

@@ -5,16 +5,16 @@ layout: home
 hero:
   name: "Welcome to"
   text: "南夏的博客"
-  tagline: 专注于Node.js、Vue、React、Vite、Nginx等前端技术。不断学习新技术，记录日常开发问题，共同进步。生命不息，奋斗不止...
+  tagline: 写代码，也写生活。记录技术笔记，也分享书影音和游戏的乐趣
   # image:
   #   src: /home/Asuka.png
   #   alt: 加载失败
   actions:
     - theme: brand
-      text: 📖 知识库
+      text: 知识库
       link: /knowledge
     - theme: alt
-      text: 🎼 精神食粮
+      text: 精神食粮
       link: /spiritual-food
 
 features:

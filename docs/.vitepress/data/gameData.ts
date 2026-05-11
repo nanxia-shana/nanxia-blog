@@ -184,11 +184,11 @@ export const gameList: GameItem[] = [
     note: "三亿鼠标的枪战梦想，国民级FPS",
   },
   {
-    title: "CSGO",
-    originalTitle: "Counter-Strike: Global Offensive",
+    title: "反恐精英2",
+    originalTitle: "Counter-Strike 2",
     developer: "Valve",
     publisher: "Valve",
-    releaseYear: 2012,
+    releaseYear: 2023,
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/csgo.webp",
     thumb:
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/games/csgo.webp?imageView2/2/w/80/format/webp/q/50",
@@ -422,7 +422,7 @@ export const gameList: GameItem[] = [
     note: "美丽水世界，我恨利维坦",
   },
   {
-    title: "尼尔机械纪元",
+    title: "尼尔：机械纪元",
     originalTitle: "NieR: Automata",
     developer: "白金工作室",
     publisher: "Square Enix",
@@ -744,7 +744,7 @@ export const gameList: GameItem[] = [
     note: "猎人的起点，新大陆很美",
   },
   {
-    title: "GTA5",
+    title: "侠盗猎车手5",
     originalTitle: "Grand Theft Auto V",
     developer: "Rockstar Games",
     publisher: "Rockstar Games",

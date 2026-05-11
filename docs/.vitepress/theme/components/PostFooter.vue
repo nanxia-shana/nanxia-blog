@@ -1,4 +1,4 @@
-<!-- .vitepress/theme/components/PostDate.vue -->
+<!-- .vitepress/theme/components/PostFooter.vue -->
 <script setup>
 import { computed } from 'vue'
 import { useData } from 'vitepress'
@@ -14,7 +14,7 @@ const publishDate = computed(() =>
   || null
 )
 
-const footertext = computed(() => frontmatter.value?.footertext || null)
+const footerText = computed(() => frontmatter.value?.footerText || null)
 
 // 格式化日期
 const formattedDate = computed(() =>
@@ -32,8 +32,8 @@ const formattedDate = computed(() =>
   <div v-if="formattedDate" class="post-date">
     📅 发布于：{{ formattedDate }}
   </div>
-  <div v-if="footertext" class="post-footer">
-    {{ footertext }}
+  <div v-if="footerText" class="post-footer">
+    {{ footerText }}
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <div class="knowledge-collection">
     <div class="page-header">
       <h1>🌐 后端知识</h1>
-      <p class="subtitle">深入后端技术栈，构建高性能、可扩展的服务端应用</p>
+      <p class="subtitle">探索后端技术栈，构建高性能、可扩展的服务端应用</p>
     </div>
 
     <div class="articles-grid">

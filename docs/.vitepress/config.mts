@@ -37,8 +37,7 @@ export default defineConfig({
     ["link", { rel: "icon", type: "image/png", sizes: "256x256", href: "/favicon-256x256.png" }],
     ["link", { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" }],
   ],
-  description:
-    "南夏的博客，专注于Node.js、Vue、React、Vite、Nginx等前端技术。不断学习新技术，记录日常开发问题，共同进步。生命不息，奋斗不止...",
+  description: "南夏的博客，写代码，也写生活。记录技术笔记，也分享书影音和游戏的乐趣。",
   markdown: {
     image: {
       // 默认禁用；设置为 true 可为所有图片启用懒加载。

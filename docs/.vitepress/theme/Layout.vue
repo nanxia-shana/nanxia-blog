@@ -6,7 +6,7 @@ import { nextTick, provide, reactive } from 'vue'
 import Live2d from "./components/Live2d.vue";
 import MusicPlayer from "./components/MusicPlayer.vue";
 import musicData from '../store/index';
-import PostDate from "./components/PostData.vue";
+import PostFooter from "./components/PostFooter.vue";
 
 const { Layout } = DefaultTheme
 
@@ -59,7 +59,7 @@ provide('playback-state', playbackState)
       <MusicPlayer></MusicPlayer>
     </template>
     <template #doc-footer-before>
-      <PostDate></PostDate>
+      <PostFooter></PostFooter>
     </template>
   </Layout>
   <!-- Live2d 放在 Layout 外面，确保在所有页面渲染 -->

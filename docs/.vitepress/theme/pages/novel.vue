@@ -25,9 +25,18 @@ import { novelList } from '../../data/novelData.ts';
 // 分类数据
 const categories = [
   { label: "全部", value: "all" },
-  { label: "文学", value: "literature" },
-  { label: "人文社科", value: "social-science" },
-  { label: "科普/科技", value: "technology" },
+  { label: "玄幻", value: "玄幻" },
+  { label: "仙侠", value: "仙侠" },
+  { label: "奇幻", value: "奇幻" },
+  { label: "都市", value: "都市" },
+  { label: "科幻", value: "科幻" },
+  { label: "历史", value: "历史" },
+  { label: "军事", value: "军事" },
+  { label: "悬疑", value: "悬疑" },
+  { label: "游戏", value: "游戏" },
+  { label: "言情", value: "言情" },
+  { label: "轻小说", value: "轻小说" },
+  { label: "同人", value: "同人" }
 ];
 
 // 当前选中的分类

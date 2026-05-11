@@ -15,9 +15,16 @@ export const noteList: NoteItem[] = [
     title: "追逐",
     date: "2025-08-08",
     category: "生活",
-    excerpt:
-      "我们穷极一生在追逐什么？从童年的棒棒糖到中年的房贷车贷，从父母的唠叨到病床上的回首。或许人生本没有意义，重要的是此刻的感受，让过程快乐。",
+    excerpt: "我们穷极一生在追逐什么？从童年的棒棒糖到中年的房贷车贷，从父母的唠叨到病床上的回首。或许人生本没有意义，重要的是此刻的感受，让过程快乐。",
     tags: ["人生感悟", "成长", "意义", "当下"],
     link: "/spiritual-food/note/zhuizhu",
+  },
+  {
+    title: "一句话的力量",
+    date: "2026-05-11",
+    category: "生活",
+    excerpt: "收集那些值得反复咀嚼的智慧箴言。一句话，可能改变你看世界的方式。",
+    tags: ["名言警句", "人生感悟", "箴言", "思考"],
+    link: "/spiritual-food/note/one-sentence-power",
   },
 ];

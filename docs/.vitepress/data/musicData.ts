@@ -118,7 +118,7 @@ export const musicList: MusicItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/utada_one_last_kiss.webp",
     thumb:
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/utada_one_last_kiss.webp?imageView2/2/w/80/format/webp/q/50",
-    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E3%83%92%E3%82%AB%E3%83%AB%20-%20One%20Last%20Kiss.mp3",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/AGA%20-%20%E5%AD%A4%E9%9B%8F.mp3",
     album: "One Last Kiss",
     release_date: "2021/03/09",
     category: ["jp"],
@@ -142,7 +142,7 @@ export const musicList: MusicItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/daishi_takemehand.webp",
     thumb:
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/daishi_takemehand.webp?imageView2/2/w/80/format/webp/q/50",
-    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/DAISHI%20DANCE%20-%20Take%20Me%20Hand.mp3",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/DAISHI%2BDANCE%26C%C3%A9cile%20Corbel%20-%20Take%20Me%20Hand.mp3",
     album: "Wonder Tourism",
     release_date: "2013/11/13",
     category: ["en"],
@@ -166,7 +166,7 @@ export const musicList: MusicItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/ramwire_nothing.webp",
     thumb:
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/ramwire_nothing.webp?imageView2/2/w/80/format/webp/q/50",
-    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/RAM%20WIRE%20-%20%E5%83%95%E3%82%89%E3%81%AE%E6%89%8B%E3%81%AB%E3%81%AF%E4%BD%95%E3%82%82%E3%81%AA%E3%81%84%E3%81%91%E3%81%A9.mp3",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/RAM%20WIRE%20-%20%E5%83%95%E3%82%89%E3%81%AE%E6%89%8B%E3%81%AB%E3%81%AF%E4%BD%95%E3%82%82%E3%81%AA%E3%81%84%E3%81%91%E3%81%A9%E3%80%81.mp3",
     album: "僕らの手には何もないけど、",
     release_date: "2015/02/25",
     category: ["jp"],
@@ -178,7 +178,7 @@ export const musicList: MusicItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/reynard_wayiloveyou.webp",
     thumb:
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/reynard_wayiloveyou.webp?imageView2/2/w/80/format/webp/q/50",
-    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/Reynard%20Silva%20-%20The%20Way%20I%20Still%20Love%20You.mp3",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/Reynard%2BSilva%20-%20The%20Way%20I%20Still%20Love%20You.mp3",
     album: "The Way I Still Love You",
     release_date: "2014/08/04",
     category: ["pop", "en"],
@@ -190,7 +190,7 @@ export const musicList: MusicItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/guofeng_zhiwo.webp",
     thumb:
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/guofeng_zhiwo.webp?imageView2/2/w/80/format/webp/q/50",
-    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%9B%BD%E9%A3%8E%E6%A3%A0%20-%20%E7%9F%A5%E6%88%91.mp3",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%9B%BD%E9%A3%8E%E6%A3%A0%EF%BC%88%E5%93%A6%E5%B1%9A%EF%BC%89%20-%20%E7%9F%A5%E6%88%91%EF%BC%88%E9%BD%90%E9%9D%99%E6%98%A5%EF%BC%89.mp3",
     album: "知我",
     release_date: "2023/04/15",
     category: ["pop", "cn"],
@@ -238,7 +238,7 @@ export const musicList: MusicItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/pancheng_dove.webp",
     thumb:
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/pancheng_dove.webp?imageView2/2/w/80/format/webp/q/50",
-    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E6%BD%98%E6%88%90%20-%20%E7%99%BD%E9%B8%BD%E4%B9%8C%E9%B8%A6%E7%9B%B8%E7%88%B1%E7%9A%84%E6%88%8F%E7%A0%81.mp3",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E6%BD%98%E6%88%90%EF%BC%88%E7%9A%AE%E5%8D%A1%E6%BD%98%EF%BC%89%20-%20%E7%99%BD%E9%B8%BD%E4%B9%8C%E9%B8%A6%E7%9B%B8%E7%88%B1%E7%9A%84%E6%88%8F%E7%A0%81.mp3",
     album: "白鸽乌鸦相爱的戏码",
     release_date: "2023/11/01",
     category: ["pop", "cn"],
@@ -262,7 +262,7 @@ export const musicList: MusicItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/yike_bishangguan.webp",
     thumb:
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/yike_bishangguan.webp?imageView2/2/w/80/format/webp/q/50",
-    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E4%B8%80%E6%A3%B5%E5%B0%8F%E8%91%B1%2C%E5%BC%A0%E6%9B%A6%E5%8C%80%20-%20%E5%A3%81%E4%B8%8A%E8%A7%82.mp3",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E4%B8%80%E6%A3%B5%E5%B0%8F%E8%91%B1%26%E5%BC%A0%E6%9B%A6%E5%8C%80%20-%20%E5%A3%81%E4%B8%8A%E8%A7%82.mp3",
     album: "壁上观",
     release_date: "2023/08/18",
     category: ["pop", "cn"],

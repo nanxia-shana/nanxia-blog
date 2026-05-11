@@ -9,7 +9,7 @@
       <div @click="router.go('/knowledge/frontend/')" class="category-card frontend">
         <div class="category-icon">💻</div>
         <h2>前端知识</h2>
-        <p>深入探索前端技术栈，从基础到进阶的完整学习路径</p>
+        <p>探索前端世界的无限可能，从基础到进阶，记录成长的每一步</p>
         <div class="article-count">
           <span>{{ frontendCount }} 篇文章</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -22,7 +22,7 @@
       <div @click="router.go('/knowledge/backend/')" class="category-card backend">
         <div class="category-icon">🌐</div>
         <h2>后端知识</h2>
-        <p>构建高性能、可扩展的服务端应用，掌握后端核心技术</p>
+        <p>探索后端技术栈，构建高性能、可扩展的服务端应用</p>
         <div class="article-count">
           <span>{{ backendCount }} 篇文章</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -35,7 +35,7 @@
       <div @click="router.go('/knowledge/misc/')" class="category-card misc">
         <div class="category-icon">🧩</div>
         <h2>技术杂谈</h2>
-        <p>开发工具、DevOps、系统运维等全方位技术知识分享</p>
+        <p>探索开发工具、DevOps、系统运维等全方位技术知识</p>
         <div class="article-count">
           <span>{{ miscCount }} 篇文章</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -55,10 +55,10 @@
           :href="link.url"
           target="_blank"
           :class="['link-item', `link-${link.type}`]"
-          :title="link.description"
+          :title="link.url"
         >
           <div class="link-name">{{ link.name }}</div>
-          <span class="link-url">{{ link.url }}</span>
+          <span class="link-url">{{ link.description }}</span>
           <span v-if="link.type === 'hot'" class="link-tag hot-tag">热门</span>
           <span v-else-if="link.type === 'personal'" class="link-tag personal-tag">常用</span>
         </a>
