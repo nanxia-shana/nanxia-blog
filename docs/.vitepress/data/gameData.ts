@@ -1,20 +1,67 @@
-// 游戏数据类型
-export interface GameItem {
-  title: string; // 游戏中文名（必填）
-  originalTitle?: string; // 原始名称（可选）
-  developer: string; // 开发商
-  publisher: string; // 发行商
-  releaseYear: number; // 发行年份
-  cover: string; // 封面图片路径
-  thumb?: string; // 低质量缩略图占位（可选）
-  genre: string[]; // 类型标签
-  platform: string[]; // 平台
-  tags: string[]; // 自定义标签
-  note: string; // 个人评测
+/**
+ * 游戏页筛选（与 theme/pages/game.vue 一致）。条目 `category` 由 genre + tags 推导。
+ */
+export const GAME_CATEGORY_FILTERS = [
+  { label: "全部", value: "all" },
+  { label: "开放世界", value: "open_world" },
+  { label: "动作", value: "action" },
+  { label: "生存", value: "survival" },
+  { label: "角色扮演", value: "rpg" },
+  { label: "射击", value: "shooter" },
+  { label: "冒险", value: "adventure" },
+  { label: "竞技", value: "competitive" },
+  { label: "恐怖", value: "horror" },
+  { label: "网络游戏", value: "mmorpg" },
+  { label: "社交/生活 MMO", value: "mmo_social" },
+  { label: "沙盒", value: "sandbox" },
+  { label: "大逃杀", value: "battle_royale" },
+  { label: "解谜", value: "puzzle" },
+  { label: "合作", value: "coop" },
+  { label: "建造", value: "build" },
+  { label: "策略", value: "strategy" },
+  { label: "二次元", value: "anime_style" },
+  { label: "国产", value: "cn_dev" },
+  { label: "魂系", value: "soulslike" },
+  { label: "平台跳跃", value: "platform" },
+  { label: "模拟经营", value: "sim" },
+  { label: "派对", value: "party" },
+  { label: "卡牌", value: "tcg" },
+  { label: "竞速", value: "racing" },
+  { label: "格斗", value: "fighting" },
+  { label: "潜行", value: "stealth" },
+  { label: "音游/节奏", value: "rhythm" },
+  { label: "Roguelike", value: "roguelike" },
+  { label: "叙事/AVG", value: "visual_novel" },
+  { label: "探索", value: "exploration" },
+  { label: "僵尸", value: "zombie" },
+  { label: "武侠", value: "wuxia" },
+  { label: "修仙", value: "xianxia_cultivation" },
+  { label: "棋牌", value: "board" },
+] as const;
+
+export type GameCategoryFilterValue = (typeof GAME_CATEGORY_FILTERS)[number]["value"];
+export type GameCategoryTag = Exclude<GameCategoryFilterValue, "all">;
+
+type GameCore = {
+  title: string;
+  originalTitle?: string;
+  developer: string;
+  publisher: string;
+  releaseYear: number;
+  cover: string;
+  thumb?: string;
+  genre: string[];
+  platform: string[];
+  tags: string[];
+  note: string;
+};
+
+export interface GameItem extends GameCore {
+  id: number;
+  category: GameCategoryTag[];
 }
 
-// 导出数据列表
-export const gameList: GameItem[] = [
+const gameListRaw: GameCore[] = [
   {
     title: "塞尔达传说：旷野之息",
     originalTitle: "The Legend of Zelda: Breath of the Wild",
@@ -842,3 +889,93 @@ export const gameList: GameItem[] = [
     note: "神作，养活了整个RPG地图圈",
   },
 ];
+
+const GENRE_TO_CAT: Partial<Record<string, GameCategoryTag[]>> = {
+  开放世界: ["open_world"],
+  冒险: ["adventure"],
+  动作: ["action"],
+  魂系: ["soulslike", "action"],
+  RPG: ["rpg"],
+  ARPG: ["rpg", "action"],
+  CRPG: ["rpg", "strategy"],
+  二次元: ["anime_style"],
+  神话: ["rpg", "adventure"],
+  沙盒: ["sandbox"],
+  生存: ["survival"],
+  创造: ["build", "sandbox"],
+  武士: ["action", "soulslike"],
+  MMORPG: ["mmorpg"],
+  MMO: ["mmorpg"],
+  古风: ["cn_dev", "wuxia"],
+  国产: ["cn_dev"],
+  FPS: ["shooter"],
+  射击: ["shooter"],
+  大逃杀: ["battle_royale", "shooter"],
+  MOBA: ["competitive"],
+  CCG: ["tcg"],
+  卡牌: ["tcg"],
+  建造: ["build"],
+  经营: ["sim"],
+  恐怖: ["horror"],
+  解谜: ["puzzle"],
+  合作: ["coop"],
+  平台: ["platform"],
+  派对: ["party"],
+  多人: ["coop", "party"],
+  休闲: ["party"],
+  探险: ["adventure", "exploration"],
+  策略: ["strategy"],
+  回合制: ["strategy"],
+  "4X": ["strategy"],
+  自走棋: ["strategy", "competitive"],
+  整理: ["puzzle", "strategy"],
+  修仙: ["xianxia_cultivation", "rpg", "cn_dev"],
+  养成: ["sim"],
+  文字: ["visual_novel"],
+  收集: ["exploration", "sandbox"],
+  潜水: ["survival", "exploration"],
+  探索: ["exploration", "open_world"],
+  太空: ["exploration", "adventure"],
+  生活: ["sim", "mmorpg", "mmo_social"],
+  模拟: ["sim"],
+  僵尸: ["zombie", "shooter"],
+  roguelike: ["roguelike"],
+  航海: ["adventure", "coop"],
+  龙与地下城: ["rpg", "adventure"],
+  棋牌: ["board"],
+  狩猎: ["action", "adventure"],
+  武侠: ["wuxia", "action", "competitive"],
+  RTS: ["strategy", "competitive"],
+  科幻: ["visual_novel", "adventure"],
+  视觉小说: ["visual_novel", "adventure"],
+};
+
+const TAG_TO_CAT: Partial<Record<string, GameCategoryTag[]>> = {
+  国产: ["cn_dev"],
+  openworld: ["open_world"],
+  rpg: ["rpg"],
+  action: ["action"],
+  sandbox: ["sandbox"],
+  exploration: ["exploration"],
+};
+
+function deriveGameCategories(genre: string[], tags: string[]): GameCategoryTag[] {
+  const out = new Set<GameCategoryTag>();
+  const add = (arr: GameCategoryTag[] | undefined) => {
+    if (!arr) return;
+    arr.forEach((x) => out.add(x));
+  };
+  for (const g of genre) add(GENRE_TO_CAT[g]);
+  for (const t of tags) {
+    add(TAG_TO_CAT[t]);
+    add(TAG_TO_CAT[t.toLowerCase()]);
+  }
+  if (out.size === 0) out.add("adventure");
+  return [...out];
+}
+
+export const gameList: GameItem[] = gameListRaw.map((g, i) => ({
+  ...g,
+  id: i + 1,
+  category: deriveGameCategories(g.genre, g.tags),
+}));

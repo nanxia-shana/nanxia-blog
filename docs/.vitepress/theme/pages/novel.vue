@@ -11,54 +11,39 @@
       </button>
     </div>
     <div class="novels-grid">
-      <div v-for="novel in filteredNovels.slice(0, displayCount)" :key="novel.title" class="novel-card" :data-category="novel.category">
+      <div
+        v-for="novel in filteredNovels.slice(0, displayCount)"
+        :key="novel.id"
+        class="novel-card"
+        :data-category="novel.category.join(',')">
         <Novel-card :title="novel.title" :author="novel.author" :cover="novel.cover" :thumb="novel.thumb"></Novel-card>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, computed, onMounted, watch, nextTick } from "vue";
-import NovelCard from '../components/Novel-card.vue';
-import { novelList } from '../../data/novelData.ts';
-// 分类数据
-const categories = [
-  { label: "全部", value: "all" },
-  { label: "玄幻", value: "玄幻" },
-  { label: "仙侠", value: "仙侠" },
-  { label: "奇幻", value: "奇幻" },
-  { label: "都市", value: "都市" },
-  { label: "科幻", value: "科幻" },
-  { label: "历史", value: "历史" },
-  { label: "军事", value: "军事" },
-  { label: "悬疑", value: "悬疑" },
-  { label: "游戏", value: "游戏" },
-  { label: "言情", value: "言情" },
-  { label: "轻小说", value: "轻小说" },
-  { label: "同人", value: "同人" }
-];
+import NovelCard from "../components/Novel-card.vue";
+import { novelList, NOVEL_CATEGORY_FILTERS, type NovelItem } from "../../data/novelData.ts";
 
-// 当前选中的分类
-const currentCategory = ref("all");
-
-// 小说数据
+const categories = NOVEL_CATEGORY_FILTERS;
+const currentCategory = ref<(typeof NOVEL_CATEGORY_FILTERS)[number]["value"]>("all");
 const novels = ref(novelList);
 
-// 设置当前分类
-const setCategory = (category) => {
+const setCategory = (category: (typeof NOVEL_CATEGORY_FILTERS)[number]["value"]) => {
   currentCategory.value = category;
 };
 
-// 过滤后的小说列表
 const filteredNovels = computed(() => {
+  const sorted = [...novels.value].sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+  if (currentCategory.value === "all") return sorted;
+  return sorted.filter((novel: NovelItem) => {
   if (currentCategory.value === "all") {
-    return novels.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
-  } else {
-    return novels.value
-      .filter((novel) => novel.category === currentCategory.value)
-      .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+    return true;
   }
+  return novel.category.includes(currentCategory.value);
+});
 });
 
 // ========== 渐进式渲染 ==========
@@ -76,9 +61,10 @@ const renderProgressively = () => {
 
 // 根据屏幕宽度获取首屏显示数量
 const getInitialDisplayCount = () => {
-  if (window.innerWidth > 1440) return 20; // 2K+ 大屏
-  if (window.innerWidth > 768) return 12; // 普通桌面
-  return 6; // 移动端
+  if (typeof window === "undefined") return 8;
+  if (window.innerWidth > 1440) return 20;
+  if (window.innerWidth > 768) return 12;
+  return 6;
 };
 
 watch(currentCategory, () => {

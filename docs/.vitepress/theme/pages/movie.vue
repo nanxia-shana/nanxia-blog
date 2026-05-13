@@ -11,7 +11,7 @@
       </button>
     </div>
     <div class="movies-grid">
-      <div v-for="movie in filteredmovies.slice(0, displayCount)" :key="movie.title" class="movie-card">
+      <div v-for="movie in filteredmovies.slice(0, displayCount)" :key="movie.id" class="movie-card">
         <movie-card :title="movie.title" :country="movie.country" :cover="movie.cover" :year="movie.year" :runtime="movie.runtime" :note="movie.note" />
       </div>
     </div>
@@ -21,47 +21,25 @@
 <script lang="ts" setup>
 import { ref, computed, onMounted, watch, nextTick } from "vue";
 import MovieCard from '../components/Movie-card.vue';
-import { moiveList } from '../../data/movieData.ts';
+import { moiveList, MOVIE_CATEGORY_FILTERS, type MovieItem } from '../../data/movieData.ts';
 
-// 从所有电影中提取唯一标签，并排序
-const getAllTags = () => {
-  const tagSet = new Set<string>();
-  moiveList.forEach(movie => {
-    movie.tags.forEach(tag => tagSet.add(tag));
-  });
-  // 转换为分类格式，并按字母排序
-  const tagCategories = Array.from(tagSet)
-    .sort()
-    .map(tag => ({ label: tag, value: tag }));
-  return [
-    { label: "全部", value: "all" },
-    ...tagCategories
-  ];
-};
-
-// 分类数据（从标签动态提取）
-const categories = getAllTags();
-
-// 当前选中的分类
-const currentCategory = ref("all");
-
-// 电影数据
+const categories = MOVIE_CATEGORY_FILTERS;
+const currentCategory = ref<(typeof MOVIE_CATEGORY_FILTERS)[number]["value"]>("all");
 const movies = ref(moiveList);
 
-// 设置当前分类
-const setCategory = (category: string) => {
+const setCategory = (category: (typeof MOVIE_CATEGORY_FILTERS)[number]["value"]) => {
   currentCategory.value = category;
 };
 
-// 过滤后的电影列表：按标签筛选
 const filteredmovies = computed(() => {
+  const sorted = [...movies.value].sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+  if (currentCategory.value === "all") return sorted;
+  return sorted.filter((movie: MovieItem) => {
   if (currentCategory.value === "all") {
-    return movies.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
-  } else {
-    return movies.value
-      .filter((movie) => movie.tags.includes(currentCategory.value))
-      .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+    return true;
   }
+  return movie.category.includes(currentCategory.value);
+});
 });
 
 // ========== 渐进式渲染 ==========
@@ -79,9 +57,10 @@ const renderProgressively = () => {
 
 // 根据屏幕宽度获取首屏显示数量
 const getInitialDisplayCount = () => {
-  if (window.innerWidth > 1440) return 20; // 2K+ 大屏
-  if (window.innerWidth > 768) return 12; // 普通桌面
-  return 6; // 移动端
+  if (typeof window === "undefined") return 8;
+  if (window.innerWidth > 1440) return 20;
+  if (window.innerWidth > 768) return 12;
+  return 6;
 };
 
 watch(currentCategory, () => {

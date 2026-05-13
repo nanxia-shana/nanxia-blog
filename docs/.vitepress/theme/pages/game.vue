@@ -11,76 +11,39 @@
       </button>
     </div>
     <div class="games-grid">
-      <div v-for="game in filteredGames.slice(0, displayCount)" :key="game.title" class="game-card" :data-category="game.genre">
+      <div
+        v-for="game in filteredGames.slice(0, displayCount)"
+        :key="game.id"
+        class="game-card"
+        :data-category="game.category.join(',')">
         <game-card :title="game.title" :author="game.developer" :platform="game.platform" :cover="game.cover" :thumb="game.thumb" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, computed, onMounted, watch, nextTick } from "vue";
-import GameCard from '../components/Game-card.vue';
-import { gameList } from '../../data/gameData.ts';
+import GameCard from "../components/Game-card.vue";
+import { gameList, GAME_CATEGORY_FILTERS, type GameItem } from "../../data/gameData.ts";
 
-// 从游戏数据中提取并整理分类
-const getCategories = () => {
-  // 预定义主要分类（合并相似分类，避免过多筛选按钮）
-  return [
-    { label: "全部", value: "all" },
-    { label: "开放世界", value: "开放世界" },
-    { label: "动作", value: "动作" },
-    { label: "生存", value: "生存" },
-    { label: "角色扮演", value: "RPG" },
-    { label: "射击", value: "射击" },
-    { label: "冒险", value: "冒险" },
-    { label: "竞技", value: "竞技" },
-    { label: "恐怖", value: "恐怖" },
-    { label: "网络游戏", value: "MMORPG" },
-    { label: "沙盒", value: "沙盒" },
-    { label: "大逃杀", value: "大逃杀" },
-    { label: "解谜", value: "解谜" },
-    { label: "合作", value: "合作" },
-    { label: "建造", value: "建造" },
-    { label: "策略", value: "策略" },
-    { label: "二次元", value: "二次元" },
-    { label: "国产", value: "国产" },
-  ];
-};
-
-// 分类数据
-const categories = getCategories();
-
-// 当前选中的分类
-const currentCategory = ref("all");
-
-// 游戏数据
+const categories = GAME_CATEGORY_FILTERS;
+const currentCategory = ref<(typeof GAME_CATEGORY_FILTERS)[number]["value"]>("all");
 const games = ref(gameList);
 
-// 设置当前分类
-const setCategory = (category) => {
+const setCategory = (category: (typeof GAME_CATEGORY_FILTERS)[number]["value"]) => {
   currentCategory.value = category;
 };
 
-// 过滤后的游戏列表
 const filteredGames = computed(() => {
+  const sorted = [...games.value].sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+  if (currentCategory.value === "all") return sorted;
+  return sorted.filter((game: GameItem) => {
   if (currentCategory.value === "all") {
-    return games.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
-  } else {
-    // 根据 genre 过滤
-    return games.value
-      .filter(game => game.genre.some(genre => {
-        // 处理分类映射
-        const categoryMap = {
-          'RPG': ['RPG', 'ARPG', 'CRPG'],
-          '射击': ['射击', 'FPS'],
-          '策略': ['策略', 'RTS', '回合制', '4X'],
-        };
-        const mappedCategories = categoryMap[currentCategory.value] || [currentCategory.value];
-        return mappedCategories.some(c => genre.includes(c));
-      }))
-      .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+    return true;
   }
+  return game.category.includes(currentCategory.value);
+});
 });
 
 // ========== 渐进式渲染 ==========
@@ -98,9 +61,10 @@ const renderProgressively = () => {
 
 // 根据屏幕宽度获取首屏显示数量
 const getInitialDisplayCount = () => {
-  if (window.innerWidth > 1440) return 20; // 2K+ 大屏
-  if (window.innerWidth > 768) return 12; // 普通桌面
-  return 6; // 移动端
+  if (typeof window === "undefined") return 8;
+  if (window.innerWidth > 1440) return 20;
+  if (window.innerWidth > 768) return 12;
+  return 6;
 };
 
 watch(currentCategory, () => {

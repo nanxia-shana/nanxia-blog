@@ -1,22 +1,57 @@
-// 动漫数据类型
+/**
+ * 动漫分类：参照番剧站「题材 + 产地」双维度，作品再挂多标签。
+ */
+export const ANIME_CATEGORY_FILTERS = [
+  { label: "全部", value: "all" },
+  { label: "动作", value: "action" },
+  { label: "冒险", value: "adventure" },
+  { label: "喜剧", value: "comedy" },
+  { label: "恋爱", value: "romance" },
+  { label: "剧情", value: "drama" },
+  { label: "奇幻", value: "fantasy" },
+  { label: "科幻", value: "scifi" },
+  { label: "悬疑推理", value: "mystery" },
+  { label: "恐怖惊悚", value: "horror" },
+  { label: "超自然/灵异", value: "supernatural" },
+  { label: "日常", value: "slice_of_life" },
+  { label: "校园", value: "school" },
+  { label: "运动竞技", value: "sports" },
+  { label: "音乐演出", value: "music" },
+  { label: "偶像", value: "idol" },
+  { label: "机甲", value: "mecha" },
+  { label: "异世界", value: "isekai" },
+  { label: "游戏衍生", value: "game_ip" },
+  { label: "心理", value: "psychological" },
+  { label: "战争军事", value: "military" },
+  { label: "时代剧/历史", value: "historical" },
+  { label: "史诗气质", value: "epic" },
+  { label: "日本动画", value: "jp" },
+  { label: "国产动画", value: "china" },
+  { label: "欧美及其他", value: "west" },
+] as const;
+
+export type AnimeCategoryFilterValue = (typeof ANIME_CATEGORY_FILTERS)[number]["value"];
+export type AnimeCategoryTag = Exclude<AnimeCategoryFilterValue, "all">;
+
 export interface AnimeItem {
-  title: string; // 中文名（必填）
-  originalTitle?: string; // 原始片名（非必填）
-  director: string; // 导演
-  year: number; // 上映年份
-  country: string[]; // 制片国家（数组）
-  genre: string[]; // 类型标签（数组）
-  runtime: number; // 时长（分钟）
-  cover: string; // 封面图片路径
-  thumb?: string; // 低质量缩略图占位（可选）
-  cast: string[]; // 主演阵容（声优，数组）
-  tags: string[]; // 自定义标签
-  note: string; // 备注
+  id: number;
+  title: string;
+  originalTitle?: string;
+  director: string;
+  year: number;
+  country: string[];
+  genre: string[];
+  runtime: number;
+  cover: string;
+  thumb?: string;
+  cast: string[];
+  category: AnimeCategoryTag[];
+  note: string;
 }
 
-// 导出数据列表
 export const animeList: AnimeItem[] = [
   {
+    id: 1,
     title: "魔女之旅",
     originalTitle: "Wandering Witch: The Journey of Elaina",
     director: "渡边政治",
@@ -27,10 +62,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/Elaina.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/Elaina.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["安济知佳", "高桥李依", "木曾宽子"],
-    tags: ["治愈", "旅行", "奇幻"],
+    category: ["fantasy", "slice_of_life", "adventure", "jp"],
     note: "跟随魔女伊蕾娜游历众多国度，聆听各地的故事，感受世界的美好与哀愁，温柔而富有哲思的旅程",
   },
   {
+    id: 2,
     title: "葬送的芙莉莲",
     originalTitle: "Sousou no Frieren: Beyond Journey's End",
     director: "斋藤圭一郎",
@@ -41,10 +77,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/Frieren.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/Frieren.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["种崎敦美", "小林千晃", "艾拉"],
-    tags: ["奇幻", "治愈", "时间"],
+    category: ["fantasy", "slice_of_life", "drama", "jp"],
     note: "勇者击败魔王后，精灵法师芙莉莲踏上百年旅程重新理解人类与生命的温度，故事悠远感人，画面细腻隽永",
   },
   {
+    id: 3,
     title: "英雄联盟：双城之战",
     originalTitle: "Arcane: League of Legends",
     director: "帕斯卡·查鲁、阿诺德·德洛普钦",
@@ -55,10 +92,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/arcane.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/arcane.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["海莉·斯坦菲尔德", "凯文·阿历詹卓", "艾拉·珀内尔"],
-    tags: ["史诗", "游戏改编", "姐妹情"],
+    category: ["fantasy", "action", "drama", "epic", "game_ip", "west"],
     note: "以《英雄联盟》为背景，讲述双生姐妹在魔法与科技冲突中的命运纠葛，画面与叙事皆为顶级水准",
   },
   {
+    id: 4,
     title: "进击的巨人",
     originalTitle: "Attack on Titan",
     director: "荒木哲郎（第1季）",
@@ -69,10 +107,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/aot.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/aot.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["梶裕贵", "石川由依", "井上麻里奈"],
-    tags: ["黑暗", "战斗", "巨人"],
+    category: ["action", "psychological", "drama", "fantasy", "military", "horror", "jp"],
     note: "人类与巨人的生存之战，层层揭秘带来震撼心灵的故事与反转",
   },
   {
+    id: 5,
     title: "孤独摇滚",
     originalTitle: "Bocchi the Rock!",
     director: "斋藤圭一郎",
@@ -83,10 +122,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/bocchi-the-rock.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/bocchi-the-rock.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["青山吉能", "铃代纱弓", "水野朔"],
-    tags: ["治愈", "音乐", "校园"],
+    category: ["music", "school", "comedy", "slice_of_life", "jp"],
     note: "社恐少女踏上摇滚之路，爆笑与感动交织的青春音乐物语",
   },
   {
+    id: 6,
     title: "赛博朋克：边缘行者",
     originalTitle: "Cyberpunk: Edgerunners",
     director: "今石洋之",
@@ -97,10 +137,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/edgerunners.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/edgerunners.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["KENN", "悠木碧", "楠大典"],
-    tags: ["赛博朋克", "热血", "科幻"],
+    category: ["scifi", "action", "drama", "psychological", "jp"],
     note: "在夜之城中为生存而战，描绘绚烂又残酷的反乌托邦冒险",
   },
   {
+    id: 7,
     title: "胆大党",
     originalTitle: "Dandadan",
     director: "山代风我",
@@ -111,10 +152,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/dandadan.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/dandadan.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["若山诗音", "花江夏树", "岛崎信长"],
-    tags: ["喜剧", "灵异", "恋爱"],
+    category: ["comedy", "romance", "supernatural", "action", "jp"],
     note: "灵异与外星人交织的爆笑恋爱冒险，节奏飞快、脑洞大开",
   },
   {
+    id: 8,
     title: "鬼灭之刃",
     originalTitle: "Demon Slayer: Kimetsu no Yaiba",
     director: "外崎春雄",
@@ -125,10 +167,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/demon-slayer.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/demon-slayer.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["花江夏树", "鬼头明里", "下野纮"],
-    tags: ["热血", "战斗", "和风"],
+    category: ["action", "fantasy", "jp"],
     note: "少年为拯救妹妹与恶鬼战斗，唯美画风与燃魂剧情并存",
   },
   {
+    id: 9,
     title: "七龙珠",
     originalTitle: "Dragon Ball",
     director: "冈崎稔",
@@ -139,10 +182,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/dragon-ball.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/dragon-ball.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["野泽雅子", "堀川亮", "古川登志夫"],
-    tags: ["热血", "冒险", "成长"],
+    category: ["action", "adventure", "jp"],
     note: "悟空与伙伴们的冒险史诗，全球最具影响力的少年漫画动画之一",
   },
   {
+    id: 10,
     title: "罪恶王冠",
     originalTitle: "Guilty Crown",
     director: "荒木哲郎",
@@ -153,10 +197,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/guilty-crown.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/guilty-crown.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["梶裕贵", "茅野爱衣", "花泽香菜"],
-    tags: ["科幻", "悲剧", "超能力"],
+    category: ["scifi", "drama", "psychological", "mecha", "jp"],
     note: "在末世中通过神秘力量寻找希望与救赎，音乐与画面极具冲击力",
   },
   {
+    id: 11,
     title: "辉夜大小姐想让我告白",
     originalTitle: "Kaguya-sama: Love Is War",
     director: "畠山守",
@@ -167,10 +212,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/kaguya-sama.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/kaguya-sama.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["古贺葵", "古川慎", "富田美忧"],
-    tags: ["喜剧", "恋爱", "校园"],
+    category: ["comedy", "romance", "school", "jp"],
     note: "两名学生会长互相试探追求对方，爆笑与甜蜜并存的恋爱头脑战",
   },
   {
+    id: 12,
     title: "中二病也要谈恋爱！",
     originalTitle: "Love, Chunibyo & Other Delusions",
     director: "石原立也",
@@ -181,10 +227,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/chunibyo.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/chunibyo.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["福原香织", "内田真礼", "赤崎千夏"],
-    tags: ["恋爱", "校园", "喜剧"],
+    category: ["romance", "school", "comedy", "jp"],
     note: "保留中二之魂的高中生恋爱故事，温馨又充满幻想色彩",
   },
   {
+    id: 13,
     title: "莉可莉丝",
     originalTitle: "Lycoris Recoil",
     director: "足立慎吾",
@@ -195,10 +242,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/lycoris-recoil.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/lycoris-recoil.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["安济知佳", "若山诗音", "久保田未梦"],
-    tags: ["治愈", "日常", "动作"],
+    category: ["action", "slice_of_life", "drama", "school", "jp"],
     note: "表面平静的日常下暗潮涌动，描绘少女们的羁绊与守护",
   },
   {
+    id: 14,
     title: "火影忍者",
     originalTitle: "Naruto",
     director: "伊达勇登",
@@ -209,10 +257,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/naruto.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/naruto.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["竹内顺子", "杉山纪彰", "中村千绘"],
-    tags: ["热血", "成长", "忍者"],
+    category: ["action", "adventure", "jp"],
     note: "忍者少年的成长史，梦想、努力与伙伴情谊的经典篇章",
   },
   {
+    id: 15,
     title: "新世纪福音战士",
     originalTitle: "Neon Genesis Evangelion",
     director: "庵野秀明",
@@ -223,10 +272,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/eva.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/eva.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["绪方惠美", "林原惠美", "宫村优子"],
-    tags: ["科幻", "哲学", "机甲"],
+    category: ["scifi", "mecha", "drama", "psychological", "horror", "military", "jp"],
     note: "人类补完计划的宏大寓言，重塑动画表现力的里程碑之作",
   },
   {
+    id: 16,
     title: "某科学的超电磁炮",
     originalTitle: "A Certain Scientific Railgun",
     director: "长井龙雪",
@@ -237,10 +287,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/railgun.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/railgun.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["佐藤利奈", "新井里美", "丰崎爱生"],
-    tags: ["校园", "超能力", "科幻"],
+    category: ["scifi", "school", "action", "mystery", "jp"],
     note: "以御坂美琴为主角的学园都市日常与战斗，科学幻想与轻松氛围兼具",
   },
   {
+    id: 17,
     title: "我推的孩子",
     originalTitle: "Oshi no Ko",
     director: "平牧大辅",
@@ -251,10 +302,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/oshi-no-ko.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/oshi-no-ko.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["高桥李依", "大冢刚央", "伊驹百合绘"],
-    tags: ["悬疑", "娱乐圈", "剧情"],
+    category: ["drama", "mystery", "idol", "psychological", "jp"],
     note: "转生成偶像孩子的医生揭开幕后真相，剧情反转与情感冲击极强",
   },
   {
+    id: 18,
     title: "宝可梦",
     originalTitle: "Pokémon",
     director: "汤山邦彦",
@@ -265,10 +317,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/pokemon.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/pokemon.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["大谷育江", "松本梨香", "饭冢雅弓"],
-    tags: ["冒险", "成长", "奇幻"],
+    category: ["adventure", "fantasy", "action", "jp"],
     note: "小智与皮卡丘的冒险旅程，陪伴数代人成长的国民动画",
   },
   {
+    id: 19,
     title: "间谍过家家",
     originalTitle: "Spy x Family",
     director: "古桥一浩",
@@ -279,10 +332,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/spy-family.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/spy-family.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["江口拓也", "种崎敦美", "早见沙织"],
-    tags: ["喜剧", "治愈", "间谍"],
+    category: ["comedy", "slice_of_life", "mystery", "jp"],
     note: "为任务组建临时家庭，意外收获真挚情感与欢乐日常",
   },
   {
+    id: 20,
     title: "刀剑神域",
     originalTitle: "Sword Art Online",
     director: "伊藤智彦",
@@ -293,10 +347,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/sao.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/sao.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["松冈祯丞", "户松遥", "泽城美雪"],
-    tags: ["冒险", "奇幻", "虚拟现实"],
+    category: ["scifi", "adventure", "romance", "action", "fantasy", "isekai", "jp"],
     note: "在虚拟世界中求生与恋爱，引发无数观众共鸣的异世界故事",
   },
   {
+    id: 21,
     title: "紫罗兰永恒花园",
     originalTitle: "Violet Evergarden",
     director: "石立太一",
@@ -307,10 +362,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/violet-evergarden.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/violet-evergarden.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["石川由依", "浪川大辅"],
-    tags: ["治愈", "唯美", "情感"],
+    category: ["drama", "slice_of_life", "historical", "jp"],
     note: "代笔书信师探寻情感的意义，每一封信都是心的刻画",
   },
   {
+    id: 22,
     title: "天气之子",
     originalTitle: "Weathering With You",
     director: "新海诚",
@@ -321,10 +377,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/weathering-with-you.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/weathering-with-you.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["森七菜", "醍醐虎汰朗"],
-    tags: ["爱情", "奇幻", "唯美"],
+    category: ["romance", "fantasy", "drama", "jp"],
     note: "在雨中相遇的少年少女改变天气与命运，画面如诗如画",
   },
   {
+    id: 23,
     title: "四月是你的谎言",
     originalTitle: "Your Lie in April",
     director: "石滨真史",
@@ -335,10 +392,11 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/your-lie-in-april.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/your-lie-in-april.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["花江夏树", "种田梨沙", "佐仓绫音"],
-    tags: ["治愈", "音乐", "青春"],
+    category: ["music", "romance", "drama", "slice_of_life", "school", "jp"],
     note: "失明少女与钢琴少年的相遇，用音乐治愈创伤与孤独",
   },
   {
+    id: 24,
     title: "你的名字",
     originalTitle: "Your Name",
     director: "新海诚",
@@ -349,7 +407,7 @@ export const animeList: AnimeItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/your-name.jpeg",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/animes/your-name.jpeg?imageView2/2/w/40/format/webp/q/50",
     cast: ["神木隆之介", "上白石萌音"],
-    tags: ["爱情", "奇幻", "时空穿越"],
+    category: ["romance", "fantasy", "drama", "scifi", "jp"],
     note: "身体互换的奇幻设定牵出跨越时空的爱情，画面与故事皆唯美动人",
   },
 ];

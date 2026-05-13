@@ -7,8 +7,8 @@ hero:
   text: "南夏的博客"
   tagline: 写代码，也写生活。记录技术笔记，也分享书影音和游戏的乐趣
   # image:
-  #   src: /home/Asuka.png
-  #   alt: 加载失败
+  #   src: 
+  #   alt: 
   actions:
     - theme: brand
       text: 知识库
@@ -19,13 +19,13 @@ hero:
 
 features:
   - title: 前端
-    details: 前端框架（如Vue、React）、技术设计（如微前端与低代码），以及常见的前端性能优化方案
+    details: 界面开发框架、架构设计模式、页面加载与交互体验优化
     link: /knowledge/frontend
   - title: 后端
-    details: 后端框架应用（如Express、NestJS），以及MySQL、MongoDB等常见数据库的操作
+    details: 服务端框架应用、数据存储与管理、接口设计与实现
     link: /knowledge/backend
   - title: 其它
-    details: Git版本控制、网络工程，以及其他常用的编程工具与技能等
+    details: 代码版本管理、网络基础原理、开发工具链与效率提升
     link: /knowledge/misc
 
 ---

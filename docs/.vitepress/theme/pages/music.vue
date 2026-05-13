@@ -97,6 +97,7 @@
 <script lang="ts" setup>
 import { ref, computed, inject } from "vue";
 import type { MusicItem } from "../../data/musicData";
+import { MUSIC_CATEGORY_FILTERS, MusicCategoryTag } from "../../data/musicData";
 
 // 播放状态接口
 interface PlaybackState {
@@ -106,17 +107,8 @@ interface PlaybackState {
   duration: number;
 }
 
-// 分类数据
-const categories = [
-  { label: "全部", value: "all" },
-  { label: "流行", value: "pop" },
-  { label: "摇滚", value: "rock" },
-  { label: "电子", value: "electronic" },
-  { label: "轻音乐", value: "light" },
-  { label: "国语", value: "cn" },
-  { label: "英语", value: "en" },
-  { label: "日语", value: "jp" },
-];
+// 与 data/musicData.ts 中 MUSIC_CATEGORY_FILTERS 同源，避免漏标（如 piano）与页面不同步
+const categories = MUSIC_CATEGORY_FILTERS;
 // 当前选中的分类
 const currentCategory = ref("all");
 // 音乐列表
@@ -226,7 +218,13 @@ const filteredMusic = computed(() => {
   if (currentCategory.value === "all") {
     return musicList;
   }
-  return musicList.filter((m: MusicItem) => m.category.includes(currentCategory.value));
+  return musicList.filter((m: MusicItem) => {
+  if (currentCategory.value === "all") {
+    return true;
+  }
+  return m.category.includes(currentCategory.value as MusicCategoryTag);
+});
+  
 });
 </script>
 

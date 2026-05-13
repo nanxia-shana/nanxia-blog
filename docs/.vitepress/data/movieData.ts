@@ -1,36 +1,74 @@
-// 电影数据类型
+/**
+ * 影视分类：参照 IMDb/豆瓣常见「类型 + 产地」维度，影片再组合打标。
+ */
+export const MOVIE_CATEGORY_FILTERS = [
+  { label: "全部", value: "all" },
+  { label: "剧情", value: "drama" },
+  { label: "喜剧", value: "comedy" },
+  { label: "爱情", value: "romance" },
+  { label: "科幻", value: "scifi" },
+  { label: "动作", value: "action" },
+  { label: "惊悚", value: "thriller" },
+  { label: "悬疑", value: "mystery" },
+  { label: "犯罪", value: "crime" },
+  { label: "传记", value: "biography" },
+  { label: "运动", value: "sports" },
+  { label: "动画", value: "animation" },
+  { label: "家庭", value: "family" },
+  { label: "社会", value: "social" },
+  { label: "励志", value: "inspiration" },
+  { label: "冒险", value: "adventure" },
+  { label: "奇幻", value: "fantasy" },
+  { label: "武侠", value: "wuxia" },
+  { label: "战争", value: "war" },
+  { label: "纪录", value: "documentary" },
+  { label: "历史古装", value: "history" },
+  { label: "西部", value: "western" },
+  { label: "歌舞", value: "musical" },
+  { label: "恐怖", value: "horror" },
+  { label: "华语片", value: "region_cn" },
+  { label: "美国", value: "region_us" },
+  { label: "印度", value: "region_in" },
+  { label: "跨国合拍", value: "region_intl" },
+] as const;
+
+export type MovieCategoryFilterValue = (typeof MOVIE_CATEGORY_FILTERS)[number]["value"];
+export type MovieCategoryTag = Exclude<MovieCategoryFilterValue, "all">;
+
 export interface MovieItem {
-  title: string; // 电影中文名（必填）
-  originalTitle?: string; // 原始片名（非必填）
-  director: string; // 导演
-  year: number; // 上映年份
-  country: string; // 制片国家（数组）
-  genre: string[]; // 类型标签（数组）
-  runtime: number; // 时长（分钟）
-  cover: string; // 封面图片路径
-  thumb?: string; // 低质量缩略图占位（可选）
-  cast: string[]; // 主演阵容（数组）
-  tags: string[]; // 自定义标签
-  note: string; // 观看笔记
+  id: number;
+  title: string;
+  originalTitle?: string;
+  director: string;
+  year: number;
+  country: string;
+  genre: string[];
+  runtime: number;
+  cover: string;
+  thumb?: string;
+  cast: string[];
+  category: MovieCategoryTag[];
+  note: string;
 }
 
-// 导出数据列表
 export const moiveList: MovieItem[] = [
   {
-    title: "肖申克的救赎", // 电影中文名（必填）
-    originalTitle: "The Shawshank Redemption", // 原始片名（非必填）
-    director: "弗兰克·德拉邦特", // 导演
-    year: 1994, // 上映年份
-    country: "美国", // 制片国家
-    genre: ["剧情", "犯罪"], // 类型标签（数组）
-    runtime: 142, // 时长（分钟）
-    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/shawshank-redemption.webp", // 封面图片路径
+    id: 1,
+    title: "肖申克的救赎",
+    originalTitle: "The Shawshank Redemption",
+    director: "弗兰克·德拉邦特",
+    year: 1994,
+    country: "美国",
+    genre: ["剧情", "犯罪"],
+    runtime: 142,
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/shawshank-redemption.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/shawshank-redemption.webp?imageView2/2/w/80/format/webp/q/50",
-    cast: ["蒂姆·罗宾斯", "摩根·弗里曼"], // 主演阵容（数组）
-    tags: ["希望", "体制化", "经典"], // 自定义标签
-    note: "自由意志与人性救赎的永恒命题，结尾震撼人心", // 观看笔记
+    cast: ["蒂姆·罗宾斯", "摩根·弗里曼"],
+    category: ["drama", "crime", "inspiration", "region_us"],
+    note: "自由意志与人性救赎的永恒命题，结尾震撼人心",
   },
   {
+    id: 2,
     title: "实习生",
     originalTitle: "The Intern",
     director: "南希·迈耶斯",
@@ -41,10 +79,11 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/the-intern.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/the-intern.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["罗伯特·德尼罗", "安妮·海瑟薇"],
-    tags: ["职场", "治愈", "人生感悟"],
+    category: ["drama", "comedy", "region_us"],
     note: "退休老人重返职场，温暖治愈的人生故事",
   },
   {
+    id: 3,
     title: "阿甘正传",
     originalTitle: "Forrest Gump",
     director: "罗伯特·泽米吉斯",
@@ -55,10 +94,11 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/forrest-gump.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/forrest-gump.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["汤姆·汉克斯", "罗宾·怀特"],
-    tags: ["人生", "励志", "经典"],
+    category: ["drama", "romance", "inspiration", "region_us"],
     note: "傻人有傻福，一个傻子的美国百年传奇",
   },
   {
+    id: 4,
     title: "摔跤吧！爸爸",
     originalTitle: "Dangal",
     director: "涅提蒂瓦瑞",
@@ -69,10 +109,11 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/dangal.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/dangal.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["阿米尔·汗", "法缇玛·萨那·纱卡"],
-    tags: ["女权", "体育", "亲情"],
+    category: ["drama", "biography", "sports", "family", "region_in"],
     note: "父爱的梦想，女儿的荣耀，改变无数女性命运",
   },
   {
+    id: 5,
     title: "我不是药神",
     originalTitle: "Dying to Survive",
     director: "文牧野",
@@ -83,10 +124,11 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/dying-to-survive.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/dying-to-survive.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["徐峥", "王传君", "周一围"],
-    tags: ["现实", "人性", "医疗"],
+    category: ["drama", "social", "region_cn"],
     note: "穷病难治，药神无冕，叩问生命与人性",
   },
   {
+    id: 6,
     title: "盗梦空间",
     originalTitle: "Inception",
     director: "克里斯托弗·诺兰",
@@ -97,10 +139,11 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/inception.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/inception.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["莱昂纳多·迪卡普里奥", "约瑟夫·高登-莱维特", "艾伦·佩吉"],
-    tags: ["梦境", "烧脑", "诺兰"],
+    category: ["scifi", "action", "thriller", "mystery", "region_intl"],
     note: "梦中梦，局中局，你的图腾还在转吗",
   },
   {
+    id: 7,
     title: "当幸福来敲门",
     originalTitle: "The Pursuit of Happyness",
     director: "加布里尔·穆奇诺",
@@ -111,10 +154,11 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/pursuit-of-happyness.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/pursuit-of-happyness.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["威尔·史密斯", "贾登·史密斯"],
-    tags: ["励志", "奋斗", "亲情"],
+    category: ["drama", "biography", "inspiration", "family", "region_us"],
     note: "如果你有梦想，就要去捍卫它",
   },
   {
+    id: 8,
     title: "星际穿越",
     originalTitle: "Interstellar",
     director: "克里斯托弗·诺兰",
@@ -125,10 +169,11 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/interstellar.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/interstellar.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["马修·麦康纳", "安妮·海瑟薇", "杰西卡·查斯坦"],
-    tags: ["太空", "爱", "时间"],
+    category: ["scifi", "drama", "adventure", "family", "region_intl"],
     note: "爱跨越时间空间，不要温柔地走进那个良夜",
   },
   {
+    id: 9,
     title: "怦然心动",
     originalTitle: "Flipped",
     director: "罗伯·莱纳",
@@ -139,10 +184,11 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/flipped.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/flipped.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["玛德琳·卡罗尔", "卡兰·麦克奥利菲"],
-    tags: ["初恋", "青春", "成长"],
+    category: ["romance", "drama", "family", "region_us"],
     note: "斯人若彩虹，遇上方知有",
   },
   {
+    id: 10,
     title: "寻梦环游记",
     originalTitle: "Coco",
     director: "李·昂克里奇",
@@ -153,10 +199,11 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/coco.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/coco.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["安东尼·冈萨雷斯", "本杰明·布拉特"],
-    tags: ["死亡", "亲情", "墨西哥"],
+    category: ["animation", "fantasy", "family", "region_us"],
     note: "死亡不是终点，遗忘才是",
   },
   {
+    id: 11,
     title: "让子弹飞",
     originalTitle: "Let the Bullets Fly",
     director: "姜文",
@@ -167,10 +214,11 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/let-the-bullets-fly.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/let-the-bullets-fly.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["姜文", "葛优", "周润发"],
-    tags: ["幽默", "隐喻", "江湖"],
+    category: ["comedy", "drama", "action", "western", "region_cn"],
     note: "站着把钱挣了，子弹飞一会儿",
   },
   {
+    id: 12,
     title: "邪不压正",
     originalTitle: "Hidden Man",
     director: "姜文",
@@ -181,7 +229,7 @@ export const moiveList: MovieItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/hidden-man.webp",
     thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/movies/hidden-man.webp?imageView2/2/w/80/format/webp/q/50",
     cast: ["彭于晏", "廖凡", "姜文", "周韵", "许晴"],
-    tags: ["民国", "武侠", "隐喻"],
+    category: ["action", "comedy", "drama", "wuxia", "history", "region_cn"],
     note: "北平城下的恩怨情仇，姜文的浪漫狂想",
   },
 ];

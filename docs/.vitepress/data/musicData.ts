@@ -1,3 +1,37 @@
+/**
+ * 音乐分类：先按「流媒体/唱片店」常见维度建体系（流派 + 编曲形态 + 语言/地区），曲目再挂载其中。
+ * 与 theme/pages/music.vue 一致，仅使用下列 value。
+ */
+export const MUSIC_CATEGORY_FILTERS = [
+  { label: "全部", value: "all" },
+  { label: "流行", value: "pop" },
+  { label: "摇滚", value: "rock" },
+  { label: "独立/另类", value: "indie" },
+  { label: "电子", value: "electronic" },
+  { label: "嘻哈/R&B", value: "hiphop" },
+  { label: "民谣", value: "folk" },
+  { label: "乡村", value: "country" },
+  { label: "爵士", value: "jazz" },
+  { label: "蓝调", value: "blues" },
+  { label: "古典", value: "classical" },
+  { label: "金属", value: "metal" },
+  { label: "国风/民族流行", value: "chinese_style" },
+  { label: "影视原声", value: "soundtrack" },
+  { label: "动漫/游戏歌曲", value: "anisong" },
+  { label: "轻音乐/氛围", value: "light" },
+  { label: "钢琴", value: "piano" },
+  { label: "纯器乐", value: "instrumental" },
+  { label: "国语", value: "cn" },
+  { label: "粤语", value: "yue" },
+  { label: "英语", value: "en" },
+  { label: "日语", value: "jp" },
+  { label: "韩语", value: "kr" },
+  { label: "其他语言", value: "other_lang" },
+] as const;
+
+export type MusicCategoryFilterValue = (typeof MUSIC_CATEGORY_FILTERS)[number]["value"];
+export type MusicCategoryTag = Exclude<MusicCategoryFilterValue, "all">;
+
 // 音乐数据类型
 export interface MusicItem {
   id: number; // 唯一标识符
@@ -8,7 +42,7 @@ export interface MusicItem {
   url: string; // 音乐文件 URL
   album: string; // 所属专辑
   release_date: string; // 发布日期
-  category: string[]; // 分类（如 "jp" 表示日语）
+  category: MusicCategoryTag[]; // 流派/场景 + 语言等（须为 MUSIC_CATEGORY_FILTERS 中非 all 的 value）
   duration?: string; // 歌曲时长（显示用，可选）
 }
 
@@ -25,7 +59,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/Foxtail-Grass%20Studio%20-%20%E6%98%BC%E4%B8%8B%E3%81%8C%E3%82%8A%E3%81%AE%E6%86%82%E9%AC%B1.mp3",
     album: "pastoral landscape",
     release_date: "2013/12/20",
-    category: ["light"],
+    category: ["light", "instrumental", "jp"],
   },
   {
     id: 2,
@@ -37,7 +71,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/Adagio%20Piano%20Pieces%20%28Satie%20Style%29-1.m4a",
     album: "Quiet Piano Collection (Satie Style)",
     release_date: "2026/04/30",
-    category: ["piano"],
+    category: ["piano", "classical", "light", "instrumental", "en"],
   },
   {
     id: 3,
@@ -49,7 +83,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%B7%9D%E7%94%B0%E3%81%BE%E3%81%BF%20-%20%E5%85%89%E8%8A%92.mp3",
     album: "灼眼のシャナF SUPERIORITY SHANAIII vol.3 (TV动画《灼眼的夏娜3》原声集3)",
     release_date: "2012/07/25",
-    category: ["jp"],
+    category: ["jp", "soundtrack", "anisong"],
   },
   {
     id: 4,
@@ -61,7 +95,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/ClariS%20-%20%E3%81%B2%E3%82%89%E3%81%B2%E3%82%89%20%E3%81%B2%E3%82%89%E3%82%89.mp3",
     album: "ひらひら ひらら",
     release_date: "2016/04/20",
-    category: ["jp"],
+    category: ["jp", "pop"],
   },
   {
     id: 5,
@@ -73,7 +107,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/Cyberpunk%20-%20I%20Really%20Want%20to%20Stay%20at%20Your%20House.mp3",
     album: "Cyberpunk 2077: Radio, Vol. 2",
     release_date: "2020/12/18",
-    category: ["pop", "en"],
+    category: ["pop", "en", "electronic"],
   },
   {
     id: 6,
@@ -97,7 +131,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/YUI%20-%20again.mp3",
     album: "HOLIDAYS IN THE SUN",
     release_date: "2009/06/03",
-    category: ["jp"],
+    category: ["jp", "pop", "rock", "anisong"],
   },
   {
     id: 8,
@@ -109,7 +143,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%B0%8F%E7%94%B0%E5%92%8C%E6%AD%A3%20-%20%E3%83%A9%E3%83%96%E3%83%BB%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC%E3%81%AF%E7%AA%81%E7%84%B6%E3%81%AB.mp3",
     album: "Oh! Yeah!",
     release_date: "1991/02/06",
-    category: ["jp"],
+    category: ["jp", "pop"],
   },
   {
     id: 9,
@@ -121,7 +155,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/AGA%20-%20%E5%AD%A4%E9%9B%8F.mp3",
     album: "One Last Kiss",
     release_date: "2021/03/09",
-    category: ["jp"],
+    category: ["jp", "pop", "anisong", "soundtrack"],
   },
   {
     id: 10,
@@ -133,7 +167,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/AGA%20-%20%E5%AD%A4%E9%9B%8F.mp3",
     album: "孤雏",
     release_date: "2016/07/29",
-    category: ["pop", "cn"],
+    category: ["pop", "yue"],
   },
   {
     id: 11,
@@ -145,7 +179,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/DAISHI%2BDANCE%26C%C3%A9cile%20Corbel%20-%20Take%20Me%20Hand.mp3",
     album: "Wonder Tourism",
     release_date: "2013/11/13",
-    category: ["en"],
+    category: ["en", "pop", "electronic"],
   },
   // {
   //   id: 12,
@@ -157,7 +191,7 @@ export const musicList: MusicItem[] = [
   //   url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/Foxtail-Grass%20Studio%20-%20%E6%98%BC%E4%B8%8B%E3%81%8C%E3%82%8A%E3%81%AE%E6%86%82%E9%AC%B1.mp3",
   //   album: "pastoral landscape",
   //   release_date: "2012/08/11",
-  //   category: ["light"],
+  //   category: ["light", "instrumental", "jp"],
   // },
   {
     id: 13,
@@ -169,7 +203,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/RAM%20WIRE%20-%20%E5%83%95%E3%82%89%E3%81%AE%E6%89%8B%E3%81%AB%E3%81%AF%E4%BD%95%E3%82%82%E3%81%AA%E3%81%84%E3%81%91%E3%81%A9%E3%80%81.mp3",
     album: "僕らの手には何もないけど、",
     release_date: "2015/02/25",
-    category: ["jp"],
+    category: ["jp", "pop"],
   },
   {
     id: 14,
@@ -181,7 +215,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/Reynard%2BSilva%20-%20The%20Way%20I%20Still%20Love%20You.mp3",
     album: "The Way I Still Love You",
     release_date: "2014/08/04",
-    category: ["pop", "en"],
+    category: ["pop", "en", "hiphop"],
   },
   {
     id: 15,
@@ -193,7 +227,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%9B%BD%E9%A3%8E%E6%A3%A0%EF%BC%88%E5%93%A6%E5%B1%9A%EF%BC%89%20-%20%E7%9F%A5%E6%88%91%EF%BC%88%E9%BD%90%E9%9D%99%E6%98%A5%EF%BC%89.mp3",
     album: "知我",
     release_date: "2023/04/15",
-    category: ["pop", "cn"],
+    category: ["pop", "cn", "chinese_style"],
   },
   {
     id: 16,
@@ -253,7 +287,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E7%8E%8B%E8%8F%B2%20-%20%E5%A6%82%E6%84%BF.mp3",
     album: "如愿",
     release_date: "2021/09/25",
-    category: ["pop", "cn"],
+    category: ["pop", "cn", "soundtrack"],
   },
   {
     id: 21,
@@ -265,7 +299,7 @@ export const musicList: MusicItem[] = [
     url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E4%B8%80%E6%A3%B5%E5%B0%8F%E8%91%B1%26%E5%BC%A0%E6%9B%A6%E5%8C%80%20-%20%E5%A3%81%E4%B8%8A%E8%A7%82.mp3",
     album: "壁上观",
     release_date: "2023/08/18",
-    category: ["pop", "cn"],
+    category: ["pop", "cn", "chinese_style"],
   },
   {
     id: 22,

@@ -427,6 +427,7 @@ const togglePlayItem = (music: MusicItem) => {
 }
 
 .music-info {
+  width: 150px;
   flex: 1;
   min-width: 0;
 }

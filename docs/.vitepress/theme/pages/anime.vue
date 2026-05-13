@@ -11,7 +11,7 @@
       </button>
     </div>
     <div class="animations-grid">
-      <div v-for="anime in filteredanimations.slice(0, displayCount)" :key="anime.title" class="anime-card">
+      <div v-for="anime in filteredanimations.slice(0, displayCount)" :key="anime.id" class="anime-card">
         <anime-card :title="anime.title" :cover="anime.cover" :thumb="anime.thumb" :note="anime.note" />
       </div>
     </div>
@@ -21,55 +21,30 @@
 <script lang="ts" setup>
 import { ref, computed, onMounted, watch, nextTick } from "vue";
 import AnimeCard from "../components/Anime-card.vue";
-import { animeList } from '../../data/animeData.ts';
+import { animeList, ANIME_CATEGORY_FILTERS, type AnimeItem } from "../../data/animeData.ts";
 
-// 从所有动画中提取唯一标签，并排序
-const getAllTags = () => {
-  const tagSet = new Set<string>();
-  animeList.forEach(anime => {
-    anime.tags.forEach(tag => tagSet.add(tag));
-  });
-  // 转换为分类格式，并按字母排序
-  const tagCategories = Array.from(tagSet)
-    .sort()
-    .map(tag => ({ label: tag, value: tag }));
-  return [
-    { label: "全部", value: "all" },
-    ...tagCategories
-  ];
-};
-
-// 分类数据（从标签动态提取）
-const categories = getAllTags();
-
-// 当前选中的分类
-const currentCategory = ref("all");
-
-// 动画数据
+const categories = ANIME_CATEGORY_FILTERS;
+const currentCategory = ref<(typeof ANIME_CATEGORY_FILTERS)[number]["value"]>("all");
 const animations = ref(animeList);
 
-// ========== 渐进式渲染 ==========
-const displayCount = ref(8); // 首屏显示数量
-const batchSize = 4; // 每帧增加数量
+const displayCount = ref(8);
+const batchSize = 4;
 
-// 渐进式渲染函数
 const renderProgressively = () => {
   if (displayCount.value >= filteredanimations.value.length) return;
-
   requestAnimationFrame(() => {
     displayCount.value += batchSize;
     renderProgressively();
   });
 };
 
-// 根据屏幕宽度获取首屏显示数量
 const getInitialDisplayCount = () => {
-  if (window.innerWidth > 1440) return 20; // 2K+ 大屏
-  if (window.innerWidth > 768) return 12; // 普通桌面
-  return 6; // 移动端
+  if (typeof window === "undefined") return 8;
+  if (window.innerWidth > 1440) return 20;
+  if (window.innerWidth > 768) return 12;
+  return 6;
 };
 
-// 监听分类变化，重置并重新开始渐进渲染
 watch(currentCategory, () => {
   displayCount.value = getInitialDisplayCount();
   nextTick(() => {
@@ -77,7 +52,6 @@ watch(currentCategory, () => {
   });
 });
 
-// 页面挂载后启动渐进渲染
 onMounted(() => {
   displayCount.value = getInitialDisplayCount();
   nextTick(() => {
@@ -85,20 +59,19 @@ onMounted(() => {
   });
 });
 
-// 设置当前分类
-const setCategory = (category: string) => {
+const setCategory = (category: (typeof ANIME_CATEGORY_FILTERS)[number]["value"]) => {
   currentCategory.value = category;
 };
 
-// 过滤后的动画列表：按标签筛选
 const filteredanimations = computed(() => {
+  const sorted = [...animations.value].sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+  if (currentCategory.value === "all") return sorted;
+  return sorted.filter((anime: AnimeItem) => {
   if (currentCategory.value === "all") {
-    return animations.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
-  } else {
-    return animations.value
-      .filter((anime) => anime.tags.includes(currentCategory.value))
-      .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+    return true;
   }
+  return anime.category.includes(currentCategory.value);
+});
 });
 </script>
 
@@ -111,7 +84,7 @@ const filteredanimations = computed(() => {
 /* 标题样式 */
 h1 {
   font-family: "Cinzel", "庞门正道标题体", serif;
- font-weight: bold;
+  font-weight: bold;
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 3rem;
@@ -156,6 +129,7 @@ h1::after {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
 }
+
 .anime-card {
   display: flex;
   justify-content: center;

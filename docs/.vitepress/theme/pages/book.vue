@@ -11,65 +11,57 @@
       </button>
     </div>
     <div class="books-grid">
-      <div v-for="book in filteredBooks.slice(0, displayCount)" :key="book.title" class="book-card" :data-category="book.category">
+      <div
+        v-for="book in filteredBooks.slice(0, displayCount)"
+        :key="book.id"
+        class="book-card"
+        :data-category="book.category.join(',')">
         <book-card :title="book.title" :author="book.author" :cover="book.cover" :thumb="book.thumb" :note="book.note" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, computed, onMounted, watch, nextTick } from "vue";
-import BookCard from '../components/Book-card.vue';
-import { bookList } from '../../data/bookData.ts';
-// 分类数据
-const categories = [
-  { label: "全部", value: "all" },
-  { label: "文学", value: "文学" },
-  { label: "人文社科", value: "人文社科" },
-  { label: "科普/科技", value: "科普/科技" },
-];
+import BookCard from "../components/Book-card.vue";
+import { bookList, BOOK_CATEGORY_FILTERS, type BookItem } from "../../data/bookData.ts";
 
-// 当前选中的分类
-const currentCategory = ref("all");
-
-// 模拟书籍数据
+const categories = BOOK_CATEGORY_FILTERS;
+const currentCategory = ref<(typeof BOOK_CATEGORY_FILTERS)[number]["value"]>("all");
 const books = ref(bookList);
 
-// 设置当前分类
-const setCategory = (category) => {
+const setCategory = (category: (typeof BOOK_CATEGORY_FILTERS)[number]["value"]) => {
   currentCategory.value = category;
 };
 
-// 过滤后的书籍列表
 const filteredBooks = computed(() => {
+  const sorted = [...books.value].sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
+  if (currentCategory.value === "all") return sorted;
+  return sorted.filter((book: BookItem) => {
   if (currentCategory.value === "all") {
-  return books.value.sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
-} else {
-  return books.value
-    .filter((book) => book.tags && book.tags.includes(currentCategory.value))
-    .sort((a, b) => a.title.localeCompare(b.title, "zh-CN"));
-}
+    return true;
+  }
+  return book.category.includes(currentCategory.value);
+});
 });
 
-// ========== 渐进式渲染 ==========
-const displayCount = ref(8); // 首屏显示数量
-const batchSize = 4; // 每帧增加数量
+const displayCount = ref(8);
+const batchSize = 4;
 
 const renderProgressively = () => {
   if (displayCount.value >= filteredBooks.value.length) return;
-
   requestAnimationFrame(() => {
     displayCount.value += batchSize;
     renderProgressively();
   });
 };
 
-// 根据屏幕宽度获取首屏显示数量
 const getInitialDisplayCount = () => {
-  if (window.innerWidth > 1440) return 20; // 2K+ 大屏
-  if (window.innerWidth > 768) return 12; // 普通桌面
-  return 6; // 移动端
+  if (typeof window === "undefined") return 8;
+  if (window.innerWidth > 1440) return 20;
+  if (window.innerWidth > 768) return 12;
+  return 6;
 };
 
 watch(currentCategory, () => {
