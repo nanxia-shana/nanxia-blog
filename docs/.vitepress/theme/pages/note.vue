@@ -1,6 +1,6 @@
 <template>
   <div class="notes-collection">
-    <h1>✍️ 闲窗细语​​</h1>
+    <h1>🍵 闲窗细语​​</h1>
     <div class="filter-bar">
       <button
         v-for="category in categories"
