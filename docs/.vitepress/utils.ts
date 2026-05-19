@@ -39,10 +39,6 @@ const menuList = [
                 text: "前端面试题解析",
                 link: "/knowledge/frontend/base/frontend-interview-questions",
               },
-              {
-                text: "首屏白屏优化",
-                link: "/knowledge/frontend/base/first-screen-optimization",
-              },
             ],
           },
           {
@@ -52,6 +48,20 @@ const menuList = [
               {
                 text: "前端项目规范化",
                 link: "/knowledge/frontend/engi/rule",
+              },
+            ],
+          },
+          {
+            text: "前端性能",
+            collapsed: true,
+            items: [
+              {
+                text: "首屏白屏优化",
+                link: "/knowledge/frontend/performence/first-screen-optimization",
+              },
+              {
+                text: "Pretext：让文字排版更自然的技术方案",
+                link: "/knowledge/frontend/performence/pretext",
               },
             ],
           },

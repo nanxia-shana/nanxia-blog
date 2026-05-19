@@ -176,7 +176,7 @@ export const musicList: MusicItem[] = [
     cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/utada_one_last_kiss.webp",
     thumb:
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/utada_one_last_kiss.webp?imageView2/2/w/80/format/webp/q/50",
-    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/AGA%20-%20%E5%AD%A4%E9%9B%8F.mp3",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E3%83%92%E3%82%AB%E3%83%AB%20-%20One%20Last%20Kiss.mp3",
     album: "One Last Kiss",
     release_date: "2021/03/09",
     category: ["jp", "pop", "anisong", "soundtrack"],

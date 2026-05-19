@@ -59,8 +59,14 @@ export const frontendArticles: ArticleItem[] = [
   {
     title: "首屏白屏优化",
     description: "从原理到实战，系统讲解单页面应用白屏问题的原因分析、优化手段和效果验证。",
-    category: "基础",
-    link: "/knowledge/frontend/base/first-screen-optimization",
+    category: "性能",
+    link: "/knowledge/frontend/performence/first-screen-optimization",
+  },
+  {
+    title: "Pretext：让文字排版更自然的技术方案",
+    description: "最近在音乐播放器等场景火起来的 Pretext 排版技术，核心原理、优缺点分析与适用场景总结。",
+    category: "性能",
+    link: "/knowledge/frontend/performence/pretext",
   },
 ];
 
@@ -93,7 +99,7 @@ export const backendArticles: ArticleItem[] = [
   {
     title: "Next.js 全栈 + 数据库部署指南",
     description: "纯前端视角的 Next.js 全栈入门，从写接口到数据库部署完整流程。",
-    category: "后端基础",
+    category: "基础",
     link: "/knowledge/backend/base/nextjs-fullstack-deploy",
   },
 ];

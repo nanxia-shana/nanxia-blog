@@ -74,7 +74,14 @@
               </svg>
             </button>
           </div>
-          <div class="lyrics-content" ref="lyricsContainer" @scroll="handleLyricScroll">
+          <div
+            class="lyrics-content"
+            ref="lyricsContainer"
+            @wheel.prevent="handleLyricScroll"
+            @touchstart.passive="handleTouchStart"
+            @touchmove.prevent="handleTouchMove"
+            @touchend="handleTouchEnd"
+          >
             <div v-if="isLoadingLyrics" class="lyrics-loading">
               <div class="loading-spinner"></div>
               <span>加载中...</span>
@@ -82,16 +89,34 @@
             <div v-else-if="parsedLyrics.length === 0" class="lyrics-empty">
               暂无歌词
             </div>
-            <div v-else class="lyrics-list">
+            <div
+            v-else
+            class="lyrics-list-wrapper"
+            :style="{ transform: `translateY(${lyricsOffset + userScrollDelta}px)`, transition: isUserScrolling || isDragging ? 'none' : 'transform 0.3s ease-out' }"
+          >
+            <div class="lyrics-list">
               <div
                 v-for="(line, index) in parsedLyrics"
                 :key="index"
-                :class="['lyrics-line', { active: !line.isMeta && currentLyricIndex === index, 'lyrics-meta': line.isMeta }]"
+                :class="[
+                  'lyrics-line',
+                  {
+                    active: !line.isMeta && currentLyricIndex === index,
+                    'lyrics-meta': line.isMeta,
+                    'line-near': !line.isMeta && Math.abs(currentLyricIndex - index) <= 2,
+                    'line-hover': hoveredLineIndex === index
+                  }
+                ]"
+                :data-index="index"
+                @mouseenter="handleLineMouseEnter(index)"
+                @mouseleave="handleLineMouseLeave"
+                @click="handleLineClick(index)"
               >
                 <div class="lyrics-line-text">{{ line.text }}</div>
                 <div v-if="line.translation" class="lyrics-line-trans">{{ line.translation }}</div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -135,7 +160,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, inject, watch, nextTick } from "vue";
+import { ref, computed, inject, watch, nextTick, onMounted, onUnmounted } from "vue";
 import type { MusicItem } from "../../data/musicData";
 import { MUSIC_CATEGORY_FILTERS, MusicCategoryTag } from "../../data/musicData";
 
@@ -165,7 +190,7 @@ const musicList = inject<MusicItem[]>("music-list");
 const playbackState = inject<PlaybackState>("playback-state");
 
 // 自动播放开关
-const autoPlayEnabled = ref(false);
+const autoPlayEnabled = ref(true);
 // 歌词弹窗显示
 const showLyricsModal = ref(false);
 // 解析后的歌词
@@ -174,6 +199,10 @@ const parsedLyrics = ref<LyricLine[]>([]);
 const currentLyricIndex = ref(0);
 // 歌词容器引用
 const lyricsContainer = ref<HTMLElement | null>(null);
+// 歌词列表偏移量（用于让当前歌词保持在中间）
+const lyricsOffset = ref(0);
+// 用户滚动产生的额外偏移量
+const userScrollDelta = ref(0);
 // 原始歌词内容
 const rawLyrics = ref('');
 // 用户是否正在滚动歌词
@@ -182,6 +211,21 @@ const isUserScrolling = ref(false);
 let scrollDebounceTimer: number | null = null;
 // 歌词加载状态
 const isLoadingLyrics = ref(false);
+
+// ========== Pretext 相关状态 ==========
+interface PrecomputedLine {
+  index: number;
+  offsetTop: number;
+  offsetHeight: number;
+}
+// 预计算的歌词布局信息
+const precomputedLines = ref<PrecomputedLine[]>([]);
+// 当前鼠标悬停的歌词行索引
+const hoveredLineIndex = ref<number | null>(null);
+// 拖拽时的临时时间
+const dragTime = ref(0);
+// 容器高度缓存
+const containerHeight = ref(0);
 
 const slider = computed(() => ({
   width: playbackState?.duration ? `${(playbackState.currentTime / playbackState.duration) * 100}%` : "0%",
@@ -303,6 +347,9 @@ const loadLyrics = async () => {
     const text = await response.text();
     rawLyrics.value = text;
     parsedLyrics.value = parseLyrics(text, playbackState.currentMusic.bilingual || false);
+    // 歌词解析完成后，预计算布局
+    await nextTick();
+    await precomputeLayout();
   } catch (error) {
     console.error('加载歌词失败:', error);
     parsedLyrics.value = [];
@@ -319,9 +366,17 @@ const toggleAutoPlay = () => {
 // 打开歌词弹窗
 const openLyrics = async () => {
   showLyricsModal.value = true;
-  await loadLyrics();
+  // 重置滚动状态
+  userScrollDelta.value = 0;
+  // 重置预计算重试计数
+  precomputeRetryCount = 0;
+  // 先等待 DOM 渲染完成，再加载歌词和预计算
   await nextTick();
-  scrollToCurrentLyric();
+  await loadLyrics();
+  // 额外延迟确保动画完成，再计算位置
+  setTimeout(() => {
+    updateLyricsOffset();
+  }, 100);
 };
 
 // 关闭歌词弹窗
@@ -329,44 +384,177 @@ const closeLyrics = () => {
   showLyricsModal.value = false;
 };
 
-// 滚动到当前歌词
-const scrollToCurrentLyric = () => {
-  if (!lyricsContainer.value || isUserScrolling.value) return;
-  const activeElement = lyricsContainer.value.querySelector('.lyrics-line.active');
-  if (activeElement) {
-    activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+// ========== Pretext 核心函数 ==========
+// 预计算所有歌词行的布局信息
+let precomputeRetryCount = 0;
+const precomputeLayout = async () => {
+  // 等待 DOM 完全渲染
+  await nextTick();
+  await nextTick();
+
+  if (!lyricsContainer.value) {
+    if (precomputeRetryCount < 5) {
+      precomputeRetryCount++;
+      setTimeout(() => precomputeLayout(), 100);
+    }
+    return;
+  }
+
+  const container = lyricsContainer.value;
+  containerHeight.value = container.clientHeight;
+
+  // 如果容器高度为 0，说明还没渲染完成，稍后重试
+  if (containerHeight.value === 0) {
+    if (precomputeRetryCount < 5) {
+      precomputeRetryCount++;
+      setTimeout(() => precomputeLayout(), 100);
+    }
+    return;
+  }
+
+  const lyricElements = container.querySelectorAll('.lyrics-line') as NodeListOf<HTMLElement>;
+
+  if (lyricElements.length === 0) {
+    if (precomputeRetryCount < 5) {
+      precomputeRetryCount++;
+      setTimeout(() => precomputeLayout(), 100);
+    }
+    return;
+  }
+
+  // 重置重试计数
+  precomputeRetryCount = 0;
+
+  // 使用 offsetTop（相对于 offsetParent）
+  // 注意：由于 .lyrics-list-wrapper 有 padding: 40vh 0，
+  // offsetTop 已经包含了这个 padding 值
+  precomputedLines.value = Array.from(lyricElements).map((el, index) => ({
+    index,
+    offsetTop: el.offsetTop,
+    offsetHeight: el.offsetHeight,
+  }));
+
+  // 预计算完成后，强制更新一次位置
+  updateLyricsOffset();
+};
+
+// 计算歌词偏移量（优先使用 Pretext 预计算值，零 DOM 查询）
+const updateLyricsOffset = () => {
+  // 如果有预计算数据，直接使用（性能最优）
+  if (precomputedLines.value.length > 0) {
+    const line = precomputedLines.value[currentLyricIndex.value];
+    if (line) {
+      // 关键公式：让当前行的中心对齐到容器中心
+      // translateY = 容器中心Y - 行中心Y
+      lyricsOffset.value = containerHeight.value / 2 - line.offsetTop - line.offsetHeight / 2;
+      return;
+    }
+  }
+
+  // 降级方案：没有预计算数据时使用传统 DOM 查询
+  if (!lyricsContainer.value) return;
+  const container = lyricsContainer.value;
+  const height = container.clientHeight;
+  const lyricElements = container.querySelectorAll('.lyrics-line');
+  const currentElement = lyricElements[currentLyricIndex.value] as HTMLElement;
+
+  if (currentElement) {
+    const elementTop = currentElement.offsetTop;
+    const elementHeight = currentElement.offsetHeight;
+    lyricsOffset.value = height / 2 - elementTop - elementHeight / 2;
   }
 };
 
-// 处理用户滚动
-const handleLyricScroll = () => {
-  isUserScrolling.value = true;
+// 鼠标悬停处理
+const handleLineMouseEnter = (index: number) => {
+  hoveredLineIndex.value = index;
+};
 
-  // 清除之前的定时器
+const handleLineMouseLeave = () => {
+  hoveredLineIndex.value = null;
+};
+
+// 点击歌词跳转到对应时间
+const handleLineClick = (index: number) => {
+  const line = parsedLyrics.value[index];
+  if (line && !line.isMeta && playbackState?.duration) {
+    const audio = document.querySelector('audio') as HTMLAudioElement;
+    if (audio) {
+      audio.currentTime = Math.max(0, line.time - 0.5);
+      playbackState.currentTime = line.time - 0.5;
+    }
+  }
+};
+
+
+// 触摸开始的 Y 坐标
+let touchStartY = 0;
+
+// 处理用户滚动（鼠标滚轮）
+const handleLyricScroll = (e: WheelEvent) => {
+  isUserScrolling.value = true;
+  // deltaY 向下滚动为正，内容应该向上移（translateY 减小）
+  userScrollDelta.value -= e.deltaY;
+  resetScrollTimer();
+};
+
+// 处理触摸开始
+const handleTouchStart = (e: TouchEvent) => {
+  touchStartY = e.touches[0].clientY;
+};
+
+// 处理触摸移动
+const handleTouchMove = (e: TouchEvent) => {
+  const currentY = e.touches[0].clientY;
+  const deltaY = touchStartY - currentY; // 向下滑动为正，向上滑动为负
+  touchStartY = currentY;
+
+  isUserScrolling.value = true;
+  // 手指向下滑（deltaY 正），内容应该向上移（translateY 减小）
+  userScrollDelta.value -= deltaY;
+  resetScrollTimer();
+};
+
+// 处理触摸结束
+const handleTouchEnd = () => {
+  touchStartY = 0;
+};
+
+// 重置滚动恢复定时器
+const resetScrollTimer = () => {
   if (scrollDebounceTimer) {
     clearTimeout(scrollDebounceTimer);
   }
-
-  // 滚动停止1秒后恢复自动滚动
   scrollDebounceTimer = window.setTimeout(() => {
     isUserScrolling.value = false;
-    scrollToCurrentLyric();
-  }, 1000);
+    userScrollDelta.value = 0;
+    nextTick(() => {
+      updateLyricsOffset();
+    });
+  }, 800);
 };
 
-// 监听播放时间，更新当前歌词
+// 监听播放时间，更新当前歌词（提前1秒滚动）
 watch(() => playbackState?.currentTime, (newTime) => {
   if (newTime === undefined || newTime === null || parsedLyrics.value.length === 0) return;
 
-  let index = parsedLyrics.value.findIndex(line => line.time > newTime);
+  // 提前1秒计算歌词位置，让滚动和播放同步
+  const compareTime = newTime + 1;
+
+  let index = parsedLyrics.value.findIndex(line => line.time > compareTime);
+  let newIndex = 0;
   if (index === -1) {
-    currentLyricIndex.value = parsedLyrics.value.length - 1;
+    newIndex = parsedLyrics.value.length - 1;
   } else if (index > 0) {
-    currentLyricIndex.value = index - 1;
+    newIndex = index - 1;
   }
 
-  if (showLyricsModal.value) {
-    scrollToCurrentLyric();
+  // 索引始终更新（高亮会立即生效），但滚动只在用户没有手动滚动时进行
+  if (newIndex !== currentLyricIndex.value) {
+    currentLyricIndex.value = newIndex;
+    if (showLyricsModal.value) {
+      updateLyricsOffset();
+    }
   }
 });
 
@@ -374,6 +562,7 @@ watch(() => playbackState?.currentTime, (newTime) => {
 watch(() => playbackState?.currentMusic?.id, () => {
   currentLyricIndex.value = 0;
   parsedLyrics.value = [];
+  userScrollDelta.value = 0;
   if (showLyricsModal.value) {
     loadLyrics();
   }
@@ -415,20 +604,51 @@ const nextTrack = () => {
   togglePlayItem(nextMusic);
 };
 
+// 临时存储事件监听器引用，避免重复添加
+let canPlayListener: (() => void) | null = null;
+let loadedMetaListener: (() => void) | null = null;
+
 // 点击列表项播放
 const togglePlayItem = (music: MusicItem) => {
   if (!playbackState) return;
-  playbackState.currentMusic = music;
   const audio = document.querySelector('audio') as HTMLAudioElement;
+
+  // 清除旧的监听器，防止重复调用
+  if (canPlayListener) {
+    audio.removeEventListener('canplaythrough', canPlayListener);
+    canPlayListener = null;
+  }
+  if (loadedMetaListener) {
+    audio.removeEventListener('loadedmetadata', loadedMetaListener);
+    loadedMetaListener = null;
+  }
+
+  playbackState.currentMusic = music;
   playbackState.isPlaying = true;
+  // 重置播放时间
+  playbackState.currentTime = 0;
+
   audio.load();
 
-  // 只添加一次 canplay 监听器
-  const onCanPlay = () => {
-    audio.play();
-    audio.removeEventListener('canplay', onCanPlay);
+  // 使用 canplaythrough 确保有足够缓冲才播放，更可靠
+  canPlayListener = () => {
+    audio.play().catch(err => {
+      console.log('自动播放被阻止，等待用户交互:', err);
+    });
+    audio.removeEventListener('canplaythrough', canPlayListener!);
+    canPlayListener = null;
   };
-  audio.addEventListener("canplay", onCanPlay);
+  audio.addEventListener("canplaythrough", canPlayListener);
+
+  // 备用方案：如果 canplaythrough 没触发，loadedmetadata 后尝试播放
+  loadedMetaListener = () => {
+    if (playbackState.isPlaying && audio.readyState >= 2) {
+      audio.play().catch(() => {});
+    }
+    audio.removeEventListener('loadedmetadata', loadedMetaListener!);
+    loadedMetaListener = null;
+  };
+  audio.addEventListener("loadedmetadata", loadedMetaListener);
 
   setupAudioEndListener();
 };
@@ -480,6 +700,20 @@ const startDrag = (event: MouseEvent) => {
   const onMouseMove = (moveEvent: MouseEvent) => {
     if (isDragging.value) {
       seekTo(moveEvent);
+      // 拖拽时立即更新歌词位置，实现平滑跟随
+      if (showLyricsModal.value && parsedLyrics.value.length > 0) {
+        const compareTime = playbackState.currentTime + 1;
+        let index = parsedLyrics.value.findIndex(line => line.time > compareTime);
+        if (index === -1) {
+          index = parsedLyrics.value.length - 1;
+        } else if (index > 0) {
+          index = index - 1;
+        }
+        if (index !== currentLyricIndex.value) {
+          currentLyricIndex.value = index;
+          updateLyricsOffset();
+        }
+      }
     }
   };
 
@@ -510,6 +744,35 @@ const filteredMusic = computed(() => {
 
 // 组件挂载后设置结束监听
 setupAudioEndListener();
+
+// ========== 生命周期钩子 ==========
+// 窗口大小变化时重新预计算布局
+let resizeTimer: number | null = null;
+
+const handleResize = () => {
+  if (resizeTimer) {
+    clearTimeout(resizeTimer);
+  }
+  resizeTimer = window.setTimeout(() => {
+    if (showLyricsModal.value && parsedLyrics.value.length > 0) {
+      // 清空旧的预计算数据，强制重新计算
+      precomputedLines.value = [];
+      precomputeRetryCount = 0;
+      precomputeLayout();
+    }
+  }, 100);
+};
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+  if (resizeTimer) {
+    clearTimeout(resizeTimer);
+  }
+});
 </script>
 
 <style scoped>
@@ -1212,8 +1475,9 @@ html.dark .cp-author {
 
 .lyrics-content {
   flex: 1;
-  overflow-y: auto;
+  overflow: hidden; /* 隐藏原生滚动，完全由 transform 控制 */
   padding: 20px;
+  position: relative; /* 确保 offsetTop 相对于此容器计算 */
 }
 
 .lyrics-empty {
@@ -1247,24 +1511,47 @@ html.dark .cp-author {
   }
 }
 
+.lyrics-list-wrapper {
+  /* 上下添加 padding 让第一行和最后一行也能滚动到中间 */
+  padding: 40vh 0;
+  will-change: transform;
+}
+
 .lyrics-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
+/* ========== Pretext 视觉效果 ========== */
 .lyrics-line {
   text-align: center;
   color: var(--vp-c-text-2);
   transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  padding: 8px 0;
 }
 
+/* 效果 1: 透明度渐变 - 当前行放大高亮 */
 .lyrics-line.active {
   color: #dc143c;
-  transform: scale(1.05);
-  font-weight: 500;
+  transform: scale(1.15);
+  font-weight: 600;
+  padding: 12px 0;
 }
 
+/* 附近行（当前行前后2行）有更高透明度 */
+.lyrics-line.line-near:not(.active) {
+  opacity: 0.85;
+}
+
+/* 远离当前行的歌词透明度降低 */
+.lyrics-line:not(.line-near):not(.lyrics-meta) {
+  opacity: 0.4;
+}
+
+/* 元信息不受影响 */
 .lyrics-line.lyrics-meta {
   color: var(--vp-c-text-2);
   font-size: 0.85rem;
@@ -1272,11 +1559,13 @@ html.dark .cp-author {
   transform: none;
   font-weight: normal;
   padding: 4px 0;
+  cursor: default;
 }
 
 .lyrics-line-text {
   font-size: 1rem;
   line-height: 1.6;
+  transition: all 0.3s ease;
 }
 
 .lyrics-line-trans {
@@ -1284,27 +1573,47 @@ html.dark .cp-author {
   color: var(--vp-c-text-3);
   margin-top: 4px;
   line-height: 1.5;
+  transition: all 0.3s ease;
 }
 
 .lyrics-line.active .lyrics-line-trans {
   color: rgba(220, 20, 60, 0.7);
+  font-size: 0.9rem;
+}
+
+/* 效果 2: 双语歌词上下错位展示 */
+.lyrics-line:not(.active):not(.line-hover) .lyrics-line-text {
+  transform: translateY(2px);
+}
+
+.lyrics-line:not(.active):not(.line-hover) .lyrics-line-trans {
+  transform: translateY(-2px);
+  opacity: 0.7;
+}
+
+/* 效果 3: 鼠标悬停切换原文/翻译 */
+.lyrics-line.line-hover .lyrics-line-text {
+  opacity: 0.4;
+  transform: translateY(8px);
+}
+
+.lyrics-line.line-hover .lyrics-line-trans {
+  opacity: 1;
+  transform: translateY(-8px) scale(1.1);
+  color: var(--vp-c-text-1);
+  font-weight: 500;
+}
+
+/* 悬停时放大效果 */
+.lyrics-line.line-hover {
+  background: linear-gradient(to bottom, transparent, rgba(220, 20, 60, 0.05), transparent);
+}
+
+/* 效果 4: 点击歌词跳转到对应时间 */
+.lyrics-line:active {
+  transform: scale(1.05);
 }
 
 /* 歌词滚动条样式 */
-.lyrics-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.lyrics-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.lyrics-content::-webkit-scrollbar-thumb {
-  background: var(--vp-c-divider);
-  border-radius: 3px;
-}
-
-.lyrics-content::-webkit-scrollbar-thumb:hover {
-  background: var(--vp-c-divider-dark);
-}
+/* 隐藏滚动条但保留滚动功能 */
 </style>

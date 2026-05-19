@@ -26,7 +26,7 @@ date: 2026-05-08
 
 ### 渲染链路拆解
 
-<img src="/markdown/frontend/base/Rendering-Pipeline-Breakdown.png" alt="加载失败" />
+<img src="/markdown/frontend/performence/Rendering-Pipeline-Breakdown.png" alt="加载失败" />
 
 这里面每个环节都可能成为瓶颈，导致白屏时间变长。但对于大部分前端项目来说，问题主要集中在这几个地方：
 
