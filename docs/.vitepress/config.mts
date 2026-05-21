@@ -36,6 +36,17 @@ export default defineConfig({
     ["link", { rel: "icon", type: "image/png", sizes: "128x128", href: "/favicon-128x128.png" }],
     ["link", { rel: "icon", type: "image/png", sizes: "256x256", href: "/favicon-256x256.png" }],
     ["link", { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" }],
+    // Google Analytics (only production)
+    ["script", {
+      async: "",
+      src: "https://www.googletagmanager.com/gtag/js?id=G-29SDHZ3XTR",
+    }],
+    ["script", {}, `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-29SDHZ3XTR');
+    `],
   ],
   description: "南夏的博客，写代码，也写生活。记录技术笔记，也分享书影音和游戏的乐趣。",
   markdown: {

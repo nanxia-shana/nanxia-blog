@@ -393,4 +393,109 @@ export const musicList: MusicItem[] = [
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%E6%88%91%E7%9A%84%E7%AD%94%E6%A1%88%20-%20%E5%91%A8%E6%B7%B1.lrc",
     bilingual: false,
   },
+  {
+    id: 24,
+    title: "月半小夜曲",
+    author: "李克勤",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/hacken_yueban.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/hacken_yueban.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E6%9D%8E%E5%85%8B%E5%8B%A4%20-%20%E6%9C%88%E5%8D%8A%E5%B0%8F%E5%A4%9C%E6%9B%B2.mp3",
+    album: "命运符号",
+    release_date: "1987/11/01",
+    category: ["pop", "yue"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%E6%9C%88%E5%8D%8A%E5%B0%8F%E5%A4%9C%E6%9B%B2%20-%20%E6%9D%8E%E5%85%8B%E5%8B%A4.lrc",
+    bilingual: false,
+  },
+  {
+    id: 25,
+    title: "爸爸妈妈",
+    author: "李荣浩",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/li_ronghao_parents.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/li_ronghao_parents.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E6%9D%8E%E8%8D%A3%E6%B5%A9%20-%20%E7%88%B8%E7%88%B8%E5%A6%88%E5%A6%88.mp3",
+    album: "有理想",
+    release_date: "2016/01/22",
+    category: ["pop", "cn"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%E7%88%B8%E7%88%B8%E5%A6%88%E5%A6%88%20-%20%E6%9D%8E%E8%8D%A3%E6%B5%A9.lrc",
+    bilingual: false,
+  },
+  {
+    id: 26,
+    title: "丁香花",
+    author: "唐磊",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/tang_lei_lilac.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/tang_lei_lilac.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%94%90%E7%A3%8A%20-%20%E4%B8%81%E9%A6%99%E8%8A%B1.mp3",
+    album: "丁香花",
+    release_date: "2004/07/01",
+    category: ["pop", "cn", "folk"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%E4%B8%81%E9%A6%99%E8%8A%B1%20-%20%E5%94%90%E7%A3%8A.lrc",
+    bilingual: false,
+  },
+  {
+    id: 27,
+    title: "遗失的心跳",
+    author: "萧亚轩",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/elva_lost_heartbeat.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/elva_lost_heartbeat.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E8%90%A7%E4%BA%9A%E8%BD%A9%20-%20%E9%81%97%E5%A4%B1%E7%9A%84%E5%BF%83%E8%B7%B3.mp3",
+    album: "我爱我",
+    release_date: "2011/12/23",
+    category: ["pop", "cn"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%E9%81%97%E5%A4%B1%E7%9A%84%E5%BF%83%E8%B7%B3%20-%20%E8%90%A7%E4%BA%9A%E8%BD%A9.lrc",
+    bilingual: false,
+  },
+  {
+    id: 28,
+    title: "画心",
+    author: "张靓颖",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/jane_painted_heart.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/jane_painted_heart.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%BC%A0%E9%9D%93%E9%A2%96%20-%20%E7%94%BB%E5%BF%83.mp3",
+    album: "画心",
+    release_date: "2008/10/20",
+    category: ["pop", "cn", "soundtrack"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%E7%94%BB%E5%BF%83%20-%20%E5%BC%A0%E9%9D%93%E9%A2%96.lrc",
+    bilingual: false,
+  },
+  {
+    id: 29,
+    title: "偏爱",
+    author: "张芸京",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/zhangyunjing_preference.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/zhangyunjing_preference.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%BC%A0%E8%8A%B8%E4%BA%AC%20-%20%E5%81%8F%E7%88%B1.mp3",
+    album: "破天荒",
+    release_date: "2009/06/03",
+    category: ["pop", "cn"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%E5%81%8F%E7%88%B1%20-%20%E5%BC%A0%E8%8A%B8%E4%BA%AC.lrc",
+    bilingual: false,
+  },
+  {
+    id: 30,
+    title: "黄昏",
+    author: "周传雄",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/steve_dusk.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/steve_dusk.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%E5%91%A8%E4%BC%A0%E9%9B%84%20-%20%E9%BB%84%E6%98%8F.mp3",
+    album: "Transfer",
+    release_date: "2000/12/25",
+    category: ["pop", "cn"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%E9%BB%84%E6%98%8F%20-%20%E5%91%A8%E4%BC%A0%E9%9B%84.lrc",
+    bilingual: false,
+  },
 ];

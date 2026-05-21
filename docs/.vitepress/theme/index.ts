@@ -19,9 +19,16 @@ import Game from "./pages/game.vue";
 import Novel from "./pages/novel.vue";
 import Note from "./pages/note.vue";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
+
 export default {
   ...Theme,
-  enhanceApp({ app }: { app: App }) {
+  enhanceApp({ app, router }: { app: App; router: any }) {
     app.component("Background", Background);
     // Pages
     app.component("Knowledge", Knowledge);
@@ -37,6 +44,17 @@ export default {
     app.component("Game", Game);
     app.component("Novel", Novel);
     app.component("Note", Note);
+
+    // Google Analytics - track page views on route change
+    if (typeof window !== "undefined") {
+      router.onAfterRouteChanged = (to: string) => {
+        if (window.gtag) {
+          window.gtag("config", "G-29SDHZ3XTR", {
+            page_path: to,
+          });
+        }
+      };
+    }
   },
   Layout: Layout,
 };
