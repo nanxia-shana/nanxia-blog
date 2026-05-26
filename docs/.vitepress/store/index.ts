@@ -1,6 +1,6 @@
 
 import { MusicItem, musicList } from '../data/musicData.ts';
-interface PlaybackState {
+export interface PlaybackState {
   // 当前播放的音乐项（可能为 null 表示未播放）
   currentMusic: MusicItem | null;
   // 播放控制状态

@@ -498,4 +498,122 @@ export const musicList: MusicItem[] = [
       "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%E9%BB%84%E6%98%8F%20-%20%E5%91%A8%E4%BC%A0%E9%9B%84.lrc",
     bilingual: false,
   },
+  {
+    id: 31,
+    title: "Fiction",
+    author: "BEAST",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/beast_fiction.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/beast_fiction.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/BEAST%20-%20Fiction.mp3",
+    album: "Fiction and Fact",
+    release_date: "2011/05/17",
+    category: ["pop", "kr"],
+    lrcUrl: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/Fiction%20-%20BEAST.lrc",
+    bilingual: true,
+  },
+  {
+    id: 32,
+    title: "거짓말",
+    author: "BIGBANG",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/bigbang_lies.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/bigbang_lies.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/BIGBANG%20-%20%EA%B1%B0%EC%A7%93%EB%A7%90.mp3",
+    album: "Always",
+    release_date: "2007/08/16",
+    category: ["pop", "kr", "hiphop"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%EA%B1%B0%EC%A7%93%EB%A7%90%20-%20BIGBANG.lrc",
+    bilingual: true,
+  },
+  {
+    id: 33,
+    title: "Stay With Me",
+    author: "CHANYEOL & 펀치",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/chanyeol_punch_stay_with_me.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/chanyeol_punch_stay_with_me.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/CHANYEOL%26%ED%8E%80%EC%B9%98%20-%20Stay%20With%20Me.mp3",
+    album: "도깨비 OST Part 1",
+    release_date: "2016/12/03",
+    category: ["pop", "kr", "soundtrack"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/Stay%20With%20Me%20-%20CHANYEOL%26%ED%8E%80%EC%B9%98.lrc",
+    bilingual: true,
+  },
+  {
+    id: 34,
+    title: "Trap",
+    author: "HENRY刘宪华 & 규현 & 태민",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/henry_trap.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/henry_trap.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/HENRY%E5%88%98%E5%AE%AA%E5%8D%8E%26%EA%B7%9C%ED%98%84%26%ED%83%9C%EB%AF%BC%20-%20Trap.mp3",
+    album: "Trap",
+    release_date: "2013/06/07",
+    category: ["pop", "kr", "electronic"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/Trap%20-%20HENRY%E5%88%98%E5%AE%AA%E5%8D%8E%26%EA%B7%9C%ED%98%84%26%ED%83%9C%EB%AF%BC.lrc",
+    bilingual: true,
+  },
+  {
+    id: 35,
+    title: "Dehors",
+    author: "Jordann",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/jordann_dehors.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/jordann_dehors.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/Jordann%20-%20Dehors.mp3",
+    album: "Dehors",
+    release_date: "2021/05/14",
+    category: ["pop", "indie", "other_lang"],
+    lrcUrl: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/Dehors%20-%20Jordann.lrc",
+    bilingual: true,
+  },
+  {
+    id: 36,
+    title: "바빠",
+    author: "SISTAR",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/sistar_busy.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/sistar_busy.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/SISTAR%20-%20%EB%B0%94%EB%B9%A0.mp3",
+    album: "So Cool",
+    release_date: "2011/08/09",
+    category: ["pop", "kr"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%EB%B0%94%EB%B9%A0%20-%20SISTAR.lrc",
+    bilingual: true,
+  },
+  {
+    id: 37,
+    title: "Dạ Vũ (夜舞)",
+    author: "Tăng Duy Tân & BAE",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/tang_duy_tan_bae_da_vu.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/tang_duy_tan_bae_da_vu.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/T%C4%83ng%20Duy%20T%C3%A2n%26BAE%20-%20D%E1%BA%A1%20V%C5%A9%20%28%E5%A4%9C%E8%88%9E%29.mp3",
+    album: "Dạ Vũ (夜舞)",
+    release_date: "2024/06/05",
+    category: ["pop", "electronic", "other_lang"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/D%E1%BA%A1%20V%C5%A9%20%28%E5%A4%9C%E8%88%9E%29%20-%20T%C4%83ng%20Duy%20T%C3%A2n%26BAE.lrc",
+    bilingual: true,
+  },
+  {
+    id: 38,
+    title: "총맞은것처럼",
+    author: "백지영",
+    cover: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/baek_jiyoung_like_being_shot.webp",
+    thumb:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/musics/baek_jiyoung_like_being_shot.webp?imageView2/2/w/80/format/webp/q/50",
+    url: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/%EB%B0%B1%EC%A7%80%EC%98%81%20-%20%EC%B4%9D%EB%A7%9E%EC%9D%80%EA%B2%83%EC%B2%98%EB%9F%BC.mp3",
+    album: "Sensibility",
+    release_date: "2008/11/13",
+    category: ["pop", "kr"],
+    lrcUrl:
+      "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/audio/lyrics/%EC%B4%9D%EB%A7%9E%EC%9D%80%EA%B2%83%EC%B2%98%EB%9F%BC%20-%20%EB%B0%B1%EC%A7%80%EC%98%81.lrc",
+    bilingual: true,
+  },
 ];

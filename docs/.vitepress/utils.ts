@@ -60,7 +60,7 @@ const menuList = [
                 link: "/knowledge/frontend/performence/first-screen-optimization",
               },
               {
-                text: "Pretext：让文字排版更自然的技术方案",
+                text: "Pretext 技术解析",
                 link: "/knowledge/frontend/performence/pretext",
               },
             ],

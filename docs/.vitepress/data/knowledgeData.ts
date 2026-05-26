@@ -63,7 +63,7 @@ export const frontendArticles: ArticleItem[] = [
     link: "/knowledge/frontend/performence/first-screen-optimization",
   },
   {
-    title: "Pretext：让文字排版更自然的技术方案",
+    title: "Pretext 技术解析",
     description: "最近在音乐播放器等场景火起来的 Pretext 排版技术，核心原理、优缺点分析与适用场景总结。",
     category: "性能",
     link: "/knowledge/frontend/performence/pretext",

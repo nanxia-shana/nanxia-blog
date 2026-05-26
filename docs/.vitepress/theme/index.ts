@@ -4,6 +4,7 @@ import "./style/var.css";
 import Layout from "./Layout.vue";
 
 import Background from "./components/Background.vue";
+import PoemPrecomputeDemo from "./components/PoemPrecomputeDemo.vue";
 
 import Knowledge from "./pages/knowledge.vue";
 import Frontend from "./pages/frontend.vue";
@@ -30,6 +31,7 @@ export default {
   ...Theme,
   enhanceApp({ app, router }: { app: App; router: any }) {
     app.component("Background", Background);
+    app.component("PoemPrecomputeDemo", PoemPrecomputeDemo);
     // Pages
     app.component("Knowledge", Knowledge);
     app.component("Frontend", Frontend);

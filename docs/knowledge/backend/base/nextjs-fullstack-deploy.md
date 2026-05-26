@@ -11,7 +11,7 @@ cover:
 
 # Next.js 全栈 + 数据库部署指南
 
-## 1. 先搞懂：Next.js 的后端部分到底是什么？
+## 1. Next.js 的后端部分是什么？
 
 举个最简单的例子：
 
@@ -32,9 +32,9 @@ useEffect(() => {
 }, [])
 ```
 
-就是这么简单！你写的这个 `route.ts`，就是后端代码。部署的时候 Vercel 会自动把它变成真实的服务器接口，你不需要管任何运维的事情。
+我们写的这个 `route.ts`，就是后端代码。部署的时候 Vercel 会自动把它变成真实的服务器接口，我们不需要管任何运维的事情。
 
-## 2. 数据库到底是个啥？和前端有啥关系？
+## 2. 数据库和前端的关系
 
 继续用前端能理解的类比：
 
@@ -44,16 +44,16 @@ useEffect(() => {
 | `localStorage` | 存在用户浏览器里 | 只有当前用户 |
 | **数据库** | 永久存在，删库才会跑路 | 所有用户都能看到 |
 
-就像你写的留言板：
+就像我们写的留言板：
 - 如果存在 `useState` 里 → 刷新就没了
-- 如果存在 `localStorage` 里 → 只有你自己能看到
+- 如果存在 `localStorage` 里 → 只有我们自己能看到
 - 如果存在数据库里 → 所有人都能看到别人的留言
 
 这就是后端的意义。
 
-## 3. 数据库怎么选？新手别纠结
+## 3. 数据库选择
 
-现在市面上有很多 Serverless 数据库方案，对前端开发者特别友好，不需要你运维服务器。
+现在市面上有很多 Serverless 数据库方案，对前端开发者特别友好，不需要我们运维服务器。
 
 ### 今天我们重点讲：Vercel Postgres
 
@@ -67,25 +67,25 @@ useEffect(() => {
 - **PlanetScale**：MySQL 兼容，大厂出品，稳定性好
 - **Neon**：Serverless Postgres，技术比较新，有分支功能
 
-新手建议从 Vercel Postgres 开始，先把流程跑通，后面再换其他的也不迟。
+建议从 Vercel Postgres 开始，先把流程跑通，后面可以再换其他的。
 :::
 
-## 4. 手把手：从零开始搭建全栈项目
+## 4. 从零开始搭建全栈项目
 
 ### 4.1 第一步：在 Vercel 创建数据库
 
 1. 打开 [Vercel 控制台](https://vercel.com/dashboard)
-2. 点击你的项目 → 选择「Storage」标签
+2. 点击我们的项目 → 选择「Storage」标签
 3. 点击「Create Database」
 4. 选择「PostgreSQL」
-5. 选择离你近的地区（建议选香港 `hkg1`）
+5. 选择离我们近的地区（建议选香港 `hkg1`）
 6. 点击「Create」，几秒钟就建好了
 
-就这么简单，你的第一个生产数据库已经有了。
+就这么简单，我们的第一个生产数据库已经有了。
 
 ### 4.2 第二步：配置环境变量
 
-创建好之后，你会看到一个 `.env.local` 标签页，里面有 4 个环境变量：
+创建好之后，我们会看到一个 `.env.local` 标签页，里面有 4 个环境变量：
 
 ```
 POSTGRES_URL="..."
@@ -97,12 +97,12 @@ POSTGRES_PASSWORD="..."
 POSTGRES_DATABASE="..."
 ```
 
-把这些全部复制下来，粘贴到你项目根目录的 `.env` 文件里。
+把这些全部复制下来，粘贴到我们项目根目录的 `.env` 文件里。
 
 ::: danger 重要提醒
-**绝对不要把 `.env` 文件提交到 Git！** 里面包含你的数据库密码，泄露了会很危险。
+**绝对不要把 `.env` 文件提交到 Git！** 里面包含我们的数据库密码，泄露了会很危险。
 
-确保你的 `.gitignore` 文件里包含 `.env*`。
+确保我们的 `.gitignore` 文件里包含 `.env*`。
 :::
 
 ### 4.3 第三步：安装数据库驱动
@@ -111,9 +111,9 @@ POSTGRES_DATABASE="..."
 npm install @vercel/postgres
 ```
 
-### 4.4 第四步：写第一个接口，真的连上数据库
+### 4.4 第四步：写第一个接口，连接数据库
 
-在你的项目里新建 `app/api/test/route.ts`：
+在我们的项目里新建 `app/api/test/route.ts`：
 
 ```typescript
 import { sql } from '@vercel/postgres'
@@ -169,34 +169,34 @@ export default function Home() {
 
 然后 `npm run dev` 打开浏览器，能看到版本信息就算成功了！
 
-## 5. 踩坑预警：新手最容易踩的 5 个坑
+## 5. 踩坑预警：5 个最容易踩的坑
 
 ::: danger 坑 1：DATABASE_URL 写错了
-很多新手会习惯性地写 `localhost:5432`，那是你本地数据库的地址。
+千万别习惯性地写 `localhost:5432`，那是我们本地数据库的地址。
 
-生产环境一定要用 Vercel 给你的完整连接字符串，不要自己改任何一个字符。
+生产环境一定要用 Vercel 给我们的完整连接字符串，不要自己改任何一个字符。
 :::
 
 ::: danger 坑 2：忘记加 SSL
 生产环境必须走 SSL 加密连接，不然 Vercel 会直接拒绝连接。
 
-`@vercel/postgres` 这个包已经帮你处理好了，你不用管。如果你用其他 ORM，记得加 `sslmode=require`。
+`@vercel/postgres` 这个包已经帮我们处理好了，我们不用管。如果我们用其他 ORM，记得加 `sslmode=require`。
 :::
 
 ::: warning 坑 3：连接数超限
 免费版数据库对连接数有限制，别每个请求都新建一个连接。
 
-后面学 Prisma 的时候会讲到连接池的配置，刚开始用 `@vercel/postgres` 的话，它已经帮你处理好了。
+后面学 Prisma 的时候会讲到连接池的配置，刚开始用 `@vercel/postgres` 的话，它已经帮我们处理好了。
 :::
 
 ::: warning 坑 4：Edge Runtime 不兼容
-如果你用边缘函数（Edge Runtime），有些 Node.js 的 API 用不了。
+如果我们用边缘函数（Edge Runtime），有些 Node.js 的 API 用不了。
 
 刚开始建议先在 Node.js 环境下写，后面熟悉了再去尝试边缘函数。
 :::
 
 ::: danger 坑 5：环境变量没同步到 Vercel
-你本地的 `.env` 文件不会自动同步到 Vercel！
+我们本地的 `.env` 文件不会自动同步到 Vercel！
 
 部署之前一定要去 Vercel 控制台的「Settings」→「Environment Variables」里，把那 4 个数据库环境变量粘贴进去。
 :::
@@ -205,15 +205,14 @@ export default function Home() {
 
 部署真的简单到离谱：
 
-1. 把你的代码推到 GitHub
+1. 把我们的代码推到 GitHub
 2. 回到 Vercel 控制台，导入项目
-3. 确认 Environment Variables 已经填好了
-4. 点击「Deploy」
-5. 喝杯咖啡，等 2 分钟就好了
+3. 确认 Environment Variables 已是否填好
+4. 点击「Deploy」，等 2 分钟
 
 ### 验证部署是否成功
 
-部署完成后，打开你的域名加 `/api/test`：
+部署完成后，打开我们的域名加 `/api/test`：
 
 ```
 https://你的域名.vercel.app/api/test
