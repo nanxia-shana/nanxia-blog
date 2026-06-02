@@ -77,7 +77,7 @@ DOM 断点同理。某个元素的样式莫名其妙被改了，右键那个元�
 
 <img src="/markdown/frontend/debugger/Select-folder.png" alt="加载失败" />
 
-::: danger 踩坑提醒
+::: danger Tips
 改完后要记得还原线上代码，不然下次电脑进入页面还是修改后的效果
 :::
 

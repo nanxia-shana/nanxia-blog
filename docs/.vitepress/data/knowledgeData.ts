@@ -57,6 +57,12 @@ export const frontendArticles: ArticleItem[] = [
     link: "/knowledge/frontend/base/web-realtime-communication",
   },
   {
+    title: "React 开发中的常见误区",
+    description: "总结 React 开发中关于 State、Hooks、Effect、派生状态和性能优化的常见错误与注意事项。",
+    category: "基础",
+    link: "/knowledge/frontend/base/react-common-mistakes",
+  },
+  {
     title: "首屏白屏优化",
     description: "从原理到实战，系统讲解单页面应用白屏问题的原因分析、优化手段和效果验证。",
     category: "性能",

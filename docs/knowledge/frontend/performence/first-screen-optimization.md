@@ -141,7 +141,7 @@ Vite 项目默认已经开启了 Tree Shaking，Webpack 需要注意：
 }
 ```
 
-::: danger 踩坑提醒
+::: danger Tips
 有些第三方库不支持 Tree Shaking，比如某些旧版本的组件库，你就算只引入一个组件，实际上还是会把整个库都打包进去。
 
 遇到这种情况，可以用 webpack-bundle-analyzer 分析一下打包结果，看看各个模块占的体积，有没有异常大的包。如果确实有问题，可以考虑换个库，或者用改 imports 路径的方式强制按需引入。

@@ -342,7 +342,7 @@ Accept: application/vnd.myapp.v1+json
 /api/users?version=1
 ```
 
-::: danger 踩坑提醒
+::: danger Tips
 做 API 版本升级的时候，老版本别着急删。一般至少要维护两个版本，给前端留出迁移时间。废弃的接口在响应头里加 `Deprecation` 和 `Sunset` 字段告诉调用方。
 :::
 

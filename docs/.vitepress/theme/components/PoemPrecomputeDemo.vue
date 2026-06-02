@@ -152,11 +152,13 @@ const segmentLayouts = computed<SegmentLayout[]>(() => {
   const maxX = Math.max(120, stageWidth.value - stagePadding * 2);
   const layouts: SegmentLayout[] = [];
 
+  let nextVisualLine = 0;
+
   poemLines.forEach((_, sourceLine) => {
     const lineSegments = textSegments.value.filter(segment => segment.sourceLine === sourceLine);
     const lineWidth = lineSegments.reduce((total, segment) => total + segment.width, 0);
     let x = Math.max(stagePadding, (stageWidth.value - lineWidth) / 2);
-    let visualLine = sourceLine;
+    let visualLine = nextVisualLine;
 
     lineSegments.forEach(segment => {
       let attempts = 0;
@@ -176,6 +178,7 @@ const segmentLayouts = computed<SegmentLayout[]>(() => {
         if (!intersectsBall(segmentX, segmentY, segment.width)) {
           layouts.push({ ...segment, x: segmentX, y: segmentY, line: visualLine });
           x += segment.width;
+          nextVisualLine = Math.max(nextVisualLine, visualLine + 1);
           return;
         }
 
@@ -184,6 +187,7 @@ const segmentLayouts = computed<SegmentLayout[]>(() => {
 
       layouts.push({ ...segment, x: stagePadding, y: contentTop + visualLine * lineHeight.value, line: visualLine });
       x = stagePadding + segment.width;
+      nextVisualLine = Math.max(nextVisualLine, visualLine + 1);
     });
   });
 
@@ -367,7 +371,7 @@ onBeforeUnmount(() => {
   background:
     radial-gradient(circle at 20% 10%, rgba(220, 20, 60, 0.08), transparent 32%),
     var(--vp-c-bg);
-  touch-action: none;
+  touch-action: pan-y;
 }
 
 .poem-demo-poem-meta {
@@ -417,6 +421,7 @@ onBeforeUnmount(() => {
   box-shadow: 0 14px 34px rgba(220, 20, 60, 0.34);
   cursor: grab;
   user-select: none;
+  touch-action: none;
 }
 
 .poem-demo-ball:active {

@@ -24,6 +24,10 @@ const menuList = [
                 link: "/knowledge/frontend/base/web-realtime-communication",
               },
               {
+                text: "React 开发中的常见误区",
+                link: "/knowledge/frontend/base/react-common-mistakes",
+              },
+              {
                 text: "前端常用设计模式",
                 link: "/knowledge/frontend/base/designPattern",
               },
@@ -183,6 +187,11 @@ const menuList = [
             text: "一句话的力量",
             collapsed: false,
             link: "/spiritual-food/note/one-sentence-power",
+          },
+          {
+            text: "古诗词集",
+            collapsed: false,
+            link: "/spiritual-food/note/poems-collection",
           },
         ],
       },

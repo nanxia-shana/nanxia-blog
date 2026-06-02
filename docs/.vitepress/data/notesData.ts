@@ -27,4 +27,12 @@ export const noteList: NoteItem[] = [
     tags: ["名言警句", "人生感悟", "箴言", "思考"],
     link: "/spiritual-food/note/one-sentence-power",
   },
+  {
+    title: "古诗词集",
+    date: "2026-06-02",
+    category: "文学",
+    excerpt: "风月无古今，情怀自浅深。收集那些穿越千年依然能触动心弦的古诗词。",
+    tags: ["古诗词", "唐诗宋词", "文学", "传统文化"],
+    link: "/spiritual-food/note/poems-collection",
+  },
 ];
