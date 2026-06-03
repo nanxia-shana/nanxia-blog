@@ -191,11 +191,6 @@ const startDrag = (event: MouseEvent) => {
   text-overflow: ellipsis;
 }
 
-.cp-album {
-  font-size: 0.85rem;
-  color: #666666;
-}
-
 .cp-controls {
   display: flex;
   align-items: center;
@@ -290,45 +285,41 @@ const startDrag = (event: MouseEvent) => {
   transform: translateY(-50%) scale(1.3);
 }
 
-:global(html.dark) .current-player-placeholder {
+html.dark .current-player-placeholder {
   background: rgba(220, 20, 60, 0.2);
   border: 1px solid rgba(220, 20, 60, 0.4);
 }
 
-:global(html.dark) .cp-title {
+html.dark .cp-title {
   color: #f0f0f0;
 }
 
-:global(html.dark) .cp-album {
-  color: #aaaaaa;
-}
-
-:global(html.dark) .cp-control-btn {
+html.dark .cp-control-btn {
   color: #dc143c;
 }
 
-:global(html.dark) .cp-control-btn:hover {
+html.dark .cp-control-btn:hover {
   opacity: 0.6;
 }
 
-:global(html.dark) .cp-controls .cp-control-btn-autoplay {
+html.dark .cp-controls .cp-control-btn-autoplay {
   color: #888;
 }
 
-:global(html.dark) .cp-controls .cp-control-btn-autoplay.active {
+html.dark .cp-controls .cp-control-btn-autoplay.active {
   color: #dc143c;
 }
 
-:global(html.dark) .cp-progress .time-left,
-:global(html.dark) .cp-progress .time-right {
+html.dark .cp-progress .time-left,
+html.dark .cp-progress .time-right {
   color: #aaaaaa;
 }
 
-:global(html.dark) .cp-progress .progress-bar .bar-background {
+html.dark .cp-progress .progress-bar .bar-background {
   background: rgba(220, 20, 60, 0.25);
 }
 
-:global(html.dark) .cp-progress .progress-bar .bar-filled {
+html.dark .cp-progress .progress-bar .bar-filled {
   background: rgba(220, 20, 60, 0.8);
 }
 
@@ -340,7 +331,7 @@ const startDrag = (event: MouseEvent) => {
   text-overflow: ellipsis;
 }
 
-:global(html.dark) .cp-author {
+html.dark .cp-author {
   color: #aaaaaa;
 }
 

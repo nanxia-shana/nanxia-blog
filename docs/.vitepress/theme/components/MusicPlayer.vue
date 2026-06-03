@@ -315,6 +315,7 @@ const toMusic = () => {
   padding-left: 45px;
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 .music-info {
   width: 100%;
