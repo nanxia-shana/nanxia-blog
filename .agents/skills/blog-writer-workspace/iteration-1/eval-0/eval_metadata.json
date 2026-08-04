@@ -1,0 +1,6 @@
+{
+  "eval_id": 0,
+  "eval_name": "new-ts-generic-article",
+  "prompt": "帮我写一篇关于 TypeScript 泛型的文章，我刚从 JS 转过来，对泛型理解很模糊，踩了不少类型错误的坑",
+  "assertions": []
+}

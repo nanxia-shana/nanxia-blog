@@ -28,9 +28,9 @@
       <div class="tracker tr-25"></div>
       <div id="card" ref="bgEl">
         <!-- 低质量占位图 -->
-        <div v-if="props.thumb && !isLoaded" class="thumb-placeholder" :style="{'--thumb': `url(${props.thumb})`}"></div>
+        <div v-if="!isLoaded" class="thumb-placeholder" :style="{'--thumb': `url(${thumbSrc})`}"></div>
         <!-- 原图 -->
-        <div v-if="isLoaded" class="cover-image" :style="{'--bg-cover': `url(${props.cover})`}"></div>
+        <div v-if="isLoaded" class="cover-image" :style="{'--bg-cover': `url(${coverSrc})`}"></div>
         <p id="prompt">{{ props.title }}</p>
         <div class="title">{{ props.note }}</div>
         <!-- <div class="subtitle">
@@ -42,7 +42,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+const FALLBACK_IMG = '/img/error_heitai.jpg'
 const props = defineProps({
   title: {
     type: String,
@@ -63,6 +64,9 @@ const props = defineProps({
 });
 const bgEl = ref(null)
 const isLoaded = ref(false)
+const coverSrc = computed(() => props.cover || FALLBACK_IMG)
+const thumbSrc = computed(() => props.thumb || FALLBACK_IMG)
+
 onMounted(() => {
   if (!('IntersectionObserver' in window)) {
     // 兼容老浏览器：直接加载
@@ -78,7 +82,10 @@ onMounted(() => {
         img.onload = () => {
           isLoaded.value = true
         }
-        img.src = props.cover
+        img.onerror = () => {
+          isLoaded.value = true
+        }
+        img.src = coverSrc.value
         observer.unobserve(bgEl.value)
       }
     })

@@ -2,7 +2,7 @@
   <div class="card" ref="cardEl">
     <div class="content">
       <div class="back">
-        <div class="back-content" :style="{'--bg-cover': `url(${props.cover})`}">
+        <div class="back-content" :style="{'--bg-cover': `url(${coverSrc})`}">
           <!-- <strong>Hover Me</strong> -->
         </div>
       </div>
@@ -33,7 +33,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+
+const FALLBACK_IMG = '/img/error_heitai.jpg'
 
 const props = defineProps({
   title: {
@@ -64,6 +66,7 @@ const props = defineProps({
 
 const cardEl = ref(null)
 const isLoaded = ref(false)
+const coverSrc = computed(() => props.cover || FALLBACK_IMG)
 onMounted(() => {
   if (!('IntersectionObserver' in window)) {
     // 兼容老浏览器：直接加载
@@ -79,7 +82,10 @@ onMounted(() => {
         img.onload = () => {
           isLoaded.value = true
         }
-        img.src = props.cover
+        img.onerror = () => {
+          isLoaded.value = true
+        }
+        img.src = coverSrc.value
         observer.unobserve(cardEl.value)
       }
     })

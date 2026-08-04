@@ -73,11 +73,13 @@ export default defineConfig({
         activeMatch: "/spiritual-food/",
         items: [
           { text: "📚 书山拾叶", link: "/spiritual-food/book/" }, // 书籍小说
+          { text: "✒️ 墨池云篆", link: "/spiritual-food/novel/" }, // 网络文学
           { text: "🎧 听海观澜", link: "/spiritual-food/music/" }, // 音乐音频
           { text: "🎥 浮光掠影", link: "/spiritual-food/movie/" }, // 影视作品
           { text: "🌌 绘梦织霞", link: "/spiritual-food/anime/" }, // 番剧动画
           { text: "🎮 游心太玄", link: "/spiritual-food/game/" }, // 游戏娱乐
-          { text: "✒️ 墨池云篆", link: "/spiritual-food/novel/" }, // 网络文学
+          { text: "🍳 烟火烹茶", link: "/spiritual-food/recipe/" }, // 做菜食谱
+          // { text: "📷 光影凝眸", link: "/spiritual-food/gallery/" }, // 摄影绘画
           { text: "🍵 闲窗絮语", link: "/spiritual-food/note/" }, // 其他杂项
         ],
       },

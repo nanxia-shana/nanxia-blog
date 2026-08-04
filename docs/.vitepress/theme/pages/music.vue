@@ -47,7 +47,7 @@
       <div v-for="(music, index) in filteredMusic" :key="music.title" :class="`music-card ${playbackState && playbackState.currentMusic?.id === music.id && playbackState.isPlaying ? 'music-card-playing' : ''}`" :data-category="music.category" @click="togglePlayItem(music)">
         <div class="music-index">{{ index + 1 }}</div>
         <div :class="`music-cover ${playbackState && playbackState.currentMusic?.id === music.id && playbackState.isPlaying ? 'music-cover-playing' : ''}`">
-          <img :src="music.cover" :alt="music.title" />
+          <img :src="music.cover || FALLBACK_IMG" :alt="music.title" @error="onCoverError" />
           <div class="play-overlay">
             <svg viewBox="0 0 1024 1024" width="36" height="36">
               <path d="M710.14 496.72L426.28 332.83c-11.92-6.88-26.82 1.72-26.82 15.49v327.77c0 13.77 14.9 22.37 26.82 15.49l283.86-163.89c11.92-6.88 11.92-24.09 0-30.97z" fill="white"/>
@@ -77,6 +77,15 @@ const categories = MUSIC_CATEGORY_FILTERS;
 const currentCategory = ref("all");
 const musicList = inject<MusicItem[]>("music-list");
 const playbackState = inject<PlaybackState>("playback-state");
+
+const FALLBACK_IMG = "/img/error_heitai.jpg";
+const failedCovers = new WeakSet<HTMLImageElement>();
+const onCoverError = (e: Event) => {
+  const img = e.target as HTMLImageElement;
+  if (failedCovers.has(img)) return;
+  failedCovers.add(img);
+  img.src = FALLBACK_IMG;
+};
 
 const autoPlayEnabled = ref(true);
 const showLyricsModal = ref(false);

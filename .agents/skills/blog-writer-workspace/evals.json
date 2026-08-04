@@ -1,0 +1,41 @@
+{
+  "skill_name": "blog-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我写一篇关于 TypeScript 泛型的文章，我刚从 JS 转过来，对泛型理解很模糊，踩了不少类型错误的坑",
+      "expected_output": "生成符合博客风格的 TypeScript 泛型文章，包含个人经历引入、技术讲解、踩坑分享，使用 VitePress 格式规范",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "把这篇文章的第三章改得更口语化一点，现在太生硬了，像教科书一样",
+      "expected_output": "优化段落语气，保持技术准确性但更自然亲切，符合个人博客风格",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "给这篇文章加一个关于 React useEffect 依赖数组的踩坑分享，我当时因为漏写依赖调试了一下午",
+      "expected_output": "在合适位置插入踩坑内容，使用 VitePress 自定义容器，与上下文衔接自然",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "帮我修改一下首页的样式，把卡片改成圆角，颜色调暗一点",
+      "expected_output": "不应该触发 blog-writer，这是 blog-web-design 的工作",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "配置一下 VitePress 的侧边栏导航，把新增的文章加进去",
+      "expected_output": "不应该触发 blog-writer，这是配置工作",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "写一篇关于最近学习 Rust 的心得体会，主要是关于所有权机制的理解",
+      "expected_output": "生成一篇个人感悟型的技术文章，包含学习过程、理解过程、经验分享",
+      "files": []
+    }
+  ]
+}

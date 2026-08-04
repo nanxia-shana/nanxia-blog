@@ -1,0 +1,6 @@
+{
+  "eval_id": 3,
+  "eval_name": "style-change-should-not-trigger",
+  "prompt": "帮我修改一下首页的样式，把卡片改成圆角，颜色调暗一点",
+  "assertions": []
+}

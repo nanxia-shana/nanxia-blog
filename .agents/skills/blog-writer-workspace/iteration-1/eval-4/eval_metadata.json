@@ -1,0 +1,6 @@
+{
+  "eval_id": 4,
+  "eval_name": "sidebar-config-should-not-trigger",
+  "prompt": "配置一下 VitePress 的侧边栏导航，把新增的文章加进去",
+  "assertions": []
+}

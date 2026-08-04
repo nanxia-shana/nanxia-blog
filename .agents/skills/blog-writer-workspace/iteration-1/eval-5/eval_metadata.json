@@ -1,0 +1,6 @@
+{
+  "eval_id": 5,
+  "eval_name": "rust-learning-reflection",
+  "prompt": "写一篇关于最近学习 Rust 的心得体会，主要是关于所有权机制的理解",
+  "assertions": []
+}

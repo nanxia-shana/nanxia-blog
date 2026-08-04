@@ -33,6 +33,12 @@ export const frontendArticles: ArticleItem[] = [
     link: "/knowledge/frontend/engi/rule",
   },
   {
+    title: "前端项目打包分包实践",
+    description: "记录前端项目打包分包的常见思路，包含 Webpack、Vite 的具体操作，以及 Vue 和 React 项目在分包上的差异分析。",
+    category: "工程",
+    link: "/knowledge/frontend/engi/bundle-splitting",
+  },
+  {
     title: "HTML 语义化",
     description: "深入理解 HTML5 语义化标签，提升页面可访问性和 SEO 表现。",
     category: "基础",

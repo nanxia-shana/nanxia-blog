@@ -18,6 +18,7 @@ import Music from "./pages/music.vue";
 import Movie from "./pages/movie.vue";
 import Anime from "./pages/anime.vue";
 import Game from "./pages/game.vue";
+import Recipe from "./pages/recipe.vue";
 import Novel from "./pages/novel.vue";
 import Note from "./pages/note.vue";
 
@@ -46,6 +47,7 @@ export default {
     app.component("Movie", Movie);
     app.component("Anime", Anime);
     app.component("Game", Game);
+    app.component("Recipe", Recipe);
     app.component("Novel", Novel);
     app.component("Note", Note);
 

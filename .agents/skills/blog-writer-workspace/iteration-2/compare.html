@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog-writer 技能优化对比</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a2e; color: #eee; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 30px; color: #00d4ff; }
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+        .column { background: #16213e; border-radius: 12px; padding: 24px; }
+        .column h2 { color: #00d4ff; margin-bottom: 20px; font-size: 1.2em; }
+        .version-tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; margin-left: 10px; }
+        .old { background: #e94560; }
+        .new { background: #00d4ff; color: #000; }
+        .content { font-family: 'Consolas', monospace; font-size: 13px; line-height: 1.8; white-space: pre-wrap; background: #0f3460; padding: 20px; border-radius: 8px; max-height: 600px; overflow-y: auto; }
+        .highlight { background: #e9456033; padding: 2px 6px; border-radius: 4px; }
+        .highlight-new { background: #00d4ff33; padding: 2px 6px; border-radius: 4px; }
+        .summary { background: linear-gradient(135deg, #0f3460, #16213e); padding: 24px; border-radius: 12px; margin-bottom: 30px; }
+        .summary h3 { color: #00d4ff; margin-bottom: 15px; }
+        .summary table { width: 100%; border-collapse: collapse; }
+        .summary th, .summary td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #0f3460; }
+        .summary th { color: #00d4ff; }
+        .check { color: #00ff88; }
+        code { background: #0a0a1a; padding: 2px 8px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 blog-writer 技能优化对比 - TS泛型文章</h1>
+
+        <div class="summary">
+            <h3>优化要点总结</h3>
+            <table>
+                <tr>
+                    <th>项目</th>
+                    <th>优化前</th>
+                    <th>优化后</th>
+                    <th>结果</th>
+                </tr>
+                <tr>
+                    <td>标题</td>
+                    <td>"从 JS 到 TS：终于搞懂了让人头大的泛型"</td>
+                    <td>"TypeScript 泛型入门"</td>
+                    <td class="check">✅ 简洁化</td>
+                </tr>
+                <tr>
+                    <td>开头表达</td>
+                    <td>"说出来你可能不信，我刚从 JS 转 TS 的头一个月..."</td>
+                    <td>"刚从 JS 转到 TS 的时候，我看到 `&lt;T&gt;` 这样的语法都是直接跳过的..."</td>
+                    <td class="check">✅ 完全匹配</td>
+                </tr>
+                <tr>
+                    <td>用词-玩意儿</td>
+                    <td>"这玩意儿写了跟没写有啥区别"</td>
+                    <td>"这东西也太复杂了"</td>
+                    <td class="check">✅ 已替换</td>
+                </tr>
+                <tr>
+                    <td>用词-搞懂</td>
+                    <td>"决定把泛型这玩意儿啃下来"</td>
+                    <td>"把泛型这个东西弄明白之后"</td>
+                    <td class="check">✅ 已替换</td>
+                </tr>
+                <tr>
+                    <td>整体语气</td>
+                    <td>略带夸张的博主风格</td>
+                    <td>平实、真诚的个人叙述</td>
+                    <td class="check">✅ 更像"南夏"</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="compare-grid">
+            <div class="column">
+                <h2>优化前 <span class="version-tag old">v1</span></h2>
+                <div class="content">---
+layout: doc
+
+lastUpdated: false
+title: <span class="highlight">从 JS 到 TS：终于搞懂了让人头大的泛型</span>
+description: 写给刚从 JavaScript 转 TypeScript 的开发者...
+category: TypeScript
+date: 2026-04-29
+---
+
+# 从 JS 到 TS：终于搞懂了让人头大的泛型
+
+<span class="highlight">说出来你可能不信，</span>我刚从 JS 转 TS 的头一个月，看到 `&lt;T&gt;` 这种语法直接跳过。心里想：这<span class="highlight">玩意儿</span>写了跟没写有啥区别？我用 `any` 不香吗？
+
+结果就是，项目里的 `any` 越写越多，TS 写成了 `AnyScript`。直到有一次，一个接口返回的数据类型不对，我排查了整整一下午，最后发现就是因为我图省事写了个 `any`，把类型检查给绕过去了。
+
+那天晚上我痛定思痛，决定把泛型这<span class="highlight">玩意儿</span>啃下来。<span class="highlight">搞懂</span>之后才发现：原来泛型一点都不难，之前觉得难，是没人用大白话给我讲明白。
+
+这篇文章就是给刚从 JS 转过来的朋友写的，我会尽量用最直白的话，不讲那些听起来就<span class="highlight">头大</span>的术语。你看完至少能做到：
+- 看到 `&lt;T&gt;` 不再发怵
+- 知道什么时候该用泛型，什么时候用 `any` 也没事
+- 日常开发中 80% 的泛型场景能搞定</div>
+            </div>
+            <div class="column">
+                <h2>优化后 <span class="version-tag new">v2</span></h2>
+                <div class="content">---
+layout: doc
+
+lastUpdated: false
+title: <span class="highlight-new">TypeScript 泛型入门</span>
+description: 从 JavaScript 转 TypeScript 必看的泛型入门指南，帮你弄明白最让人困惑的泛型概念
+category: TypeScript
+date: 2026-04-29
+---
+
+# TypeScript 泛型入门
+
+<span class="highlight-new">刚从 JS 转到 TS 的时候，我看到 `&lt;T&gt;` 这样的语法都是直接跳过的，心想这东西也太复杂了，先不管它再说。</span>结果写着写着就发现，到处都是类型报错，尤其是在写一些通用函数的时候，要么就是写一堆重复的类型定义，要么就是直接用 `any` 掩耳盗铃。
+
+后来花了点时间把泛型这个<span class="highlight-new">东西</span><span class="highlight-new">弄明白</span>之后，才发现其实它没那么难，反而能帮我们写出更灵活、更安全的代码。这篇文章就从一个 JS 开发者的视角出发，讲讲泛型到底是什么，以及怎么用。
+
+## 1. 先从 JS 的角度想问题
+
+在写 JS 的时候，我们经常会写一些通用的函数。比如一个函数可以接收数组，然后返回数组的第一个元素：
+
+```javascript
+function getFirstItem(arr) {
+  return arr[0];
+}
+```
+
+这个函数很好用，不管传什么数组进去都能工作。但是到了 TS 里，问题就来了...</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

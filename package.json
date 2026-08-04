@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@agent-eyes/agent-eyes": "^0.1.8",
+    "@playwright/mcp": "^0.0.78",
     "vitepress": "^1.6.4"
   },
   "scripts": {

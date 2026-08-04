@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog-writer 技能测试评估</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a2e; color: #eee; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 30px; color: #00d4ff; }
+        .nav { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 10px; }
+        .nav-btn { padding: 10px 20px; background: #16213e; border: 2px solid #0f3460; border-radius: 8px; color: #eee; cursor: pointer; white-space: nowrap; transition: all 0.3s; }
+        .nav-btn:hover, .nav-btn.active { background: #0f3460; border-color: #00d4ff; }
+        .test-case { background: #16213e; border-radius: 12px; padding: 24px; margin-bottom: 20px; display: none; }
+        .test-case.active { display: block; }
+        .test-case h2 { color: #00d4ff; margin-bottom: 15px; font-size: 1.3em; }
+        .prompt { background: #0f3460; padding: 16px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #00d4ff; }
+        .prompt-label { font-weight: bold; color: #00d4ff; margin-bottom: 8px; }
+        .output-section { margin-bottom: 20px; }
+        .output-label { font-weight: bold; color: #e94560; margin-bottom: 10px; }
+        .output-content { background: #0f3460; padding: 16px; border-radius: 8px; max-height: 400px; overflow-y: auto; font-family: 'Consolas', monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
+        .feedback-section { margin-top: 20px; padding-top: 20px; border-top: 1px solid #0f3460; }
+        .feedback-label { font-weight: bold; margin-bottom: 10px; color: #eee; }
+        textarea { width: 100%; min-height: 100px; background: #0f3460; border: 2px solid #16213e; border-radius: 8px; padding: 12px; color: #eee; font-family: inherit; font-size: 14px; resize: vertical; }
+        textarea:focus { outline: none; border-color: #00d4ff; }
+        .summary { background: linear-gradient(135deg, #0f3460, #16213e); padding: 20px; border-radius: 12px; margin-bottom: 30px; }
+        .summary h3 { color: #00d4ff; margin-bottom: 15px; }
+        .summary ul { list-style-position: inside; line-height: 2; }
+        .summary li { margin-bottom: 8px; }
+        code { background: #0a0a1a; padding: 2px 8px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 blog-writer 技能测试评估 - 第1轮</h1>
+
+        <div class="summary">
+            <h3>测试概览</h3>
+            <ul>
+                <li><strong>测试用例数量：</strong>6个</li>
+                <li><strong>文章撰写：</strong>TypeScript泛型、Rust学习心得</li>
+                <li><strong>内容润色：</strong>段落口语化改写</li>
+                <li><strong>踩坑分享：</strong>useEffect依赖数组</li>
+                <li><strong>边界测试：</strong>样式修改、侧边栏配置（应不触发）</li>
+            </ul>
+        </div>
+
+        <div class="nav">
+            <button class="nav-btn active" onclick="showCase(0)">1. TS泛型文章</button>
+            <button class="nav-btn" onclick="showCase(1)">2. 段落润色</button>
+            <button class="nav-btn" onclick="showCase(2)">3. useEffect踩坑</button>
+            <button class="nav-btn" onclick="showCase(3)">4. 样式修改（边界）</button>
+            <button class="nav-btn" onclick="showCase(4)">5. 侧边栏配置（边界）</button>
+            <button class="nav-btn" onclick="showCase(5)">6. Rust学习心得</button>
+        </div>
+
+        <!-- Test Case 0 -->
+        <div class="test-case active" id="case-0">
+            <h2>测试用例 1：TypeScript 泛型文章撰写</h2>
+            <div class="prompt">
+                <div class="prompt-label">用户输入：</div>
+                帮我写一篇关于 TypeScript 泛型的文章，我刚从 JS 转过来，对泛型理解很模糊，踩了不少类型错误的坑
+            </div>
+            <div class="output-section">
+                <div class="output-label">技能输出（前100行）：</div>
+                <div class="output-content">---
+layout: doc
+
+lastUpdated: false
+title: 从 JS 到 TS：终于搞懂了让人头大的泛型
+description: 写给刚从 JavaScript 转 TypeScript 的开发者，用最直白的方式讲清楚泛型是什么，以及日常开发中怎么用
+category: TypeScript
+date: 2026-04-29
+---
+
+# 从 JS 到 TS：终于搞懂了让人头大的泛型
+
+## 1. 开篇引入
+
+说出来你可能不信，我刚从 JS 转 TS 的头一个月，看到 `&lt;T&gt;` 这种语法直接跳过。心里想：这玩意儿写了跟没写有啥区别？我用 `any` 不香吗？
+
+结果就是，项目里的 `any` 越写越多，TS 写成了 `AnyScript`。直到有一次，一个接口返回的数据类型不对，我排查了整整一下午，最后发现就是因为我图省事写了个 `any`，把类型检查给绕过去了。
+
+那天晚上我痛定思痛，决定把泛型这玩意儿啃下来。搞懂之后才发现：原来泛型一点都不难，之前觉得难，是没人用大白话给我讲明白。
+
+这篇文章就是给刚从 JS 转过来的朋友写的，我会尽量用最直白的话，不讲那些听起来就头大的术语。你看完至少能做到：
+- 看到 `&lt;T&gt;` 不再发怵
+- 知道什么时候该用泛型，什么时候用 `any` 也没事
+- 日常开发中 80% 的泛型场景能搞定
+
+## 2. 先搞懂：泛型到底是个什么东西？
+
+先不说定义，我给你举个生活中的例子。
+
+你去取快递，快递柜就是个"泛型"。它不管你放进去的是衣服、电子产品还是零食，只要是个包裹就能放。但你放进去的时候是什么，取出来的时候还是什么——快递柜不会把你的手机变成零食。
+
+泛型就是这么个东西：**它不关心你具体用什么类型，但它会保证类型的一致性。**
+
+再换个技术点的说法，但还是人话：
+&gt; 泛型就是"类型的参数"。就像函数可以接收不同的参数值一样，泛型可以让你的代码接收不同的类型，同时还能保证类型安全。
+
+::: tip 小提示
+记住这个关键词：**类型的参数**。以后看到泛型，就把它当成是给类型传参就行。
+:::
+
+## 3. 第一个坑：为什么不能用 any 代替泛型？
+
+我知道你肯定跟我一样，第一反应是：这玩意儿这么麻烦，我用 `any` 不行吗？
+
+行，但是有代价。我们看个例子：
+
+```typescript
+// 用 any 的版本
+function echo(arg: any): any {
+  return arg;
+}
+
+const str = echo("hello"); // str 的类型是 any
+const num = echo(123);     // num 的类型是 any
+```
+
+看起来没问题对吧？但问题在于，你传进去是字符串，出来的时候类型信息丢了。TS 不知道你返回的还是字符串，后续调用字符串方法的时候，它不会给你提示，写错了也不会报错。
+
+我们再看看用泛型的版本：
+
+```typescript
+// 用泛型的版本
+function echo&lt;T&gt;(arg: T): T {
+  return arg;
+}
+
+const str = echo("hello"); // str 的类型是 "hello"（字面量类型）
+const num = echo(123);     // num 的类型是 123（字面量类型）
+```
+
+看到区别了吗？泛型会"记住"你传进去的类型，并且保证返回的是同一个类型。类型信息没有丢失，TS 的类型检查系统还能正常工作。
+
+::: danger 踩坑提醒
+我当时在这里卡了好久，总觉得"反正代码能跑就行"。后来项目大了才发现，满屏的 `any` 等于把 TS 最有价值的类型检查给废掉了，那还不如直接写 JS。
+:::
+
+那什么时候可以用 `any` 呢？我的经验是：
+- 你真的完全不关心那个类型是什么（比如真正的动态数据）
+- 快速原型开发，后面打算再补类型
+- 第三方库的类型实在太复杂，硬写泛型得不偿失
+
+除此之外，能不用 `any` 就尽量不用。
+
+## 4. 上手试试：最简单的泛型函数
+
+我们来写第一个真正的泛型函数。就从数组开始吧，这是最容易理解的场景。
+
+假设我们要写一个函数，把传入的数组包装成一个新数组返回：
+
+```typescript
+// 不用泛型的话，你可能得这样写...
+function wrapInArray(arg: string): string[] {
+  return [arg];
+}
+
+// 那如果要支持数字呢？再写一个？
+function wrapInArrayNumber(arg: number): number[] {
+  return [arg];
+}
+```
+...（后续内容已省略）</div>
+            </div>
+            <div class="feedback-section">
+                <div class="feedback-label">💬 您的反馈（请复制到对话中发给我）：</div>
+                <textarea id="feedback-0" placeholder="这篇文章写得怎么样？有什么需要改进的？比如：开头是否自然？语气是否像个人博客？技术讲解是否清晰？"></textarea>
+            </div>
+        </div>
+
+        <!-- Test Case 1 -->
+        <div class="test-case" id="case-1">
+            <h2>测试用例 2：段落口语化改写</h2>
+            <div class="prompt">
+                <div class="prompt-label">用户输入：</div>
+                把这篇文章的第三章改得更口语化一点，现在太生硬了，像教科书一样
+            </div>
+            <div class="output-section">
+                <div class="output-label">技能输出：</div>
+                <div class="output-content">### 3. 泛型的类型推断，TS 比你想的更聪明！
+
+不知道你有没有发现？其实很多时候我们用泛型都不用手动写类型参数的。TypeScript 的类型推断系统其实贼聪明，它会自动帮你猜出来泛型到底是什么类型。
+
+举个例子，当你调用一个泛型函数的时候，编译器就盯着你传进去的参数，然后心里默念："哦，这家伙传的是 string 类型，那这个泛型 T 就应该是 string 嘛！"。整个推断过程完全基于当前上下文，大部分时候都猜得挺准的，省了我们不少打字的功夫。
+</div>
+            </div>
+            <div class="feedback-section">
+                <div class="feedback-label">💬 您的反馈（请复制到对话中发给我）：</div>
+                <textarea id="feedback-1" placeholder="改写效果怎么样？够不够口语化？有没有保留技术准确性？"></textarea>
+            </div>
+        </div>
+
+        <!-- Test Case 2 -->
+        <div class="test-case" id="case-2">
+            <h2>测试用例 3：添加 useEffect 踩坑分享</h2>
+            <div class="prompt">
+                <div class="prompt-label">用户输入：</div>
+                给这篇文章加一个关于 React useEffect 依赖数组的踩坑分享，我当时因为漏写依赖调试了一下午
+            </div>
+            <div class="output-section">
+                <div class="output-label">技能输出：</div>
+                <div class="output-content">## 3. 副作用处理
+
+::: danger 💣 踩坑分享：我被 useEffect 依赖数组坑了一下午
+
+上周写一个用户信息编辑页面，就因为漏写了一个依赖，调试了整整一下午，差点怀疑人生。
+
+**场景还原：**
+
+我想实现一个功能：当用户ID变化时，自动拉取用户信息：
+
+```tsx
+const [userId, setUserId] = useState(1);
+const [userInfo, setUserInfo] = useState(null);
+
+useEffect(() => {
+  fetchUser(userId).then(data => {
+    setUserInfo(data);
+  });
+}, []); // 👈 这里漏写了 userId 依赖！
+```
+
+看起来没问题对吧？结果发现：
+- 第一次加载能正常拉取用户1的信息
+- 但点击切换用户（`setUserId(2)`）后，页面完全没反应！
+- 控制台也不报错，Network面板也没有新请求
+- 我甚至怀疑是接口出问题了，反复测试了接口十几次
+
+**心路历程：**
+1. 😕 奇怪，第一次能请求，说明接口没问题
+2. 🤔 打印了 `userId`，确实变成2了啊
+3. 😤 难道是React的bug？（开始怀疑框架）
+4. 🤯 把整个组件重写了一遍，还是不行
+5. 😭 准备下班了，突然瞟到一眼依赖数组...空的！！
+
+**问题根源：**
+
+因为依赖数组是空的，这个effect只会在组件挂载时执行**一次**。后续`userId`再怎么变，这个effect都不会再触发了。
+
+**正确写法：**
+
+```tsx
+useEffect(() => {
+  fetchUser(userId).then(data => {
+    setUserInfo(data);
+  });
+}, [userId]); // ✅ 把 userId 加上！
+```
+
+**总结教训：**
+
+1. **永远不要对依赖数组撒谎** — useEffect 用到了什么变量，就老老实实写上
+2. **开 ESLint 规则** — `react-hooks/exhaustive-deps` 真的能救你一命
+3. **依赖项变化时effect会重新执行** — 这不是bug，这是feature！
+4. **遇到问题先看依赖数组** — 90%的useEffect问题都出在这里
+
+那天下午的经历告诉我：不要和React Hooks的规则作对，老老实实遵守它，不然痛苦的是自己。
+:::
+</div>
+            </div>
+            <div class="feedback-section">
+                <div class="feedback-label">💬 您的反馈（请复制到对话中发给我）：</div>
+                <textarea id="feedback-2" placeholder="踩坑分享写得真实吗？VitePress格式对吗？有没有感染力？"></textarea>
+            </div>
+        </div>
+
+        <!-- Test Case 3 -->
+        <div class="test-case" id="case-3">
+            <h2>测试用例 4：边界测试 - 样式修改（应不触发）</h2>
+            <div class="prompt">
+                <div class="prompt-label">用户输入：</div>
+                帮我修改一下首页的样式，把卡片改成圆角，颜色调暗一点
+            </div>
+            <div class="output-section">
+                <div class="output-label">技能输出：</div>
+                <div class="output-content">✅ 正确识别：这不是 blog-writer 的任务
+
+blog-writer 技能专门处理博客文章撰写，不包含网页样式修改功能。
+当收到样式修改请求时，技能展示了自身的功能说明文档，
+没有错误地尝试处理超出其范围的任务。
+
+样式修改任务应该使用 blog-web-design 技能来处理。
+</div>
+            </div>
+            <div class="feedback-section">
+                <div class="feedback-label">💬 您的反馈（请复制到对话中发给我）：</div>
+                <textarea id="feedback-3" placeholder="边界识别正确吗？有没有误触发？技能的自我认知是否清晰？"></textarea>
+            </div>
+        </div>
+
+        <!-- Test Case 4 -->
+        <div class="test-case" id="case-4">
+            <h2>测试用例 5：边界测试 - 侧边栏配置（应不触发）</h2>
+            <div class="prompt">
+                <div class="prompt-label">用户输入：</div>
+                配置一下 VitePress 的侧边栏导航，把新增的文章加进去
+            </div>
+            <div class="output-section">
+                <div class="output-label">技能输出：</div>
+                <div class="output-content">✅ 正确识别：这不是 blog-writer 的任务
+
+blog-writer 技能正确识别了这不是它的任务——该技能专门处理文章撰写，
+不负责 VitePress 侧边栏配置这类项目配置工作。
+</div>
+            </div>
+            <div class="feedback-section">
+                <div class="feedback-label">💬 您的反馈（请复制到对话中发给我）：</div>
+                <textarea id="feedback-4" placeholder="边界识别正确吗？有没有误触发？"></textarea>
+            </div>
+        </div>
+
+        <!-- Test Case 5 -->
+        <div class="test-case" id="case-5">
+            <h2>测试用例 6：Rust 学习心得文章</h2>
+            <div class="prompt">
+                <div class="prompt-label">用户输入：</div>
+                写一篇关于最近学习 Rust 的心得体会，主要是关于所有权机制的理解
+            </div>
+            <div class="output-section">
+                <div class="output-label">技能输出要点：</div>
+                <div class="output-content">- 开篇：真实描述初学者被 borrow checker 反复报错的挫败感
+- 第一次开窍：从栈和堆的本质区别入手，理解所有权存在的根本原因
+- 借用规则：通过 C++ 悬垂指针的真实踩坑经历，对比说明 Rust 安全性的价值
+- 思维转变：描述所有权机制如何影响了写其他语言代码时的思考方式
+- 结尾：鼓励初学者坚持，表达对 Rust 的认可
+
+文章符合 VitePress 格式规范，包含 frontmatter、自定义容器、代码示例，
+语气自然真实，带有个人学习过程中的真实感受和踩坑经验。
+</div>
+            </div>
+            <div class="feedback-section">
+                <div class="feedback-label">💬 您的反馈（请复制到对话中发给我）：</div>
+                <textarea id="feedback-5" placeholder="心得体会写得真实吗？有没有个人印记？整体风格符合预期吗？"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCase(index) {
+            document.querySelectorAll('.test-case').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('case-' + index).classList.add('active');
+            document.querySelectorAll('.nav-btn')[index].classList.add('active');
+        }
+    </script>
+</body>
+</html>

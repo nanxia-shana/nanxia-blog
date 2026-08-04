@@ -53,6 +53,10 @@ const menuList = [
                 text: "前端项目规范化",
                 link: "/knowledge/frontend/engi/rule",
               },
+              {
+                text: "前端项目打包分包实践",
+                link: "/knowledge/frontend/engi/bundle-splitting",
+              },
             ],
           },
           {
@@ -154,6 +158,10 @@ const menuList = [
         link: "/spiritual-food/book/",
       },
       {
+        text: "✒️ 墨池云篆",
+        link: "/spiritual-food/novel/",
+      },
+      {
         text: "🎧 听海观澜",
         link: "/spiritual-food/music/",
       },
@@ -166,12 +174,12 @@ const menuList = [
         link: "/spiritual-food/anime/",
       },
       {
-        text: "✒️ 墨池云篆",
-        link: "/spiritual-food/novel/",
-      },
-      {
         text: "🎮 游心太玄",
         link: "/spiritual-food/game/",
+      },
+      {
+        text: "🍳 烟火烹茶",
+        link: "/spiritual-food/recipe/",
       },
       {
         text: "🍵 闲窗絮语",

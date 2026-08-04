@@ -1,9 +1,9 @@
 <template>
   <div class="card" ref="cardEl">
     <!-- 缩略图占位 -->
-    <div v-if="props.thumb && !isLoaded" class="thumb" :style="{backgroundImage: `url(${props.thumb})`}"></div>
+    <div v-if="!isLoaded" class="thumb" :style="{backgroundImage: `url(${thumbSrc})`}"></div>
     <!-- 封面图 -->
-    <div v-if="isLoaded" class="cover" :style="{backgroundImage: `url(${props.cover})`}"></div>
+    <div v-if="isLoaded" class="cover" :style="{backgroundImage: `url(${coverSrc})`}"></div>
     <!-- 底部信息遮罩 -->
     <div class="info-overlay">
       <div class="title">{{ props.title }}</div>
@@ -13,6 +13,7 @@
 </template>
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+const FALLBACK_IMG = '/img/error_heitai.jpg'
 const props = defineProps({
   title: {
     type: String,
@@ -34,10 +35,8 @@ const props = defineProps({
 
 const cardEl = ref(null)
 const isLoaded = ref(false)
-const coverLink = computed(() => {
-  // 可以这里配置点击跳转链接，现在直接打开封面图片
-  return props.cover
-})
+const coverSrc = computed(() => props.cover || FALLBACK_IMG)
+const thumbSrc = computed(() => props.thumb || FALLBACK_IMG)
 
 onMounted(() => {
   if (!('IntersectionObserver' in window)) {
@@ -54,7 +53,10 @@ onMounted(() => {
         img.onload = () => {
           isLoaded.value = true
         }
-        img.src = props.cover
+        img.onerror = () => {
+          isLoaded.value = true
+        }
+        img.src = coverSrc.value
         observer.unobserve(cardEl.value)
       }
     })

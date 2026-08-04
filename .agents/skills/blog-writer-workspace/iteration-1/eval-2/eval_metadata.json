@@ -1,0 +1,6 @@
+{
+  "eval_id": 2,
+  "eval_name": "add-useeffect-pitfall",
+  "prompt": "给这篇文章加一个关于 React useEffect 依赖数组的踩坑分享，我当时因为漏写依赖调试了一下午",
+  "assertions": []
+}

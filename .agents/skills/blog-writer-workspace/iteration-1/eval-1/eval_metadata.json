@@ -1,0 +1,6 @@
+{
+  "eval_id": 1,
+  "eval_name": "polish-paragraph-style",
+  "prompt": "把这篇文章的第三章改得更口语化一点，现在太生硬了，像教科书一样",
+  "assertions": []
+}
