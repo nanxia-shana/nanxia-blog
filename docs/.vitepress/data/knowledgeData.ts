@@ -46,7 +46,7 @@ export const frontendArticles: ArticleItem[] = [
   },
   {
     title: "前端面试题汇总",
-    description: "精选高频前端面试题目，涵盖 JS、CSS、框架、算法等各个方面。",
+    description: "精选高频前端面试题，涵盖 JS 核心、工程化、浏览器原理、Vue/React、性能优化、线上监控、跨端架构与 AI 工程实践。",
     category: "面试",
     link: "/knowledge/frontend/base/frontend-interview-questions",
   },
@@ -67,6 +67,12 @@ export const frontendArticles: ArticleItem[] = [
     description: "总结 React 开发中关于 State、Hooks、Effect、派生状态和性能优化的常见错误与注意事项。",
     category: "基础",
     link: "/knowledge/frontend/base/react-common-mistakes",
+  },
+  {
+    title: "从 SPA 到 Diff：Vue 与 React",
+    description: "从 SPA 的本质出发，讲清楚虚拟 DOM 与 Diff 算法要解决的问题，以及 Vue 和 React 在更新策略上的核心差异。",
+    category: "基础",
+    link: "/knowledge/frontend/base/spa-vue-react-diff",
   },
   {
     title: "首屏白屏优化",

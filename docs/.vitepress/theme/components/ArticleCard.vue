@@ -36,7 +36,8 @@ defineProps<{
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
-  min-height: 160px;
+  height: 180px;
+  overflow: hidden;
 }
 
 .article-card:hover {
@@ -156,7 +157,11 @@ defineProps<{
   font-weight: 600;
   color: var(--vp-c-text-1);
   line-height: 1.4;
-  padding-right: 4rem;
+  padding-right: 3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .article-desc {
@@ -164,7 +169,10 @@ defineProps<{
   font-size: 0.9rem;
   color: var(--vp-c-text-2);
   line-height: 1.6;
-  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .arrow-icon {

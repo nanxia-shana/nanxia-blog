@@ -28,6 +28,10 @@ const menuList = [
                 link: "/knowledge/frontend/base/react-common-mistakes",
               },
               {
+                text: "从 SPA 到 Diff：Vue 与 React",
+                link: "/knowledge/frontend/base/spa-vue-react-diff",
+              },
+              {
                 text: "前端常用设计模式",
                 link: "/knowledge/frontend/base/designPattern",
               },

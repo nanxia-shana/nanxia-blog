@@ -3,6 +3,9 @@
     "playwright": {
       "command": "node",
       "args": ["node_modules/@playwright/mcp/cli.js"]
+    },
+    "mdn": {
+      "url": "https://mdn.dev/mcp"
     }
   }
 }
