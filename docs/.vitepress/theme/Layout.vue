@@ -7,6 +7,7 @@ import Live2d from "./components/Live2d.vue";
 import MusicPlayer from "./components/MusicPlayer.vue";
 import musicData from '../store/index';
 import PostFooter from "./components/PostFooter.vue";
+import Giscus from "./components/Giscus.vue";
 
 const { Layout } = DefaultTheme
 
@@ -60,6 +61,7 @@ provide('playback-state', playbackState)
     </template>
     <template #doc-footer-before>
       <PostFooter></PostFooter>
+      <Giscus></Giscus>
     </template>
   </Layout>
   <!-- Live2d 放在 Layout 外面，确保在所有页面渲染 -->
