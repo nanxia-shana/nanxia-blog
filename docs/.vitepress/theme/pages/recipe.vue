@@ -1,6 +1,6 @@
 <template>
   <div class="recipe-collection">
-    <h1>🍳 烟火烹茶</h1>
+    <h1><img src="/icon/recipe.png" alt="" class="title-icon">烟火烹茶</h1>
     <div class="filter-bar">
       <label class="filter-select">
         <span>菜系</span>
@@ -9,7 +9,7 @@
           <optgroup v-for="group in regionGroups" :key="group.label" :label="group.label">
             <option v-for="opt in group.options" :key="opt" :value="opt">{{ opt }}</option>
           </optgroup>
-        </select>
+        </select>                 
       </label>
       <label class="filter-select">
         <span>场景</span>

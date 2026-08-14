@@ -34,7 +34,6 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-wwwwwwwwwwwwwwwwwww
 const FALLBACK_IMG = '/img/error_heitai.jpg'
 
 const props = defineProps({

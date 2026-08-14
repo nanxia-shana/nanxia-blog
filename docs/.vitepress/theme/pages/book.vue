@@ -1,6 +1,6 @@
 <template>
   <div class="book-collection">
-    <h1>📚 书山拾叶</h1>
+    <h1><img src="/icon/book.png" alt="" class="title-icon">书山拾叶</h1>
     <div class="filter-bar">
       <button
         v-for="category in categories"
@@ -10,7 +10,7 @@
         {{ category.label }}
       </button>
     </div>
-    <div class="books-grid">
+    <div v-if="filteredBooks.length" class="books-grid">
       <div
         v-for="book in filteredBooks.slice(0, displayCount)"
         :key="book.id"
@@ -18,6 +18,9 @@
         :data-category="book.category.join(',')">
         <book-card :title="book.title" :author="book.author" :cover="book.cover" :thumb="book.thumb" :note="book.note" />
       </div>
+    </div>
+    <div v-else class="empty-state">
+      📖 这片书山上，暂无此类落叶
     </div>
   </div>
 </template>
@@ -172,6 +175,14 @@ h1::after {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--vp-c-text-3);
+  font-size: 1rem;
 }
 
 /* 响应式设计 */

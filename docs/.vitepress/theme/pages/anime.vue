@@ -1,6 +1,6 @@
 <template>
   <div class="anime-collection">
-    <h1>🌌 绘梦织霞​​</h1>
+    <h1><img src="/icon/anime.png" alt="" class="title-icon">绘梦织霞​​</h1>
     <div class="filter-bar">
       <button
         v-for="category in categories"
@@ -10,10 +10,13 @@
         {{ category.label }}
       </button>
     </div>
-    <div class="animations-grid">
+    <div v-if="filteredanimations.length" class="animations-grid">
       <div v-for="anime in filteredanimations.slice(0, displayCount)" :key="anime.id" class="anime-card">
         <anime-card :title="anime.title" :cover="anime.cover" :thumb="anime.thumb" :note="anime.note" />
       </div>
+    </div>
+    <div v-else class="empty-state">
+      🌸 梦里寻它千百度，暂无此分类的番剧
     </div>
   </div>
 </template>
@@ -167,6 +170,14 @@ h1::after {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--vp-c-text-3);
+  font-size: 1rem;
 }
 
 /* 响应式设计 */

@@ -4,6 +4,15 @@
   /* --vp-c-brand-1: #e74c3c; */
   --vp-c-bg-soft: rgba(246, 246, 247, 0.6);
 }
+
+/* spiritual-food 页面标题前的贴纸图标 */
+.title-icon {
+  display: inline-block;
+  height: 1.15em;
+  width: auto;
+  vertical-align: -0.18em;
+  margin-right: 0.35rem;
+}
 .dark {
   --vp-c-bg-soft: rgba(32, 33, 39, 0.6);
 }

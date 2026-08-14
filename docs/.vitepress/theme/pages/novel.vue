@@ -1,6 +1,6 @@
 <template>
   <div class="novel-collection">
-    <h1>✒️ 墨池云篆​​</h1>
+    <h1><img src="/icon/novel.png" alt="" class="title-icon">墨池云篆​​</h1>
     <div class="filter-bar">
       <button
         v-for="category in categories"
@@ -10,7 +10,7 @@
         {{ category.label }}
       </button>
     </div>
-    <div class="novels-grid">
+    <div v-if="filteredNovels.length" class="novels-grid">
       <div
         v-for="novel in filteredNovels.slice(0, displayCount)"
         :key="novel.id"
@@ -18,6 +18,9 @@
         :data-category="novel.category.join(',')">
         <Novel-card :title="novel.title" :author="novel.author" :cover="novel.cover" :thumb="novel.thumb"></Novel-card>
       </div>
+    </div>
+    <div v-else class="empty-state">
+      📜 墨池暂涸，暂无此类小说
     </div>
   </div>
 </template>
@@ -175,6 +178,14 @@ h1::after {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--vp-c-text-3);
+  font-size: 1rem;
 }
 
 /* 响应式设计 */

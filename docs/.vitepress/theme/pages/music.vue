@@ -1,6 +1,6 @@
 <template>
   <div class="music-collection">
-    <h1>🎧 听海观澜</h1>
+    <h1><img src="/icon/music.png" alt="" class="title-icon">听海观澜</h1>
     <CurrentPlayerPlaceholder
       :playback-state="playbackState"
       :auto-play-enabled="autoPlayEnabled"
@@ -37,7 +37,7 @@
       </button>
     </div>
 
-    <div class="music-list">
+    <div v-if="filteredMusic.length" class="music-list">
       <div class="music-header">
         <div class="music-header-index">#</div>
         <div class="music-header-info">信息</div>
@@ -61,6 +61,9 @@
         <div class="music-album">{{ music.album }}</div>
         <div class="music-date">{{ music.release_date }}</div>
       </div>
+    </div>
+    <div v-else class="empty-state">
+      🎵 潮声未至，暂无此类曲目
     </div>
   </div>
 </template>
@@ -469,6 +472,14 @@ h1::after {
   margin-left: 16px;
   font-size: 0.85rem;
   color: #999999;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--vp-c-text-3);
+  font-size: 1rem;
 }
 
 html.dark h1 {

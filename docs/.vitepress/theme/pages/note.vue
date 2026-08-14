@@ -1,6 +1,6 @@
 <template>
   <div class="notes-collection">
-    <h1>🍵 闲窗细语​​</h1>
+    <h1><img src="/icon/note.png" alt="" class="title-icon">闲窗细语​​</h1>
     <div class="filter-bar">
       <button
         v-for="category in categories"
@@ -10,7 +10,7 @@
         {{ category.label }}
       </button>
     </div>
-    <div class="notes-list">
+    <div v-if="filteredNotes.length" class="notes-list">
       <a
         v-for="note in displayedNotes"
         :key="note.title"
@@ -23,6 +23,9 @@
       <div v-if="hasMore" ref="loadMoreTrigger" class="loading-trigger"></div>
       <div v-if="loading" class="loading">加载中...</div>
       <div v-if="!hasMore && displayedNotes.length > 0" class="end-text">已经到底啦 📝</div>
+    </div>
+    <div v-else class="empty-state">
+      📝 窗下暂无此类细语，换个分类看看
     </div>
   </div>
 </template>
@@ -48,6 +51,7 @@ const notes = ref(noteList);
 // 分页
 // 根据屏幕宽度获取每页显示数量
 const getPageSize = () => {
+  if (typeof window === "undefined") return 8;
   if (window.innerWidth > 1440) return 20; // 2K+ 大屏
   if (window.innerWidth > 768) return 12; // 普通桌面
   return 8; // 移动端
@@ -269,6 +273,14 @@ html.dark .note-item:hover {
   padding: 1rem;
   color: var(--vp-c-text-3);
   font-size: 0.9rem;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--vp-c-text-3);
+  font-size: 1rem;
 }
 
 /* 响应式设计 */

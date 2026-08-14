@@ -2,7 +2,7 @@
   <div class="spiritual-food-collection">
     <!-- 页面标题 -->
     <div class="page-header">
-      <h1>✨ 精神食粮</h1>
+      <h1><img src="/icon/spiritual-food.png" alt="" class="title-icon">精神食粮</h1>
       <p class="subtitle">书山有径，学海无涯，在此探索多元文化的精神世界</p>
     </div>
 

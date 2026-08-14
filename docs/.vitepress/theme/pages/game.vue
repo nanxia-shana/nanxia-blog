@@ -1,6 +1,6 @@
 <template>
   <div class="game-collection">
-    <h1>🎮 游心太玄​​</h1>
+    <h1><img src="/icon/game.png" alt="" class="title-icon">游心太玄​​</h1>
     <div class="filter-bar">
       <button
         v-for="category in categories"
@@ -10,7 +10,7 @@
         {{ category.label }}
       </button>
     </div>
-    <div class="games-grid">
+    <div v-if="filteredGames.length" class="games-grid">
       <div
         v-for="game in filteredGames.slice(0, displayCount)"
         :key="game.id"
@@ -18,6 +18,9 @@
         :data-category="game.category.join(',')">
         <game-card :title="game.title" :author="game.developer" :platform="game.platform" :cover="game.cover" :thumb="game.thumb" />
       </div>
+    </div>
+    <div v-else class="empty-state">
+      🎮 玄境尚空，暂无此类游戏
     </div>
   </div>
 </template>
@@ -175,6 +178,14 @@ h1::after {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--vp-c-text-3);
+  font-size: 1rem;
 }
 
 /* 响应式设计 */

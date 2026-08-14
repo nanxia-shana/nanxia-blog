@@ -77,3 +77,6 @@ logs/
 *.temp
 .cache/
 .temp/
+
+docs/public/live2d/model/haru
+docs/public/live2d/model/shizuku

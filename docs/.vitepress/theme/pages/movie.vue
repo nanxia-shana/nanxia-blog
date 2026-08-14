@@ -1,6 +1,6 @@
 <template>
   <div class="movie-collection">
-    <h1>🎥 浮光掠影​​</h1>
+    <h1><img src="/icon/movie.png" alt="" class="title-icon">浮光掠影​​</h1>
     <div class="filter-bar">
       <button
         v-for="category in categories"
@@ -10,10 +10,13 @@
         {{ category.label }}
       </button>
     </div>
-    <div class="movies-grid">
+    <div v-if="filteredmovies.length" class="movies-grid">
       <div v-for="movie in filteredmovies.slice(0, displayCount)" :key="movie.id" class="movie-card">
         <movie-card :title="movie.title" :country="movie.country" :cover="movie.cover" :year="movie.year" :runtime="movie.runtime" :note="movie.note" />
       </div>
+    </div>
+    <div v-else class="empty-state">
+      🎬 光影交错间，暂无此类影片
     </div>
   </div>
 </template>
@@ -171,6 +174,14 @@ h1::after {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--vp-c-text-3);
+  font-size: 1rem;
 }
 
 /* 响应式设计 */
