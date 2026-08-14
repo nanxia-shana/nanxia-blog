@@ -11,12 +11,12 @@ const { isDark } = useData();
 // 背景图片 URLs
 const bgUrls = {
   dark: {
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/yexi1.jpeg?imageView2/2/w/80/format/webp/q/30",
-    full: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/yexi1.jpeg?imageView2/2/w/1920/format/webp/q/80",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/background_dark.jpeg?imageView2/2/w/80/format/webp/q/30",
+    full: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/background_dark.jpeg?imageView2/2/w/1920/format/webp/q/80",
   },
   light: {
-    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/mingrixiang1.jpeg?imageView2/2/w/80/format/webp/q/30",
-    full: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/mingrixiang1.jpeg?imageView2/2/w/1920/format/webp/q/80",
+    thumb: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/background_light.jpeg?imageView2/2/w/80/format/webp/q/30",
+    full: "https://nanxia-1309728409.cos.ap-chongqing.myqcloud.com/Shana/image/background_light.jpeg?imageView2/2/w/1920/format/webp/q/80",
   },
 };
 
